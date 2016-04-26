@@ -5,4 +5,14 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <!-- UI Components -->
+    <string name="txtTitleSplash">Flybits</string>
+    <string name="txtSubtitleSplash">flybits.com\n@flybitsinc</string>
+
+    <!-- Errors -->
+    <string name="errorTitleNoInternet">No internet connection present.</string>
+    <string name="errorMessageNoInternet">Please connect to the internet and try again.</string>
+    <string name="errorBtnPositive">Got it!</string>
+    <string name="errorTitleLogin">Login Error!</string>
 </resources>
