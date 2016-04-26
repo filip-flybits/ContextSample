@@ -1,5 +1,7 @@
 package com.flybits.samples.context;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -9,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.flybits.samples.context.fragments.ContextFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -66,10 +70,15 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+
+        android.app.FragmentManager manager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = manager.beginTransaction();
+        Fragment fragment = null;
+
         int id = item.getItemId();
 
         if (id == R.id.item_activity) {
-            // Handle the camera action
+            fragment = ContextFragment.newInstance();
         } else if (id == R.id.item_battery) {
 
         } else if (id == R.id.item_beacon) {
@@ -85,6 +94,11 @@ public class MainActivity extends AppCompatActivity
         }else if (id == R.id.item_network) {
 
         }
+
+        fragmentTransaction.replace(R.id.fragmentMain, fragment, "fragmentTag");
+
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
