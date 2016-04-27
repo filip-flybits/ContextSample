@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-        fragmentTransaction.replace(R.id.fragmentMain, fragment, "fragmentTag");
+        fragmentTransaction.replace(R.id.content_frame, fragment, "fragmentTag");
 
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
