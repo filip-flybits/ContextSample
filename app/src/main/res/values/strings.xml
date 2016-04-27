@@ -15,4 +15,7 @@
     <string name="errorMessageNoInternet">Please connect to the internet and try again.</string>
     <string name="errorBtnPositive">Got it!</string>
     <string name="errorTitleLogin">Login Error!</string>
+
+    <!-- -->
+    <string name="txtLastUpdated">Last Updated: %s</string>
 </resources>
