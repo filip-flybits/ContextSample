@@ -18,4 +18,11 @@
 
     <!-- -->
     <string name="txtLastUpdated">Last Updated: %s</string>
+
+    <string name="txtActivityStationary">Stationary: %s</string>
+    <string name="txtActivityRunning">Running: %s</string>
+    <string name="txtActivityWalking">Walking: %s</string>
+    <string name="txtActivityOnBike">Cycling: %s</string>
+    <string name="txtActivityDriving">Driving: %s</string>
+    <string name="txtActivityUnknown">Unknown: %s</string>
 </resources>
