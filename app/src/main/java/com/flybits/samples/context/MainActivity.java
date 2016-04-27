@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.flybits.core.api.context.plugins.AvailablePlugins;
 import com.flybits.samples.context.fragments.ContextFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -78,7 +79,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.item_activity) {
-            fragment = ContextFragment.newInstance();
+
+            fragment = ContextFragment.newInstance(AvailablePlugins.ACTIVITY.getKey());
+
         } else if (id == R.id.item_battery) {
 
         } else if (id == R.id.item_beacon) {
