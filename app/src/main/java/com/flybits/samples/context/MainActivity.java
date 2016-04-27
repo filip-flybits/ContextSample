@@ -80,22 +80,29 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.item_activity) {
 
-            fragment = ContextFragment.newInstance(AvailablePlugins.ACTIVITY.getKey());
+            fragment = ContextFragment.newInstance(AvailablePlugins.ACTIVITY);
 
         } else if (id == R.id.item_battery) {
 
+            fragment = ContextFragment.newInstance(AvailablePlugins.BATTERY);
         } else if (id == R.id.item_beacon) {
 
+            fragment = ContextFragment.newInstance(AvailablePlugins.BEACON);
         } else if (id == R.id.item_carrier) {
 
+            fragment = ContextFragment.newInstance(AvailablePlugins.CARRIER);
         } else if (id == R.id.item_fitness) {
 
+            fragment = ContextFragment.newInstance(AvailablePlugins.FITNESS);
         } else if (id == R.id.item_language) {
 
+            fragment = ContextFragment.newInstance(AvailablePlugins.LANGUAGE);
         }else if (id == R.id.item_location) {
 
+            fragment = ContextFragment.newInstance(AvailablePlugins.LOCATION);
         }else if (id == R.id.item_network) {
 
+            fragment = ContextFragment.newInstance(AvailablePlugins.NETWORK_CONNECTIVITY);
         }
 
         fragmentTransaction.replace(R.id.content_frame, fragment, "fragmentTag");

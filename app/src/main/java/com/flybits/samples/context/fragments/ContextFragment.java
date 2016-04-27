@@ -24,11 +24,11 @@ public class ContextFragment  extends Fragment {
     private SwipeRefreshLayout swipeContainer;
     private String ctxData;
 
-    public static Fragment newInstance(String plugin) {
+    public static Fragment newInstance(AvailablePlugins plugin) {
 
         ContextFragment newFragment = new ContextFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("context", plugin);
+        bundle.putString("context", plugin.getKey());
         newFragment.setArguments(bundle);
         return newFragment;
     }
