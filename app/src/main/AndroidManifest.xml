@@ -49,6 +49,12 @@
         <receiver android:name="com.flybits.core.api.context.receivers.ActivityCollectionAlarmManager"/>
         <service android:name="com.flybits.core.api.context.services.ActivityCollectionService"/>
         <service android:name="com.flybits.core.api.context.plugins.activity.DeviceRecognitionServiceIntent"/>
+
+        <!-- Services and Receivers for Battery-->
+        <receiver android:name="com.flybits.core.api.context.receivers.BatteryLifeCollectionAlarmManager"/>
+        <service android:name="com.flybits.core.api.context.services.BatteryLifeCollectionService"/>
+
+
     </application>
 
 </manifest>

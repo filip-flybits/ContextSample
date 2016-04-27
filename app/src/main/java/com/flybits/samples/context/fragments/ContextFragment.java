@@ -14,6 +14,7 @@ import com.flybits.core.api.Flybits;
 import com.flybits.core.api.context.BasicData;
 import com.flybits.core.api.context.plugins.AvailablePlugins;
 import com.flybits.core.api.context.plugins.activity.ActivityData;
+import com.flybits.core.api.context.plugins.battery.BatteryLifeData;
 import com.flybits.samples.context.R;
 import com.flybits.samples.context.adapters.ContextAdapter;
 import com.flybits.samples.context.utilities.TimeUtils;
@@ -25,10 +26,7 @@ public class ContextFragment  extends Fragment {
     private TextView mTxtLastUpdated;
     private SwipeRefreshLayout mSwipeContainer;
     private String mCtxData;
-
-    private RecyclerView mRecyclerView;
     private ContextAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
 
     private ArrayList<BasicData> mListOfDataData;
 
@@ -45,10 +43,10 @@ public class ContextFragment  extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view       = inflater.inflate(R.layout.content_context, container, false);
-        mTxtLastUpdated = (TextView) view.findViewById(R.id.txtLastUpdated);
-        mRecyclerView   = (RecyclerView) view.findViewById(R.id.my_recycler_view);
-        mSwipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
+        View view                   = inflater.inflate(R.layout.content_context, container, false);
+        mTxtLastUpdated             = (TextView) view.findViewById(R.id.txtLastUpdated);
+        mSwipeContainer             = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
+        RecyclerView mRecyclerView  = (RecyclerView) view.findViewById(R.id.my_recycler_view);
 
 
         mListOfDataData = new ArrayList<>();
@@ -58,7 +56,7 @@ public class ContextFragment  extends Fragment {
         mRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(getActivity());
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
@@ -92,17 +90,33 @@ public class ContextFragment  extends Fragment {
     private void fetchItems() {
         if (mCtxData.equals(AvailablePlugins.ACTIVITY.getKey())){
             BasicData<ActivityData> data = Flybits.include(getActivity()).getContextData(AvailablePlugins.ACTIVITY);
-
-            String refreshTime = (data != null && data.timestamp > 0)
-                    ? TimeUtils.getTimeAsString(data.timestamp * 1000) : TimeUtils.getTimeAsString(System.currentTimeMillis());
-
-            if (data != null){
-                mListOfDataData.add(0, data);
-                mAdapter.notifyDataSetChanged();
-            }
-
-            mTxtLastUpdated.setText(getString(R.string.txtLastUpdated, refreshTime));
+            setView(data);
+        }else if (mCtxData.equals(AvailablePlugins.BATTERY.getKey())){
+            BasicData<BatteryLifeData> data = Flybits.include(getActivity()).getContextData(AvailablePlugins.BATTERY);
+            setView(data);
         }
+
         mSwipeContainer.setRefreshing(false);
+    }
+
+    private void setView(BasicData data){
+        String refreshTime = (data != null && data.timestamp > 0)
+                ? TimeUtils.getTimeAsString(data.timestamp * 1000) : TimeUtils.getTimeAsString(System.currentTimeMillis());
+
+        if (data != null){
+
+            if (mListOfDataData.size() > 0){
+
+                ActivityData dataFromPosition1 = (ActivityData) mListOfDataData.get(0).value;
+                if (!dataFromPosition1.equals(data.value)){
+                    mListOfDataData.add(0, data);
+                }
+            }else{
+                mListOfDataData.add(0, data);
+            }
+            mAdapter.notifyDataSetChanged();
+        }
+
+        mTxtLastUpdated.setText(getString(R.string.txtLastUpdated, refreshTime));
     }
 }

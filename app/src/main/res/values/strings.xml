@@ -19,10 +19,15 @@
     <!-- -->
     <string name="txtLastUpdated">Last Updated: %s</string>
 
+    <!-- Activity Context -->
     <string name="txtActivityStationary">Stationary: %s</string>
     <string name="txtActivityRunning">Running: %s</string>
     <string name="txtActivityWalking">Walking: %s</string>
     <string name="txtActivityOnBike">Cycling: %s</string>
     <string name="txtActivityDriving">Driving: %s</string>
     <string name="txtActivityUnknown">Unknown: %s</string>
+
+    <!-- Battery Context -->
+    <string name="txtBatteryIsCharging">Is Charging: %s</string>
+    <string name="txtBatteryPercentage">Percentage: %s</string>
 </resources>

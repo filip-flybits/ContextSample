@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.flybits.core.api.context.BasicData;
 import com.flybits.core.api.context.plugins.activity.ActivityData;
+import com.flybits.core.api.context.plugins.battery.BatteryLifeData;
 import com.flybits.samples.context.R;
 
 import java.util.ArrayList;
@@ -40,8 +41,8 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_activity, parent, false);
             return new ViewContextActivity(v);
         }else if (code == TYPE_BATTERY) {
-            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_activity, parent, false);
-            return new ViewContextActivity(v);
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_battery, parent, false);
+            return new ViewContextBattery(v);
         }else if (code == TYPE_BEACON) {
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_activity, parent, false);
             return new ViewContextActivity(v);
@@ -79,6 +80,13 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             holderActivity.txtRidingBike.setText(mContext.getString(R.string.txtActivityOnBike, String.valueOf(data.value.cycling)));
             holderActivity.txtDriving.setText(mContext.getString(R.string.txtActivityDriving, String.valueOf(data.value.driving)));
             holderActivity.txtUnknown.setText(mContext.getString(R.string.txtActivityUnknown, String.valueOf(data.value.unknown)));
+        }else if (holder instanceof ViewContextBattery) {
+
+            BasicData<BatteryLifeData> data    = mListOfContextData.get(position);
+
+            ViewContextBattery holderActivity  = (ViewContextBattery) holder;
+            holderActivity.txtIsCharging.setText(mContext.getString(R.string.txtBatteryIsCharging, String.valueOf(data.value.isCharging)));
+            holderActivity.txtPercentage.setText(mContext.getString(R.string.txtBatteryPercentage, String.valueOf(data.value.percentage)));
         }
     }
 
@@ -90,7 +98,12 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemViewType(int position) {
-        return 0;
+        if (mListOfContextData.get(position).value instanceof ActivityData){
+            return TYPE_ACTIVITY;
+        }else if (mListOfContextData.get(position).value instanceof BatteryLifeData){
+            return TYPE_BATTERY;
+        }
+        return TYPE_ACTIVITY;
     }
 
     public static class ViewContextActivity extends RecyclerView.ViewHolder {
@@ -111,6 +124,19 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             txtRidingBike       = (TextView) v.findViewById(R.id.activityRidingBike);
             txtDriving          = (TextView) v.findViewById(R.id.activityDriving);
             txtUnknown          = (TextView) v.findViewById(R.id.activityUnknown);
+        }
+    }
+
+    public static class ViewContextBattery extends RecyclerView.ViewHolder {
+
+        public TextView txtIsCharging;
+        public TextView txtPercentage;
+
+        public ViewContextBattery(View v) {
+            super(v);
+
+            txtIsCharging       = (TextView) v.findViewById(R.id.batteryIsCharging);
+            txtPercentage       = (TextView) v.findViewById(R.id.batteryPercentage);
         }
     }
 }

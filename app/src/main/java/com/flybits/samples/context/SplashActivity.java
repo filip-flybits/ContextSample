@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.flybits.core.api.Flybits;
 import com.flybits.core.api.context.plugins.activity.ActivityProvider;
+import com.flybits.core.api.context.plugins.battery.BatteryLifeProvider;
 import com.flybits.core.api.exceptions.FeatureNotSupportedException;
 import com.flybits.core.api.interfaces.IRequestCallback;
 import com.flybits.core.api.interfaces.IRequestLoggedIn;
@@ -26,6 +27,8 @@ public class SplashActivity extends AppCompatActivity {
             Flybits.include(SplashActivity.this).isUserLoggedIn(true, new IRequestLoggedIn() {
                 @Override
                 public void onLoggedIn(User user) {
+                    activateContext();
+
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                     finish();
@@ -61,13 +64,7 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(User me) {
-
-                try {
-                    ActivityProvider provider = new ActivityProvider(SplashActivity.this, 60000);
-                    Flybits.include(SplashActivity.this).activateContext(null, provider);
-                }catch (FeatureNotSupportedException exception){
-
-                }
+                activateContext();
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.putExtra("userID", me.id);
@@ -117,5 +114,17 @@ public class SplashActivity extends AppCompatActivity {
                 });
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
+    }
+
+    private void activateContext(){
+        try {
+            ActivityProvider provider = new ActivityProvider(SplashActivity.this, 60000);
+            Flybits.include(SplashActivity.this).activateContext(null, provider);
+
+            BatteryLifeProvider provider2 = new BatteryLifeProvider(SplashActivity.this, 60000);
+            Flybits.include(SplashActivity.this).activateContext(null, provider2);
+        }catch (FeatureNotSupportedException exception){
+
+        }
     }
 }
