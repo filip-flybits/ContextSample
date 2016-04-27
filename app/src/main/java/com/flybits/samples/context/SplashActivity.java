@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.flybits.core.api.Flybits;
+import com.flybits.core.api.context.plugins.activity.ActivityProvider;
+import com.flybits.core.api.exceptions.FeatureNotSupportedException;
 import com.flybits.core.api.interfaces.IRequestCallback;
 import com.flybits.core.api.interfaces.IRequestLoggedIn;
 import com.flybits.core.api.models.User;
@@ -59,6 +61,14 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(User me) {
+
+                try {
+                    ActivityProvider provider = new ActivityProvider(SplashActivity.this, 60000);
+                    Flybits.include(SplashActivity.this).activateContext(null, provider);
+                }catch (FeatureNotSupportedException exception){
+
+                }
+
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.putExtra("userID", me.id);
                 startActivity(intent);

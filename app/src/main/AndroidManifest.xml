@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.flybits.samples.context" >
 
+    <!-- Needed for Flybits SDK -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Activity Recognition Permissions -->
+    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,6 +15,7 @@
         android:supportsRtl="true"
         android:name=".utilities.SampleApplication"
         android:theme="@style/AppTheme" >
+
         <activity
             android:name=".SplashActivity"
             android:label="@string/app_name"
@@ -37,6 +44,11 @@
         <meta-data
             android:name="com.flybits.development.apikey"
             android:value="DCE738E1-2DFD-48B7-B3F0-3AB6D90F68F8" />
+
+        <!-- Services and Receivers for Activity Recognition -->
+        <receiver android:name="com.flybits.core.api.context.receivers.ActivityCollectionAlarmManager"/>
+        <service android:name="com.flybits.core.api.context.services.ActivityCollectionService"/>
+        <service android:name="com.flybits.core.api.context.plugins.activity.DeviceRecognitionServiceIntent"/>
     </application>
 
 </manifest>
