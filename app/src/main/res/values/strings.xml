@@ -23,9 +23,18 @@
     <!-- Texts -->
     <string name="txtHomeDescription">Welcome to Flybits\' Context sample application. Through this application developers will have a
     better understanding of all of the contextual plugins created by Flybits. Additionally, this sample demonstrates how contextual
-    information can be updated, retrieved, and displayed within the application\'s presentation layer.\n\nCurrently the context plugin
-    implemented in this version are:\n<ul><li>Activity Recognition</li><li>Battery</li><li>Beacon (iBeacon AND Eddystone)</li>
-            <li>Carrier (SIM)</li><li>Fitness (Steps)</li><li>Language</li><li>Location</li><li>Network Connectivity</li></ul></string>
+    information can be updated, retrieved, and displayed within the application\'s presentation layer.</string>
+    <string name="txtAvailableContext">Currently the context plugin implemented in this version are:</string>
+
+    <!-- Context List -->
+    <string name="context1">Activity Recognition</string>
+    <string name="context2">Battery</string>
+    <string name="context3">Beacon (iBeacon / EddyStone)</string>
+    <string name="context4">Carrier (SIM)</string>
+    <string name="context5">Fitness (Steps)</string>
+    <string name="context6">Language</string>
+    <string name="context7">Location</string>
+    <string name="context8">Network Connectivity</string>
 
     <!-- Activity Context -->
     <string name="txtActivityStationary">Stationary: %s</string>

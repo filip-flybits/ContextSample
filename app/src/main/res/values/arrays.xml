@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="contextAvailable">
+        <item>@string/context1</item>
+        <item>@string/context2</item>
+        <item>@string/context3</item>
+        <item>@string/context4</item>
+        <item>@string/context5</item>
+        <item>@string/context6</item>
+        <item>@string/context7</item>
+        <item>@string/context8</item>
+    </string-array>
+</resources>
