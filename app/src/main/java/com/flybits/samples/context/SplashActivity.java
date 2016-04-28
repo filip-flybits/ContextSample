@@ -144,7 +144,7 @@ public class SplashActivity extends AppCompatActivity {
                     User is already logged in therefore, the application should activate context.
                     This must be done after the application has logged in.
                       */
-                    activateContext(isLocationActivated);
+                    activateContextPlugins(isLocationActivated);
 
                     Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                     startActivity(intent);
@@ -183,7 +183,7 @@ public class SplashActivity extends AppCompatActivity {
                     User is already logged in therefore, the application should activate context.
                     This must be done after the application has logged in.
                       */
-                activateContext(isLocationActivated);
+                activateContextPlugins(isLocationActivated);
 
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(intent);
@@ -203,7 +203,7 @@ public class SplashActivity extends AppCompatActivity {
         });
     }
 
-    private void activateContext(final boolean isLocationActivated){
+    private void activateContextPlugins(final boolean isLocationActivated){
         try {
             ActivityProvider provider = new ActivityProvider(SplashActivity.this, 60000);
             Flybits.include(SplashActivity.this).activateContext(null, provider);
