@@ -10,8 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e4bf75d-e047-42fb-95f6-5b42c03003ee" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/fragments/ContextFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/fragments/ContextFragment.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java" />
     </list>
     <ignored path="Context.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -75,6 +74,22 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="SplashActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.1282401">
+              <caret line="83" column="50" selection-start-line="83" selection-start-column="50" selection-end-line="83" selection-end-column="50" />
+              <folding>
+                <element signature="e#3604#3633#0" expanded="true" />
+                <element signature="e#3635#3666#0" expanded="true" />
+                <element signature="e#3668#3693#0" expanded="true" />
+                <element signature="e#4631#4666#0" expanded="true" />
+                <element signature="e#4684#4720#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -87,11 +102,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ContextFragment.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ContextFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/fragments/ContextFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.16030534">
-              <caret line="141" column="5" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="137" column="0" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -1866,7 +1881,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_battery.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_carrier.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_language.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_network.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_fitness.xml" />
@@ -1877,6 +1891,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/adapters/ContextAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/fragments/ContextFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java" />
       </list>
     </option>
   </component>
@@ -2497,7 +2512,7 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.44678056" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44678056" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2533,8 +2548,14 @@
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/fragments/ContextFragment.java</url>
+          <line>130</line>
+          <properties />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2888,10 +2909,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.3206108">
-          <caret line="132" column="61" selection-start-line="132" selection-start-column="61" selection-end-line="132" selection-end-column="61" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="139" column="27" selection-start-line="139" selection-start-column="27" selection-end-line="139" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/fragments/ContextFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="137" column="0" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -2930,21 +2961,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/MainActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="139" column="27" selection-start-line="139" selection-start-column="27" selection-end-line="139" selection-end-column="27" />
+        <state vertical-scroll-proportion="-1.1282401">
+          <caret line="83" column="50" selection-start-line="83" selection-start-column="50" selection-end-line="83" selection-end-column="50" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#3604#3633#0" expanded="true" />
+            <element signature="e#3635#3666#0" expanded="true" />
+            <element signature="e#3668#3693#0" expanded="true" />
+            <element signature="e#4631#4666#0" expanded="true" />
+            <element signature="e#4684#4720#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/fragments/ContextFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16030534">
-          <caret line="141" column="5" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
