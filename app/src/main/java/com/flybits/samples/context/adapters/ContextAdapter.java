@@ -10,20 +10,28 @@ import android.widget.TextView;
 import com.flybits.core.api.context.BasicData;
 import com.flybits.core.api.context.plugins.activity.ActivityData;
 import com.flybits.core.api.context.plugins.battery.BatteryLifeData;
+import com.flybits.core.api.context.plugins.beacon.EddyStone;
+import com.flybits.core.api.context.plugins.beacon.IBeacon;
+import com.flybits.core.api.context.plugins.carrier.CarrierData;
+import com.flybits.core.api.context.plugins.fitness.FitnessData;
+import com.flybits.core.api.context.plugins.language.LanguageData;
+import com.flybits.core.api.context.plugins.location.LocationData;
+import com.flybits.core.api.context.plugins.network.NetworkData;
 import com.flybits.samples.context.R;
 
 import java.util.ArrayList;
 
 public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private static final int TYPE_ACTIVITY  = 0;
-    private static final int TYPE_BATTERY   = 1;
-    private static final int TYPE_BEACON    = 2;
-    private static final int TYPE_CARRIER   = 3;
-    private static final int TYPE_FITNESS   = 4;
-    private static final int TYPE_LANGUAGE  = 5;
-    private static final int TYPE_LOCATION  = 6;
-    private static final int TYPE_NETWORK   = 7;
+    private static final int TYPE_ACTIVITY          = 0;
+    private static final int TYPE_BATTERY           = 1;
+    private static final int TYPE_BEACON_IBEACON    = 2;
+    private static final int TYPE_BEACON_EDDYSTONE  = 3;
+    private static final int TYPE_CARRIER           = 4;
+    private static final int TYPE_FITNESS           = 5;
+    private static final int TYPE_LANGUAGE          = 6;
+    private static final int TYPE_LOCATION          = 7;
+    private static final int TYPE_NETWORK           = 8;
 
     private Context mContext;
     private ArrayList<BasicData> mListOfContextData;
@@ -43,7 +51,10 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }else if (code == TYPE_BATTERY) {
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_battery, parent, false);
             return new ViewContextBattery(v);
-        }else if (code == TYPE_BEACON) {
+        }else if (code == TYPE_BEACON_EDDYSTONE) {
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_activity, parent, false);
+            return new ViewContextActivity(v);
+        }else if (code == TYPE_BEACON_IBEACON) {
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_activity, parent, false);
             return new ViewContextActivity(v);
         }else if (code == TYPE_CARRIER) {
@@ -102,6 +113,20 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             return TYPE_ACTIVITY;
         }else if (mListOfContextData.get(position).value instanceof BatteryLifeData){
             return TYPE_BATTERY;
+        }else if (mListOfContextData.get(position).value instanceof IBeacon){
+            return TYPE_BEACON_IBEACON;
+        }else if (mListOfContextData.get(position).value instanceof EddyStone){
+            return TYPE_BEACON_EDDYSTONE;
+        }else if (mListOfContextData.get(position).value instanceof FitnessData){
+            return TYPE_FITNESS;
+        }else if (mListOfContextData.get(position).value instanceof LanguageData){
+            return TYPE_LANGUAGE;
+        }else if (mListOfContextData.get(position).value instanceof LocationData){
+            return TYPE_LOCATION;
+        }else if (mListOfContextData.get(position).value instanceof NetworkData){
+            return TYPE_NETWORK;
+        }else if (mListOfContextData.get(position).value instanceof CarrierData){
+            return TYPE_CARRIER;
         }
         return TYPE_ACTIVITY;
     }

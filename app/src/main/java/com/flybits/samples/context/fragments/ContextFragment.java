@@ -15,6 +15,11 @@ import com.flybits.core.api.context.BasicData;
 import com.flybits.core.api.context.plugins.AvailablePlugins;
 import com.flybits.core.api.context.plugins.activity.ActivityData;
 import com.flybits.core.api.context.plugins.battery.BatteryLifeData;
+import com.flybits.core.api.context.plugins.carrier.CarrierData;
+import com.flybits.core.api.context.plugins.fitness.FitnessData;
+import com.flybits.core.api.context.plugins.language.LanguageData;
+import com.flybits.core.api.context.plugins.location.LocationData;
+import com.flybits.core.api.context.plugins.network.NetworkData;
 import com.flybits.samples.context.R;
 import com.flybits.samples.context.adapters.ContextAdapter;
 import com.flybits.samples.context.utilities.TimeUtils;
@@ -94,6 +99,23 @@ public class ContextFragment  extends Fragment {
         }else if (mCtxData.equals(AvailablePlugins.BATTERY.getKey())){
             BasicData<BatteryLifeData> data = Flybits.include(getActivity()).getContextData(AvailablePlugins.BATTERY);
             setView(data);
+        }else if (mCtxData.equals(AvailablePlugins.BATTERY.getKey())){
+
+        }else if (mCtxData.equals(AvailablePlugins.CARRIER.getKey())){
+            BasicData<CarrierData> data = Flybits.include(getActivity()).getContextData(AvailablePlugins.CARRIER);
+            setView(data);
+        }else if (mCtxData.equals(AvailablePlugins.FITNESS.getKey())){
+            BasicData<FitnessData> data = Flybits.include(getActivity()).getContextData(AvailablePlugins.FITNESS);
+            setView(data);
+        }else if (mCtxData.equals(AvailablePlugins.LANGUAGE.getKey())){
+            BasicData<LanguageData> data = Flybits.include(getActivity()).getContextData(AvailablePlugins.LANGUAGE);
+            setView(data);
+        }else if (mCtxData.equals(AvailablePlugins.LOCATION.getKey())){
+            BasicData<LocationData> data = Flybits.include(getActivity()).getContextData(AvailablePlugins.LOCATION);
+            setView(data);
+        }else if (mCtxData.equals(AvailablePlugins.NETWORK_CONNECTIVITY.getKey())){
+            BasicData<NetworkData> data = Flybits.include(getActivity()).getContextData(AvailablePlugins.NETWORK_CONNECTIVITY);
+            setView(data);
         }
 
         mSwipeContainer.setRefreshing(false);
@@ -106,9 +128,7 @@ public class ContextFragment  extends Fragment {
         if (data != null){
 
             if (mListOfDataData.size() > 0){
-
-                ActivityData dataFromPosition1 = (ActivityData) mListOfDataData.get(0).value;
-                if (!dataFromPosition1.equals(data.value)){
+                if (!mListOfDataData.get(0).value.equals(data.value)){
                     mListOfDataData.add(0, data);
                 }
             }else{
