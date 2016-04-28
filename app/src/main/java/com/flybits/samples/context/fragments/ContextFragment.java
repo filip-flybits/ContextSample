@@ -141,7 +141,7 @@ public class ContextFragment  extends Fragment {
         mTxtLastUpdated.setText(getString(R.string.txtLastUpdated, refreshTime));
     }
 
-    public void onEventMainThread(EventContextSensorValuesUpdated event){
+    public void onNewData(EventContextSensorValuesUpdated event) {
         if (mCtxData.equals(AvailablePlugins.ACTIVITY.getKey()) && event.plugin == AvailablePlugins.ACTIVITY){
 
             BasicData<ActivityData> data = event.contextSensor;

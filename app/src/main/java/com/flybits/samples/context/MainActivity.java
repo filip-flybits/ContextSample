@@ -13,10 +13,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.flybits.core.api.context.plugins.AvailablePlugins;
+import com.flybits.core.api.events.context.EventContextSensorValuesUpdated;
 import com.flybits.samples.context.fragments.ContextFragment;
+
+import de.greenrobot.event.EventBus;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private final String CONTEXT_FRAGMENT_TAG = "tagContext";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,7 +110,7 @@ public class MainActivity extends AppCompatActivity
             fragment = ContextFragment.newInstance(AvailablePlugins.NETWORK_CONNECTIVITY);
         }
 
-        fragmentTransaction.replace(R.id.content_frame, fragment, "fragmentTag");
+        fragmentTransaction.replace(R.id.content_frame, fragment, CONTEXT_FRAGMENT_TAG);
 
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
@@ -113,5 +118,26 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        EventBus.getDefault().unregister(this);
+        super.onStop();
+    }
+
+    public void onEventMainThread(EventContextSensorValuesUpdated event){
+        android.app.FragmentManager manager = getFragmentManager();
+        ContextFragment fragment = (ContextFragment) manager.findFragmentByTag(CONTEXT_FRAGMENT_TAG);
+        if (fragment != null) {
+
+            fragment.onNewData(event);
+        }
     }
 }
