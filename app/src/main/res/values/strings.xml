@@ -16,9 +16,16 @@
     <string name="errorBtnPositive">Got it!</string>
     <string name="errorTitleLogin">Login Error!</string>
 
-    <!-- -->
+    <!-- Time Updates -->
     <string name="txtLastUpdated">Last Updated: %s</string>
     <string name="txtUpdatedAt">Updated At: %s</string>
+
+    <!-- Texts -->
+    <string name="txtHomeDescription">Welcome to Flybits\' Context sample application. Through this application developers will have a
+    better understanding of all of the contextual plugins created by Flybits. Additionally, this sample demonstrates how contextual
+    information can be updated, retrieved, and displayed within the application\'s presentation layer.\n\nCurrently the context plugin
+    implemented in this version are:\n<ul><li>Activity Recognition</li><li>Battery</li><li>Beacon (iBeacon AND Eddystone)</li>
+            <li>Carrier (SIM)</li><li>Fitness (Steps)</li><li>Language</li><li>Location</li><li>Network Connectivity</li></ul></string>
 
     <!-- Activity Context -->
     <string name="txtActivityStationary">Stationary: %s</string>

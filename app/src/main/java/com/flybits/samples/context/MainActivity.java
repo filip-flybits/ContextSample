@@ -15,13 +15,15 @@ import android.view.MenuItem;
 import com.flybits.core.api.context.plugins.AvailablePlugins;
 import com.flybits.core.api.events.context.EventContextSensorValuesUpdated;
 import com.flybits.samples.context.fragments.ContextFragment;
+import com.flybits.samples.context.fragments.HomeFragment;
 
 import de.greenrobot.event.EventBus;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private final String CONTEXT_FRAGMENT_TAG = "tagContext";
+    private final String CONTEXT_FRAGMENT_TAG   = "tagContext";
+    private final String HOME_FRAGMENT_TAG      = "tagHome";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,13 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        android.app.FragmentManager manager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = manager.beginTransaction();
+        Fragment fragment = HomeFragment.newInstance();
+        fragmentTransaction.replace(R.id.content_frame, fragment, HOME_FRAGMENT_TAG);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
     @Override
