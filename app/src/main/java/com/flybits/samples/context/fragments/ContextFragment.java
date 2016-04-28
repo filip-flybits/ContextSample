@@ -20,6 +20,7 @@ import com.flybits.core.api.context.plugins.fitness.FitnessData;
 import com.flybits.core.api.context.plugins.language.LanguageData;
 import com.flybits.core.api.context.plugins.location.LocationData;
 import com.flybits.core.api.context.plugins.network.NetworkData;
+import com.flybits.core.api.events.context.EventContextSensorValuesUpdated;
 import com.flybits.samples.context.R;
 import com.flybits.samples.context.adapters.ContextAdapter;
 import com.flybits.samples.context.utilities.TimeUtils;
@@ -138,5 +139,34 @@ public class ContextFragment  extends Fragment {
         }
 
         mTxtLastUpdated.setText(getString(R.string.txtLastUpdated, refreshTime));
+    }
+
+    public void onEventMainThread(EventContextSensorValuesUpdated event){
+        if (mCtxData.equals(AvailablePlugins.ACTIVITY.getKey()) && event.plugin == AvailablePlugins.ACTIVITY){
+
+            BasicData<ActivityData> data = event.contextSensor;
+            setView(data);
+
+        }else if (mCtxData.equals(AvailablePlugins.BATTERY.getKey()) && event.plugin == AvailablePlugins.BATTERY){
+            BasicData<BatteryLifeData> data = event.contextSensor;
+            setView(data);
+        }else if (mCtxData.equals(AvailablePlugins.BEACON.getKey()) && event.plugin == AvailablePlugins.BEACON){
+
+        }else if (mCtxData.equals(AvailablePlugins.CARRIER.getKey()) && event.plugin == AvailablePlugins.CARRIER){
+            BasicData<CarrierData> data = event.contextSensor;
+            setView(data);
+        }else if (mCtxData.equals(AvailablePlugins.FITNESS.getKey()) && event.plugin == AvailablePlugins.FITNESS){
+            BasicData<FitnessData> data = event.contextSensor;
+            setView(data);
+        }else if (mCtxData.equals(AvailablePlugins.LANGUAGE.getKey()) && event.plugin == AvailablePlugins.LANGUAGE){
+            BasicData<LanguageData> data = event.contextSensor;
+            setView(data);
+        }else if (mCtxData.equals(AvailablePlugins.LOCATION.getKey()) && event.plugin == AvailablePlugins.LOCATION){
+            BasicData<LocationData> data = event.contextSensor;
+            setView(data);
+        }else if (mCtxData.equals(AvailablePlugins.NETWORK_CONNECTIVITY.getKey()) && event.plugin == AvailablePlugins.NETWORK_CONNECTIVITY){
+            BasicData<NetworkData> data = event.contextSensor;
+            setView(data);
+        }
     }
 }
