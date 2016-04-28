@@ -30,4 +30,8 @@
     <!-- Battery Context -->
     <string name="txtBatteryIsCharging">Is Charging: %s</string>
     <string name="txtBatteryPercentage">Percentage: %s</string>
+
+    <!-- Carrier Context -->
+    <string name="txtCarrierMNC">Carrier MNC: %s</string>
+    <string name="txtCarrierMCC">Carrier MCC: %s</string>
 </resources>

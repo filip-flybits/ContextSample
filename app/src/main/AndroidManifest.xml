@@ -8,6 +8,23 @@
     <!-- Activity Recognition Permissions -->
     <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION"/>
 
+    <!-- Carrier Permissions -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+    <!-- Beacon Permissions -->
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+
+    <!-- Location / Beacon Permissions -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- Network Permissions -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -50,11 +67,33 @@
         <service android:name="com.flybits.core.api.context.services.ActivityCollectionService"/>
         <service android:name="com.flybits.core.api.context.plugins.activity.DeviceRecognitionServiceIntent"/>
 
-        <!-- Services and Receivers for Battery-->
+        <!-- Services and Receivers for Battery -->
         <receiver android:name="com.flybits.core.api.context.receivers.BatteryLifeCollectionAlarmManager"/>
         <service android:name="com.flybits.core.api.context.services.BatteryLifeCollectionService"/>
 
+        <!-- Services and Receivers for Beacons -->
+        <receiver android:name="com.flybits.core.api.context.receivers.BeaconCollectionAlarmManager"/>
+        <service android:name="com.flybits.core.api.context.services.BeaconCollectionService"/>
 
+        <!-- Services and Receivers for Carrier -->
+        <receiver android:name="com.flybits.core.api.context.receivers.CarrierCollectionAlarmManager"/>
+        <service android:name="com.flybits.core.api.context.services.CarrierCollectionService"/>
+
+        <!-- Services and Receivers for Fitness -->
+        <service android:name="com.flybits.core.api.context.services.FitnessCollectionService"/>
+        <receiver android:name="com.flybits.core.api.context.receivers.FitnessCollectionAlarmManager"/>
+
+        <!-- Services and Receivers for Language -->
+        <receiver android:name="com.flybits.core.api.context.receivers.LanguageCollectionAlarmManager"/>
+        <service android:name="com.flybits.core.api.context.services.LanguageCollectionService"/>
+
+        <!-- Services and Receivers for Location -->
+        <receiver android:name="com.flybits.core.api.context.receivers.LocationCollectionAlarmManager"/>
+        <service android:name="com.flybits.core.api.context.services.LocationCollectionService"/>
+
+        <!-- Services and Receivers for Network -->
+        <receiver android:name="com.flybits.core.api.context.receivers.NetworkCollectionAlarmManager"/>
+        <service android:name="com.flybits.core.api.context.services.NetworkCollectionService"/>
     </application>
 
 </manifest>

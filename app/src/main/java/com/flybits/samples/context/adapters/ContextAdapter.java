@@ -58,8 +58,8 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_activity, parent, false);
             return new ViewContextActivity(v);
         }else if (code == TYPE_CARRIER) {
-            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_activity, parent, false);
-            return new ViewContextActivity(v);
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_carrier, parent, false);
+            return new ViewContextCarrier(v);
         }else if (code == TYPE_FITNESS) {
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_activity, parent, false);
             return new ViewContextActivity(v);
@@ -98,6 +98,13 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ViewContextBattery holderActivity  = (ViewContextBattery) holder;
             holderActivity.txtIsCharging.setText(mContext.getString(R.string.txtBatteryIsCharging, String.valueOf(data.value.isCharging)));
             holderActivity.txtPercentage.setText(mContext.getString(R.string.txtBatteryPercentage, String.valueOf(data.value.percentage)));
+        }else if (holder instanceof ViewContextCarrier) {
+
+            BasicData<CarrierData> data    = mListOfContextData.get(position);
+
+            ViewContextCarrier holderActivity  = (ViewContextCarrier) holder;
+            holderActivity.txtMCC.setText(mContext.getString(R.string.txtCarrierMCC, String.valueOf(data.value.mcc)));
+            holderActivity.txtMNC.setText(mContext.getString(R.string.txtCarrierMNC, String.valueOf(data.value.mnc)));
         }
     }
 
@@ -162,6 +169,19 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             txtIsCharging       = (TextView) v.findViewById(R.id.batteryIsCharging);
             txtPercentage       = (TextView) v.findViewById(R.id.batteryPercentage);
+        }
+    }
+
+    public static class ViewContextCarrier extends RecyclerView.ViewHolder {
+
+        public TextView txtMNC;
+        public TextView txtMCC;
+
+        public ViewContextCarrier(View v) {
+            super(v);
+
+            txtMNC       = (TextView) v.findViewById(R.id.carrierMNC);
+            txtMCC       = (TextView) v.findViewById(R.id.carrierMCC);
         }
     }
 }

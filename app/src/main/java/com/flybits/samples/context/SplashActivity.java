@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.flybits.core.api.Flybits;
 import com.flybits.core.api.context.plugins.activity.ActivityProvider;
 import com.flybits.core.api.context.plugins.battery.BatteryLifeProvider;
+import com.flybits.core.api.context.plugins.carrier.CarrierProvider;
 import com.flybits.core.api.exceptions.FeatureNotSupportedException;
 import com.flybits.core.api.interfaces.IRequestCallback;
 import com.flybits.core.api.interfaces.IRequestLoggedIn;
@@ -123,6 +124,9 @@ public class SplashActivity extends AppCompatActivity {
 
             BatteryLifeProvider provider2 = new BatteryLifeProvider(SplashActivity.this, 60000);
             Flybits.include(SplashActivity.this).activateContext(null, provider2);
+
+            CarrierProvider provider3 = new CarrierProvider(SplashActivity.this, 60000);
+            Flybits.include(SplashActivity.this).activateContext(null, provider3);
         }catch (FeatureNotSupportedException exception){
 
         }
