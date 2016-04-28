@@ -51,7 +51,6 @@ public class ContextFragment  extends Fragment {
     private ArrayList<BasicData> mListOfDataData;
 
     public static Fragment newInstance(AvailablePlugins plugin) {
-
         ContextFragment newFragment = new ContextFragment();
         Bundle bundle = new Bundle();
         bundle.putString("context", plugin.getKey());
@@ -66,87 +65,43 @@ public class ContextFragment  extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view                   = inflater.inflate(R.layout.content_context, container, false);
         mTxtLastUpdated             = (TextView) view.findViewById(R.id.txtLastUpdated);
         mSwipeContainer             = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
         RecyclerView mRecyclerView  = (RecyclerView) view.findViewById(R.id.my_recycler_view);
 
-
         mListOfDataData = new ArrayList<>();
 
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);
-
-        // use a linear layout manager
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        // specify an adapter (see also next example)
         mAdapter = new ContextAdapter(getActivity(), mListOfDataData);
         mRecyclerView.setAdapter(mAdapter);
 
         mSwipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                // Your code to refresh the list here.
-                // Make sure you call swipeContainer.setRefreshing(false)
-                // once the network request has completed successfully.
                 refreshContext();
             }
         });
-        mSwipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
 
         Bundle bundle;
+
+        /*
+            Retrieve the context that this fragment to be associated with as this fragment is re-used
+            for each context plugin.
+         */
         if ((bundle = getArguments()) != null){
             mSwipeContainer.setRefreshing(true);
-            mCtxData = bundle.getString("context");
-            mCurrentPlugin = AvailablePlugins.fromKey(mCtxData);
+            mCtxData            = bundle.getString("context");
+            mCurrentPlugin      = AvailablePlugins.fromKey(mCtxData);
             fetchItems();
         }
 
         return view;
-    }
-
-    private void refreshContext() {
-        ContextPlugin plugin = null;
-
-        if (mCtxData.equals(AvailablePlugins.ACTIVITY.getKey())){
-            plugin =  new ActivityProvider(getActivity(), 60000);
-
-        }else if (mCtxData.equals(AvailablePlugins.BATTERY.getKey())){
-            plugin =  new BatteryLifeProvider(getActivity(), 60000);
-
-        }else if (mCtxData.equals(AvailablePlugins.BEACON.getKey())){
-            plugin =  new BeaconProvider(getActivity(), 60000);
-
-        }else if (mCtxData.equals(AvailablePlugins.CARRIER.getKey())){
-            plugin =  new CarrierProvider(getActivity(), 60000);
-
-        }else if (mCtxData.equals(AvailablePlugins.FITNESS.getKey())){
-            plugin =  new FitnessProvider(getActivity(), 60000);
-
-        }else if (mCtxData.equals(AvailablePlugins.LANGUAGE.getKey())){
-            plugin =  new LanguageProvider(getActivity(), 60000);
-
-        }else if (mCtxData.equals(AvailablePlugins.LOCATION.getKey())){
-            plugin =  new LocationProvider(getActivity(), 60000);
-
-        }else if (mCtxData.equals(AvailablePlugins.NETWORK_CONNECTIVITY.getKey())){
-            plugin =  new NetworkProvider(getActivity(), 60000);
-        }
-
-        if (plugin != null) {
-            Flybits.include(getActivity()).refreshContext(plugin);
-        }
-        mSwipeContainer.setRefreshing(false);
-        mTxtLastUpdated.setText(getString(R.string.txtLastUpdated, TimeUtils.getTimeAsString(System.currentTimeMillis())));
     }
 
     @Override
@@ -155,27 +110,68 @@ public class ContextFragment  extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // handle item selection
         switch (item.getItemId()) {
             case R.id.action_refresh:
-
                 refreshContext();
-
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
+    /*
+        Refresh the context value for the Context Plugin registered for this Fragment.
+     */
+    private void refreshContext() {
+        ContextPlugin plugin = null;
+
+        if (mCtxData.equals(AvailablePlugins.ACTIVITY.getKey())){
+            plugin =  new ActivityProvider(getActivity(), 60000);
+        }else if (mCtxData.equals(AvailablePlugins.BATTERY.getKey())){
+            plugin =  new BatteryLifeProvider(getActivity(), 60000);
+        }else if (mCtxData.equals(AvailablePlugins.BEACON.getKey())){
+            plugin =  new BeaconProvider(getActivity(), 60000);
+        }else if (mCtxData.equals(AvailablePlugins.CARRIER.getKey())){
+            plugin =  new CarrierProvider(getActivity(), 60000);
+        }else if (mCtxData.equals(AvailablePlugins.FITNESS.getKey())){
+            plugin =  new FitnessProvider(getActivity(), 60000);
+        }else if (mCtxData.equals(AvailablePlugins.LANGUAGE.getKey())){
+            plugin =  new LanguageProvider(getActivity(), 60000);
+        }else if (mCtxData.equals(AvailablePlugins.LOCATION.getKey())){
+            plugin =  new LocationProvider(getActivity(), 60000);
+        }else if (mCtxData.equals(AvailablePlugins.NETWORK_CONNECTIVITY.getKey())){
+            plugin =  new NetworkProvider(getActivity(), 60000);
+        }
+
+        if (plugin != null) {
+            Flybits.include(getActivity()).refreshContext(plugin);
+        }
+        mSwipeContainer.setRefreshing(false);
+
+        /*
+            Update the refresh time of the Context Plugin. Refreshing the context will result in a
+            triggered event notification from to the SDK to the subscribed event in MainActivity. This
+            event will only be triggered if there is a change in the Context. If the value has not
+            changed then no event will be triggered.
+         */
+        mTxtLastUpdated.setText(getString(R.string.txtLastUpdated, TimeUtils.getTimeAsString(System.currentTimeMillis())));
+    }
+
+    /*
+        Fetch the last known context value for the registered context plugin.
+     */
     private void fetchItems() {
-        BasicData<ActivityData> data = Flybits.include(getActivity()).getContextData(mCurrentPlugin);
+        BasicData data = Flybits.include(getActivity()).getContextData(mCurrentPlugin);
         setView(data);
         mSwipeContainer.setRefreshing(false);
     }
 
+    /*
+        Set the Views of the UI including the items in the RecyclerView and the Last Updated time.
+     */
     private void setView(BasicData data){
         String refreshTime = (data != null && data.timestamp > 0)
                 ? TimeUtils.getTimeAsString(data.timestamp * 1000) : TimeUtils.getTimeAsString(System.currentTimeMillis());
@@ -195,12 +191,15 @@ public class ContextFragment  extends Fragment {
         mTxtLastUpdated.setText(getString(R.string.txtLastUpdated, refreshTime));
     }
 
+    /*
+        Method that is triggered from the MainActivity's onEventMainThread(EventContextSensorValuesUpdated event)
+        method which is triggered by the SDK whenever a Context Plugin's information is updated either
+        programmatically or manually.
+     */
     public void onNewData(EventContextSensorValuesUpdated event) {
         if (mCtxData.equals(AvailablePlugins.ACTIVITY.getKey()) && event.plugin == AvailablePlugins.ACTIVITY){
-
             BasicData<ActivityData> data = event.contextSensor;
             setView(data);
-
         }else if (mCtxData.equals(AvailablePlugins.BATTERY.getKey()) && event.plugin == AvailablePlugins.BATTERY){
             BasicData<BatteryLifeData> data = event.contextSensor;
             setView(data);

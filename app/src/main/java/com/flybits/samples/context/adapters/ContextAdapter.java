@@ -22,6 +22,10 @@ import com.flybits.samples.context.utilities.TimeUtils;
 
 import java.util.ArrayList;
 
+/**
+ * Pretty self explanatory RecyclerView adapter that displays all the different types of contextual
+ * information based on which ContextPlugin is used to retrieve data.
+ */
 public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int TYPE_ACTIVITY          = 0;
@@ -193,7 +197,6 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return mListOfContextData.size();

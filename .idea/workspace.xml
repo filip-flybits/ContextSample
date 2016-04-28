@@ -10,8 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e4bf75d-e047-42fb-95f6-5b42c03003ee" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/adapters/ContextAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/adapters/ContextAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/fragments/ContextFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/fragments/ContextFragment.java" />
     </list>
     <ignored path="Context.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,21 +39,72 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/MainActivity.java">
+      <file leaf-file-name="ContextAdapter.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/adapters/ContextAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.040927693">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="3.6425648">
+              <caret line="198" column="0" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
+              <folding>
+                <element signature="e#4359#4448#0" expanded="true" />
+                <element signature="e#4497#4580#0" expanded="true" />
+                <element signature="e#4629#4712#0" expanded="true" />
+                <element signature="e#4764#4846#0" expanded="true" />
+                <element signature="e#4895#4978#0" expanded="true" />
+                <element signature="e#5027#5110#0" expanded="true" />
+                <element signature="e#5161#5252#0" expanded="true" />
+                <element signature="e#5526#5614#0" expanded="true" />
+                <element signature="e#5666#5738#0" expanded="true" />
+                <element signature="e#5789#5880#0" expanded="true" />
+                <element signature="e#6143#6201#0" expanded="true" />
+                <element signature="e#6246#6304#0" expanded="true" />
+                <element signature="e#6355#6446#0" expanded="true" />
+                <element signature="e#6718#6783#0" expanded="true" />
+                <element signature="e#6834#6925#0" expanded="true" />
+                <element signature="e#7203#7293#0" expanded="true" />
+                <element signature="e#7443#7492#0" expanded="true" />
+                <element signature="e#8227#8296#0" expanded="true" />
+                <element signature="e#8347#8438#0" expanded="true" />
+                <element signature="e#8710#8772#0" expanded="true" />
+                <element signature="e#8823#8914#0" expanded="true" />
+                <element signature="e#9194#9258#0" expanded="true" />
+                <element signature="e#9317#9382#0" expanded="true" />
+                <element signature="e#9440#9509#0" expanded="true" />
+                <element signature="e#9566#9633#0" expanded="true" />
+                <element signature="e#9684#9775#0" expanded="true" />
+                <element signature="e#10056#10125#0" expanded="true" />
+                <element signature="e#10185#10252#0" expanded="true" />
+                <element signature="e#10303#10394#0" expanded="true" />
+                <element signature="e#10664#10729#0" expanded="true" />
+                <element signature="e#10785#10850#0" expanded="true" />
+                <element signature="e#10903#10962#0" expanded="true" />
+                <element signature="e#11013#11104#0" expanded="true" />
+                <element signature="e#11168#11169#0" expanded="true" />
+                <element signature="e#11216#11217#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SplashActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java">
+      <file leaf-file-name="ContextFragment.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/fragments/ContextFragment.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="146" column="42" selection-start-line="146" selection-start-column="42" selection-end-line="146" selection-end-column="42" />
+              <caret line="172" column="98" selection-start-line="172" selection-start-column="98" selection-end-line="172" selection-end-column="98" />
+              <folding>
+                <element signature="e#3669#3831#0" expanded="true" />
+                <element signature="e#3830#3831#0" expanded="true" />
+                <element signature="e#6696#6785#0" expanded="true" />
+                <element signature="e#7810#7857#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="116" column="72" selection-start-line="116" selection-start-column="16" selection-end-line="116" selection-end-column="72" />
               <folding />
             </state>
           </provider>
@@ -1822,7 +1873,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/app_bar_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/utilities/TimeUtils.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/adapters/ContextAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_context.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_battery.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_activity.xml" />
@@ -1840,9 +1890,10 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/main.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/fragments/ContextFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/fragments/ContextFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/adapters/ContextAdapter.java" />
       </list>
     </option>
   </component>
@@ -2412,7 +2463,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/fragments/ContextFragment.java</url>
-          <line>184</line>
+          <line>180</line>
           <properties />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
@@ -2669,14 +2720,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/adapters/ContextAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.9031378">
-          <caret line="24" column="13" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-hdpi-v4/values-hdpi-v4.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.06960557">
@@ -2749,14 +2792,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/fragments/HomeFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20463847">
-          <caret line="18" column="45" selection-start-line="18" selection-start-column="45" selection-end-line="18" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/utilities/TimeUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.12278308">
@@ -2765,30 +2800,84 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/fragments/ContextFragment.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/fragments/HomeFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8117048">
-          <caret line="147" column="45" selection-start-line="147" selection-start-column="45" selection-end-line="147" selection-end-column="45" />
-          <folding>
-            <element signature="e#6223#6312#0" expanded="true" />
-            <element signature="e#7674#7721#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="146" column="42" selection-start-line="146" selection-start-column="42" selection-end-line="146" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.20463847">
+          <caret line="18" column="45" selection-start-line="18" selection-start-column="45" selection-end-line="18" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.040927693">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="116" column="72" selection-start-line="116" selection-start-column="16" selection-end-line="116" selection-end-column="72" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9590723">
+          <caret line="146" column="42" selection-start-line="146" selection-start-column="42" selection-end-line="146" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/fragments/ContextFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="172" column="98" selection-start-line="172" selection-start-column="98" selection-end-line="172" selection-end-column="98" />
+          <folding>
+            <element signature="e#3669#3831#0" expanded="true" />
+            <element signature="e#3830#3831#0" expanded="true" />
+            <element signature="e#6696#6785#0" expanded="true" />
+            <element signature="e#7810#7857#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/adapters/ContextAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.6425648">
+          <caret line="198" column="0" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
+          <folding>
+            <element signature="e#4359#4448#0" expanded="true" />
+            <element signature="e#4497#4580#0" expanded="true" />
+            <element signature="e#4629#4712#0" expanded="true" />
+            <element signature="e#4764#4846#0" expanded="true" />
+            <element signature="e#4895#4978#0" expanded="true" />
+            <element signature="e#5027#5110#0" expanded="true" />
+            <element signature="e#5161#5252#0" expanded="true" />
+            <element signature="e#5526#5614#0" expanded="true" />
+            <element signature="e#5666#5738#0" expanded="true" />
+            <element signature="e#5789#5880#0" expanded="true" />
+            <element signature="e#6143#6201#0" expanded="true" />
+            <element signature="e#6246#6304#0" expanded="true" />
+            <element signature="e#6355#6446#0" expanded="true" />
+            <element signature="e#6718#6783#0" expanded="true" />
+            <element signature="e#6834#6925#0" expanded="true" />
+            <element signature="e#7203#7293#0" expanded="true" />
+            <element signature="e#7443#7492#0" expanded="true" />
+            <element signature="e#8227#8296#0" expanded="true" />
+            <element signature="e#8347#8438#0" expanded="true" />
+            <element signature="e#8710#8772#0" expanded="true" />
+            <element signature="e#8823#8914#0" expanded="true" />
+            <element signature="e#9194#9258#0" expanded="true" />
+            <element signature="e#9317#9382#0" expanded="true" />
+            <element signature="e#9440#9509#0" expanded="true" />
+            <element signature="e#9566#9633#0" expanded="true" />
+            <element signature="e#9684#9775#0" expanded="true" />
+            <element signature="e#10056#10125#0" expanded="true" />
+            <element signature="e#10185#10252#0" expanded="true" />
+            <element signature="e#10303#10394#0" expanded="true" />
+            <element signature="e#10664#10729#0" expanded="true" />
+            <element signature="e#10785#10850#0" expanded="true" />
+            <element signature="e#10903#10962#0" expanded="true" />
+            <element signature="e#11013#11104#0" expanded="true" />
+            <element signature="e#11168#11169#0" expanded="true" />
+            <element signature="e#11216#11217#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
