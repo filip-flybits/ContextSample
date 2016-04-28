@@ -10,10 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e4bf75d-e047-42fb-95f6-5b42c03003ee" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_language.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_network.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_beacon_eddystone.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_beacon_ibeacon.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_fitness.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_location.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/adapters/ContextAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/adapters/ContextAdapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
     </list>
@@ -46,38 +47,35 @@
       <file leaf-file-name="ContextAdapter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/adapters/ContextAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.2251023">
-              <caret line="138" column="63" selection-start-line="138" selection-start-column="63" selection-end-line="138" selection-end-column="63" />
+            <state vertical-scroll-proportion="-2.0286493">
+              <caret line="174" column="108" selection-start-line="174" selection-start-column="108" selection-end-line="174" selection-end-column="108" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4113#4202#0" expanded="true" />
-                <element signature="e#4251#4334#0" expanded="true" />
-                <element signature="e#4383#4466#0" expanded="true" />
-                <element signature="e#4518#4600#0" expanded="true" />
-                <element signature="e#4649#4732#0" expanded="true" />
-                <element signature="e#4781#4864#0" expanded="true" />
-                <element signature="e#5137#5225#0" expanded="true" />
-                <element signature="e#5277#5349#0" expanded="true" />
-                <element signature="e#5714#5772#0" expanded="true" />
-                <element signature="e#6043#6108#0" expanded="true" />
-                <element signature="e#6385#6475#0" expanded="true" />
-                <element signature="e#6625#6674#0" expanded="true" />
-                <element signature="e#7409#7478#0" expanded="true" />
+                <element signature="e#4125#4214#0" expanded="true" />
+                <element signature="e#4263#4346#0" expanded="true" />
+                <element signature="e#4395#4478#0" expanded="true" />
+                <element signature="e#4530#4612#0" expanded="true" />
+                <element signature="e#4661#4744#0" expanded="true" />
+                <element signature="e#4793#4876#0" expanded="true" />
+                <element signature="e#5149#5237#0" expanded="true" />
+                <element signature="e#5289#5361#0" expanded="true" />
+                <element signature="e#5623#5681#0" expanded="true" />
+                <element signature="e#5726#5784#0" expanded="true" />
+                <element signature="e#6055#6120#0" expanded="true" />
+                <element signature="e#6397#6487#0" expanded="true" />
+                <element signature="e#6637#6686#0" expanded="true" />
+                <element signature="e#7421#7490#0" expanded="true" />
+                <element signature="e#7761#7823#0" expanded="true" />
+                <element signature="e#8102#8166#0" expanded="true" />
+                <element signature="e#8225#8290#0" expanded="true" />
+                <element signature="e#8348#8417#0" expanded="true" />
+                <element signature="e#8474#8541#0" expanded="true" />
+                <element signature="e#8821#8890#0" expanded="true" />
+                <element signature="e#8950#9017#0" expanded="true" />
+                <element signature="e#9287#9352#0" expanded="true" />
+                <element signature="e#9408#9473#0" expanded="true" />
               </folding>
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="item_network.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_network.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.792453">
-              <caret line="24" column="40" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
           </provider>
         </entry>
       </file>
@@ -1877,6 +1875,10 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_language.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_network.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_fitness.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_location.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_beacon_ibeacon.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_beacon_eddystone.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/adapters/ContextAdapter.java" />
       </list>
@@ -2547,19 +2549,29 @@
           <caret line="138" column="82" selection-start-line="138" selection-start-column="82" selection-end-line="138" selection-end-column="82" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4113#4202#0" expanded="true" />
-            <element signature="e#4251#4334#0" expanded="true" />
-            <element signature="e#4383#4466#0" expanded="true" />
-            <element signature="e#4518#4600#0" expanded="true" />
-            <element signature="e#4649#4732#0" expanded="true" />
-            <element signature="e#4781#4864#0" expanded="true" />
-            <element signature="e#5137#5225#0" expanded="true" />
-            <element signature="e#5277#5349#0" expanded="true" />
-            <element signature="e#5714#5772#0" expanded="true" />
-            <element signature="e#6043#6108#0" expanded="true" />
-            <element signature="e#6385#6475#0" expanded="true" />
-            <element signature="e#6625#6674#0" expanded="true" />
-            <element signature="e#7409#7478#0" expanded="true" />
+            <element signature="e#4125#4214#0" expanded="true" />
+            <element signature="e#4263#4346#0" expanded="true" />
+            <element signature="e#4395#4478#0" expanded="true" />
+            <element signature="e#4530#4612#0" expanded="true" />
+            <element signature="e#4661#4744#0" expanded="true" />
+            <element signature="e#4793#4876#0" expanded="true" />
+            <element signature="e#5149#5237#0" expanded="true" />
+            <element signature="e#5289#5361#0" expanded="true" />
+            <element signature="e#5623#5681#0" expanded="true" />
+            <element signature="e#5726#5784#0" expanded="true" />
+            <element signature="e#6055#6120#0" expanded="true" />
+            <element signature="e#6397#6487#0" expanded="true" />
+            <element signature="e#6637#6686#0" expanded="true" />
+            <element signature="e#7421#7490#0" expanded="true" />
+            <element signature="e#7761#7823#0" expanded="true" />
+            <element signature="e#8102#8166#0" expanded="true" />
+            <element signature="e#8225#8290#0" expanded="true" />
+            <element signature="e#8348#8417#0" expanded="true" />
+            <element signature="e#8474#8541#0" expanded="true" />
+            <element signature="e#8821#8890#0" expanded="true" />
+            <element signature="e#8950#9017#0" expanded="true" />
+            <element signature="e#9287#9352#0" expanded="true" />
+            <element signature="e#9408#9473#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2828,10 +2840,70 @@
         <state />
       </provider>
     </entry>
+    <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.flybits.fbcore/library/2.4.1/jars/classes.jar!/com/flybits/core/api/context/plugins/network/NetworkData.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.10481586">
+          <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_network.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.792453">
+        <state vertical-scroll-proportion="0.5294118">
           <caret line="24" column="40" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_fitness.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3970588">
+          <caret line="18" column="45" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.flybits.fbcore/library/2.4.1/jars/classes.jar!/com/flybits/core/api/context/plugins/fitness/FitnessData.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14872521">
+          <caret line="12" column="15" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_location.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5294118">
+          <caret line="24" column="47" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_beacon_eddystone.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4852941">
+          <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_beacon_ibeacon.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5294118">
+          <caret line="24" column="43" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
           <folding />
         </state>
       </provider>
@@ -2841,39 +2913,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9457478">
-          <caret line="43" column="55" selection-start-line="43" selection-start-column="55" selection-end-line="43" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.flybits.fbcore/library/2.4.1/jars/classes.jar!/com/flybits/core/api/context/plugins/network/NetworkData.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.10481586">
-          <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.8240469">
+          <caret line="61" column="31" selection-start-line="61" selection-start-column="31" selection-end-line="61" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/adapters/ContextAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2251023">
-          <caret line="138" column="63" selection-start-line="138" selection-start-column="63" selection-end-line="138" selection-end-column="63" />
+        <state vertical-scroll-proportion="-2.0286493">
+          <caret line="174" column="108" selection-start-line="174" selection-start-column="108" selection-end-line="174" selection-end-column="108" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4113#4202#0" expanded="true" />
-            <element signature="e#4251#4334#0" expanded="true" />
-            <element signature="e#4383#4466#0" expanded="true" />
-            <element signature="e#4518#4600#0" expanded="true" />
-            <element signature="e#4649#4732#0" expanded="true" />
-            <element signature="e#4781#4864#0" expanded="true" />
-            <element signature="e#5137#5225#0" expanded="true" />
-            <element signature="e#5277#5349#0" expanded="true" />
-            <element signature="e#5714#5772#0" expanded="true" />
-            <element signature="e#6043#6108#0" expanded="true" />
-            <element signature="e#6385#6475#0" expanded="true" />
-            <element signature="e#6625#6674#0" expanded="true" />
-            <element signature="e#7409#7478#0" expanded="true" />
+            <element signature="e#4125#4214#0" expanded="true" />
+            <element signature="e#4263#4346#0" expanded="true" />
+            <element signature="e#4395#4478#0" expanded="true" />
+            <element signature="e#4530#4612#0" expanded="true" />
+            <element signature="e#4661#4744#0" expanded="true" />
+            <element signature="e#4793#4876#0" expanded="true" />
+            <element signature="e#5149#5237#0" expanded="true" />
+            <element signature="e#5289#5361#0" expanded="true" />
+            <element signature="e#5623#5681#0" expanded="true" />
+            <element signature="e#5726#5784#0" expanded="true" />
+            <element signature="e#6055#6120#0" expanded="true" />
+            <element signature="e#6397#6487#0" expanded="true" />
+            <element signature="e#6637#6686#0" expanded="true" />
+            <element signature="e#7421#7490#0" expanded="true" />
+            <element signature="e#7761#7823#0" expanded="true" />
+            <element signature="e#8102#8166#0" expanded="true" />
+            <element signature="e#8225#8290#0" expanded="true" />
+            <element signature="e#8348#8417#0" expanded="true" />
+            <element signature="e#8474#8541#0" expanded="true" />
+            <element signature="e#8821#8890#0" expanded="true" />
+            <element signature="e#8950#9017#0" expanded="true" />
+            <element signature="e#9287#9352#0" expanded="true" />
+            <element signature="e#9408#9473#0" expanded="true" />
           </folding>
         </state>
       </provider>

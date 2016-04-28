@@ -38,8 +38,26 @@
     <!-- Language Context -->
     <string name="txtLanguageCode">Language Code: %s</string>
 
+    <!-- Fitness Context -->
+    <string name="txtFitnessSteps">Steps: %d</string>
+
+    <!-- Latitude Context -->
+    <string name="txtLocationLatitude">Latitude: %d</string>
+    <string name="txtLocationLongitude">Longitude: %d</string>
+    <string name="txtLocationAltitude">Altitude: %d</string>
+    <string name="txtLocationBearing">Bearing: %d</string>
+
     <!-- Network Context -->
     <string name="txtNetworkIsConnected">Internet Connected: %s</string>
     <string name="txtNetworkSSID">SSID: %s</string>
     <string name="txtNetworkConnectionType">Connection Type: %s</string>
+
+    <!-- Eddystone Context -->
+    <string name="txtBeaconInstance">Instance: %s</string>
+    <string name="txtBeaconNamespace">Namespace: %s</string>
+
+    <!-- iBeacon Context -->
+    <string name="txtBeaconMajorID">Major ID: %s</string>
+    <string name="txtBeaconMinorID">Minor ID: %s</string>
+    <string name="txtBeaconUUID">UUID: %s</string>
 </resources>

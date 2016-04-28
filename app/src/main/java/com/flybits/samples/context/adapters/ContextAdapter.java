@@ -52,23 +52,23 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_battery, parent, false);
             return new ViewContextBattery(v);
         }else if (code == TYPE_BEACON_EDDYSTONE) {
-            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_activity, parent, false);
-            return new ViewContextActivity(v);
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_beacon_eddystone, parent, false);
+            return new ViewContextEddystone(v);
         }else if (code == TYPE_BEACON_IBEACON) {
-            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_activity, parent, false);
-            return new ViewContextActivity(v);
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_beacon_ibeacon, parent, false);
+            return new ViewContextiBeacon(v);
         }else if (code == TYPE_CARRIER) {
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_carrier, parent, false);
             return new ViewContextCarrier(v);
         }else if (code == TYPE_FITNESS) {
-            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_activity, parent, false);
-            return new ViewContextActivity(v);
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_fitness, parent, false);
+            return new ViewContextFitness(v);
         }else if (code == TYPE_LANGUAGE) {
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_language, parent, false);
             return new ViewContextLanguage(v);
         }else if (code == TYPE_LOCATION) {
-            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_activity, parent, false);
-            return new ViewContextActivity(v);
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_location, parent, false);
+            return new ViewContextLocation(v);
         }else if (code == TYPE_NETWORK) {
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_network, parent, false);
             return new ViewContextNetwork(v);
@@ -142,6 +142,37 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     connectionType = "Unknown";
             }
             holderActivity.txtNetworkConnectionType.setText(mContext.getString(R.string.txtNetworkConnectionType, connectionType));
+        }else if (holder instanceof ViewContextFitness) {
+
+            BasicData<FitnessData> data    = mListOfContextData.get(position);
+
+            ViewContextFitness holderActivity  = (ViewContextFitness) holder;
+            holderActivity.txtFitnessSteps.setText(mContext.getString(R.string.txtFitnessSteps, data.value.steps));
+        }else if (holder instanceof ViewContextLocation) {
+
+            BasicData<LocationData> data    = mListOfContextData.get(position);
+
+            ViewContextLocation holderActivity  = (ViewContextLocation) holder;
+            holderActivity.txtLocationLatitude.setText(mContext.getString(R.string.txtLocationLatitude, data.value.lat));
+            holderActivity.txtLocationLongitude.setText(mContext.getString(R.string.txtLocationLongitude, data.value.lng));
+            holderActivity.txtLocationAltitude.setText(mContext.getString(R.string.txtLocationAltitude, data.value.altitude));
+            holderActivity.txtLocationBearing.setText(mContext.getString(R.string.txtLocationBearing, data.value.bearing));
+        }else if (holder instanceof ViewContextEddystone) {
+
+            BasicData<EddyStone> data    = mListOfContextData.get(position);
+
+            ViewContextEddystone holderActivity  = (ViewContextEddystone) holder;
+            holderActivity.txtEddystoneInstance.setText(mContext.getString(R.string.txtBeaconNamespace, data.value.namespace));
+            holderActivity.txtEddystoneNamespace.setText(mContext.getString(R.string.txtBeaconInstance, data.value.instance));
+
+        }else if (holder instanceof ViewContextiBeacon) {
+
+            BasicData<IBeacon> data    = mListOfContextData.get(position);
+
+            ViewContextiBeacon holderActivity  = (ViewContextiBeacon) holder;
+            holderActivity.txtiBeaconMajorID.setText(mContext.getString(R.string.txtBeaconMajorID, data.value.majorID));
+            holderActivity.txtiBeaconMinorID.setText(mContext.getString(R.string.txtBeaconMinorID, data.value.minorID));
+            holderActivity.txtiBeaconUUID.setText(mContext.getString(R.string.txtBeaconUUID, data.value.uuid));
         }
     }
 
@@ -245,6 +276,62 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             txtNetworkIsConnected       = (TextView) v.findViewById(R.id.networkIsConnected);
             txtNetworkSSID              = (TextView) v.findViewById(R.id.networkSSID);
             txtNetworkConnectionType    = (TextView) v.findViewById(R.id.networkConnectionType);
+        }
+    }
+
+    public static class ViewContextFitness extends RecyclerView.ViewHolder {
+
+        public TextView txtFitnessSteps;
+
+        public ViewContextFitness(View v) {
+            super(v);
+
+            txtFitnessSteps       = (TextView) v.findViewById(R.id.fitnessSteps);
+        }
+    }
+
+    public static class ViewContextLocation extends RecyclerView.ViewHolder {
+
+        public TextView txtLocationLatitude;
+        public TextView txtLocationLongitude;
+        public TextView txtLocationAltitude;
+        public TextView txtLocationBearing;
+
+        public ViewContextLocation(View v) {
+            super(v);
+
+            txtLocationLatitude       = (TextView) v.findViewById(R.id.locationLat);
+            txtLocationLongitude      = (TextView) v.findViewById(R.id.locationLng);
+            txtLocationAltitude       = (TextView) v.findViewById(R.id.locationAltitude);
+            txtLocationBearing        = (TextView) v.findViewById(R.id.locationBearing);
+        }
+    }
+
+    public static class ViewContextiBeacon extends RecyclerView.ViewHolder {
+
+        public TextView txtiBeaconMajorID;
+        public TextView txtiBeaconMinorID;
+        public TextView txtiBeaconUUID;
+
+        public ViewContextiBeacon(View v) {
+            super(v);
+
+            txtiBeaconMajorID       = (TextView) v.findViewById(R.id.beaconMajorID);
+            txtiBeaconMinorID       = (TextView) v.findViewById(R.id.beaconMinorID);
+            txtiBeaconUUID          = (TextView) v.findViewById(R.id.beaconUUID);
+        }
+    }
+
+    public static class ViewContextEddystone extends RecyclerView.ViewHolder {
+
+        public TextView txtEddystoneNamespace;
+        public TextView txtEddystoneInstance;
+
+        public ViewContextEddystone(View v) {
+            super(v);
+
+            txtEddystoneNamespace       = (TextView) v.findViewById(R.id.beaconNamespace);
+            txtEddystoneInstance        = (TextView) v.findViewById(R.id.beaconInstance);
         }
     }
 }
