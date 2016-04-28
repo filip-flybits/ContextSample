@@ -10,7 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e4bf75d-e047-42fb-95f6-5b42c03003ee" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java" />
     </list>
     <ignored path="Context.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -74,28 +75,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SplashActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SplashActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="175" column="22" selection-start-line="175" selection-start-column="22" selection-end-line="175" selection-end-column="22" />
+            <state vertical-scroll-proportion="4.010914">
+              <caret line="237" column="96" selection-start-line="237" selection-start-column="96" selection-end-line="237" selection-end-column="96" />
               <folding>
-                <element signature="e#3604#3633#0" expanded="true" />
-                <element signature="e#3635#3666#0" expanded="true" />
-                <element signature="e#3668#3693#0" expanded="true" />
-                <element signature="e#4631#4666#0" expanded="true" />
-                <element signature="e#4684#4720#0" expanded="true" />
+                <element signature="e#5625#5654#0" expanded="true" />
+                <element signature="e#5656#5687#0" expanded="true" />
+                <element signature="e#5689#5714#0" expanded="true" />
+                <element signature="e#6652#6687#0" expanded="true" />
+                <element signature="e#6705#6741#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.516129">
-              <caret line="47" column="49" selection-start-line="47" selection-start-column="49" selection-end-line="47" selection-end-column="49" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -1900,8 +1891,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/adapters/ContextAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/fragments/ContextFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java" />
       </list>
     </option>
   </component>
@@ -3009,25 +3000,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="175" column="22" selection-start-line="175" selection-start-column="22" selection-end-line="175" selection-end-column="22" />
-          <folding>
-            <element signature="e#3604#3633#0" expanded="true" />
-            <element signature="e#3635#3666#0" expanded="true" />
-            <element signature="e#3668#3693#0" expanded="true" />
-            <element signature="e#4631#4666#0" expanded="true" />
-            <element signature="e#4684#4720#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="1.0292398">
+          <caret line="47" column="49" selection-start-line="47" selection-start-column="49" selection-end-line="47" selection-end-column="49" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.516129">
-          <caret line="47" column="49" selection-start-line="47" selection-start-column="49" selection-end-line="47" selection-end-column="49" />
-          <folding />
+        <state vertical-scroll-proportion="4.010914">
+          <caret line="237" column="96" selection-start-line="237" selection-start-column="96" selection-end-line="237" selection-end-column="96" />
+          <folding>
+            <element signature="e#5625#5654#0" expanded="true" />
+            <element signature="e#5656#5687#0" expanded="true" />
+            <element signature="e#5689#5714#0" expanded="true" />
+            <element signature="e#6652#6687#0" expanded="true" />
+            <element signature="e#6705#6741#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

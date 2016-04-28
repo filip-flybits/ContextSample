@@ -6,15 +6,19 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.flybits.core.api.Flybits;
 import com.flybits.core.api.context.plugins.activity.ActivityProvider;
 import com.flybits.core.api.context.plugins.battery.BatteryLifeProvider;
 import com.flybits.core.api.context.plugins.beacon.BeaconProvider;
 import com.flybits.core.api.context.plugins.carrier.CarrierProvider;
+import com.flybits.core.api.context.plugins.fitness.FitnessProvider;
 import com.flybits.core.api.context.plugins.language.LanguageProvider;
 import com.flybits.core.api.context.plugins.location.LocationProvider;
 import com.flybits.core.api.context.plugins.network.NetworkProvider;
@@ -24,16 +28,35 @@ import com.flybits.core.api.interfaces.IRequestLoggedIn;
 import com.flybits.core.api.models.User;
 import com.flybits.core.api.utils.filters.LoginOptions;
 import com.flybits.samples.context.utilities.ConnectivityUtils;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.Scopes;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.fitness.Fitness;
 
 public class SplashActivity extends AppCompatActivity {
 
     private final int MY_PERMISSIONS_REQUEST_READ_LOCATION = 10;
 
+    //Need For Fitness Context Plugin
+    private GoogleApiClient mGoogleApiClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        initGooglePlayServices();
+        mGoogleApiClient.connect();
+
         checkForLoginPermissions();
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.disconnect();
+        }
     }
 
     private void checkForLoginPermissions() {
@@ -54,6 +77,36 @@ public class SplashActivity extends AppCompatActivity {
                 attemptToLogin(true);
             }
         }
+    }
+
+    private void initGooglePlayServices() {
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addApi(Fitness.HISTORY_API)
+                .addScope(new Scope(Scopes.FITNESS_ACTIVITY_READ_WRITE))
+                .addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
+                    @Override
+                    public void onConnected(@Nullable Bundle bundle) {
+
+                    }
+
+                    @Override
+                    public void onConnectionSuspended(int i) {
+
+                    }
+                })
+                .addOnConnectionFailedListener(new GoogleApiClient.OnConnectionFailedListener() {
+                    @Override
+                    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+                    }
+                })
+                .enableAutoManage(this, 0, new GoogleApiClient.OnConnectionFailedListener() {
+                    @Override
+                    public void onConnectionFailed(ConnectionResult result) {
+                        Log.i("Testing", "Google Play services connection failed. Cause: " + result.toString());
+                    }
+                })
+                .build();
     }
 
     @Override
@@ -178,6 +231,11 @@ public class SplashActivity extends AppCompatActivity {
 
                 BeaconProvider provider7 = new BeaconProvider(SplashActivity.this, 60000);
                 Flybits.include(SplashActivity.this).activateContext(null, provider7);
+            }
+
+            if (mGoogleApiClient != null && mGoogleApiClient.isConnected()){
+                FitnessProvider provider8 = new FitnessProvider(SplashActivity.this, 60000);
+                Flybits.include(SplashActivity.this).activateContext(mGoogleApiClient, provider8);
             }
         }catch (FeatureNotSupportedException exception){
 
