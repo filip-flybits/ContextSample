@@ -12,6 +12,19 @@
     <list default="true" id="8e4bf75d-e047-42fb-95f6-5b42c03003ee" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/adapters/ContextAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/adapters/ContextAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_context.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_context.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_activity.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_activity.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_battery.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_battery.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_beacon_eddystone.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_beacon_eddystone.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_beacon_ibeacon.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_beacon_ibeacon.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_carrier.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_carrier.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_fitness.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_fitness.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_language.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_language.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_location.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_location.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_network.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_network.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
     </list>
     <ignored path="Context.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,77 +52,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ContextAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/adapters/ContextAdapter.java">
+      <file leaf-file-name="content_context.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_context.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.592592">
-              <caret line="314" column="0" selection-start-line="314" selection-start-column="0" selection-end-line="314" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.029411765">
+              <caret line="17" column="51" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="51" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#4125#4214#0" expanded="true" />
-                <element signature="e#4263#4346#0" expanded="true" />
-                <element signature="e#4395#4478#0" expanded="true" />
-                <element signature="e#4530#4612#0" expanded="true" />
-                <element signature="e#4661#4744#0" expanded="true" />
-                <element signature="e#4793#4876#0" expanded="true" />
-                <element signature="e#5149#5237#0" expanded="true" />
-                <element signature="e#5289#5361#0" expanded="true" />
-                <element signature="e#5623#5681#0" expanded="true" />
-                <element signature="e#5726#5784#0" expanded="true" />
-                <element signature="e#6055#6120#0" expanded="true" />
-                <element signature="e#6397#6487#0" expanded="true" />
-                <element signature="e#6637#6686#0" expanded="true" />
-                <element signature="e#7421#7490#0" expanded="true" />
-                <element signature="e#7761#7823#0" expanded="true" />
-                <element signature="e#8102#8166#0" expanded="true" />
-                <element signature="e#8225#8290#0" expanded="true" />
-                <element signature="e#8348#8417#0" expanded="true" />
-                <element signature="e#8474#8541#0" expanded="true" />
-                <element signature="e#8821#8890#0" expanded="true" />
-                <element signature="e#8950#9017#0" expanded="true" />
-                <element signature="e#9287#9352#0" expanded="true" />
-                <element signature="e#9408#9473#0" expanded="true" />
-                <element signature="e#9526#9585#0" expanded="true" />
+                <element signature="e#401#434#0" expanded="true" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SplashActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="4.010914">
-              <caret line="237" column="96" selection-start-line="237" selection-start-column="96" selection-end-line="237" selection-end-column="96" />
-              <folding>
-                <element signature="e#5625#5654#0" expanded="true" />
-                <element signature="e#5656#5687#0" expanded="true" />
-                <element signature="e#5689#5714#0" expanded="true" />
-                <element signature="e#6652#6687#0" expanded="true" />
-                <element signature="e#6705#6741#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="139" column="27" selection-start-line="139" selection-start-column="27" selection-end-line="139" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ContextFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/fragments/ContextFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="137" column="0" selection-start-line="137" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
-              <folding />
-            </state>
+          <provider editor-type-id="android-designer">
+            <state />
           </provider>
         </entry>
       </file>
@@ -1874,25 +1828,25 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/app_bar_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/utilities/TimeUtils.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/content_context.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_activity.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_battery.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_carrier.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_language.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_network.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_fitness.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_location.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_beacon_ibeacon.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_beacon_eddystone.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/adapters/ContextAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/fragments/ContextFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/adapters/ContextAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_activity.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_battery.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_beacon_eddystone.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_beacon_ibeacon.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_carrier.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_fitness.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_language.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_location.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_network.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/content_context.xml" />
       </list>
     </option>
   </component>
@@ -2543,7 +2497,7 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44678056" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.44678056" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2585,8 +2539,14 @@
           <properties />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java</url>
+          <line>232</line>
+          <properties />
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="4" />
+      <option name="time" value="6" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -2596,31 +2556,39 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="138" column="82" selection-start-line="138" selection-start-column="82" selection-end-line="138" selection-end-column="82" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4125#4214#0" expanded="true" />
-            <element signature="e#4263#4346#0" expanded="true" />
-            <element signature="e#4395#4478#0" expanded="true" />
-            <element signature="e#4530#4612#0" expanded="true" />
-            <element signature="e#4661#4744#0" expanded="true" />
-            <element signature="e#4793#4876#0" expanded="true" />
-            <element signature="e#5149#5237#0" expanded="true" />
-            <element signature="e#5289#5361#0" expanded="true" />
-            <element signature="e#5623#5681#0" expanded="true" />
-            <element signature="e#5726#5784#0" expanded="true" />
-            <element signature="e#6055#6120#0" expanded="true" />
-            <element signature="e#6397#6487#0" expanded="true" />
-            <element signature="e#6637#6686#0" expanded="true" />
-            <element signature="e#7421#7490#0" expanded="true" />
-            <element signature="e#7761#7823#0" expanded="true" />
-            <element signature="e#8102#8166#0" expanded="true" />
-            <element signature="e#8225#8290#0" expanded="true" />
-            <element signature="e#8348#8417#0" expanded="true" />
-            <element signature="e#8474#8541#0" expanded="true" />
-            <element signature="e#8821#8890#0" expanded="true" />
-            <element signature="e#8950#9017#0" expanded="true" />
-            <element signature="e#9287#9352#0" expanded="true" />
-            <element signature="e#9408#9473#0" expanded="true" />
-            <element signature="e#9526#9585#0" expanded="true" />
+            <element signature="e#4181#4270#0" expanded="true" />
+            <element signature="e#4319#4402#0" expanded="true" />
+            <element signature="e#4451#4534#0" expanded="true" />
+            <element signature="e#4586#4668#0" expanded="true" />
+            <element signature="e#4717#4800#0" expanded="true" />
+            <element signature="e#4849#4932#0" expanded="true" />
+            <element signature="e#4983#5074#0" expanded="true" />
+            <element signature="e#5348#5436#0" expanded="true" />
+            <element signature="e#5488#5560#0" expanded="true" />
+            <element signature="e#5611#5702#0" expanded="true" />
+            <element signature="e#5965#6023#0" expanded="true" />
+            <element signature="e#6068#6126#0" expanded="true" />
+            <element signature="e#6177#6268#0" expanded="true" />
+            <element signature="e#6540#6605#0" expanded="true" />
+            <element signature="e#6656#6747#0" expanded="true" />
+            <element signature="e#7025#7115#0" expanded="true" />
+            <element signature="e#7265#7314#0" expanded="true" />
+            <element signature="e#8049#8118#0" expanded="true" />
+            <element signature="e#8169#8260#0" expanded="true" />
+            <element signature="e#8532#8594#0" expanded="true" />
+            <element signature="e#8645#8736#0" expanded="true" />
+            <element signature="e#9016#9080#0" expanded="true" />
+            <element signature="e#9139#9204#0" expanded="true" />
+            <element signature="e#9262#9331#0" expanded="true" />
+            <element signature="e#9388#9455#0" expanded="true" />
+            <element signature="e#9506#9597#0" expanded="true" />
+            <element signature="e#9878#9947#0" expanded="true" />
+            <element signature="e#10007#10074#0" expanded="true" />
+            <element signature="e#10125#10216#0" expanded="true" />
+            <element signature="e#10486#10551#0" expanded="true" />
+            <element signature="e#10607#10672#0" expanded="true" />
+            <element signature="e#10725#10784#0" expanded="true" />
+            <element signature="e#10835#10926#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2760,14 +2728,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7017544">
-          <caret line="16" column="25" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/utilities/TimeUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.26717559">
@@ -2784,50 +2744,6 @@
           <caret line="24" column="52" selection-start-line="24" selection-start-column="52" selection-end-line="24" selection-end-column="52" />
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_context.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.60294116">
-          <caret line="16" column="45" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_activity.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44117647">
-          <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_battery.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3970588">
-          <caret line="18" column="50" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_carrier.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4632353">
-          <caret line="21" column="43" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
@@ -2850,17 +2766,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_language.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3970588">
-          <caret line="18" column="45" selection-start-line="18" selection-start-column="45" selection-end-line="18" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.flybits.fbcore/library/2.4.1/jars/classes.jar!/com/flybits/core/api/context/plugins/network/NetworkData.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.10481586">
@@ -2869,67 +2774,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_network.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5294118">
-          <caret line="24" column="40" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_fitness.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3970588">
-          <caret line="18" column="45" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.flybits.fbcore/library/2.4.1/jars/classes.jar!/com/flybits/core/api/context/plugins/fitness/FitnessData.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.14872521">
           <caret line="12" column="15" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_location.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5294118">
-          <caret line="24" column="47" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_beacon_eddystone.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4852941">
-          <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_beacon_ibeacon.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5294118">
-          <caret line="24" column="43" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/MainActivity.java">
@@ -2950,40 +2800,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/adapters/ContextAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.592592">
-          <caret line="314" column="0" selection-start-line="314" selection-start-column="0" selection-end-line="314" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4125#4214#0" expanded="true" />
-            <element signature="e#4263#4346#0" expanded="true" />
-            <element signature="e#4395#4478#0" expanded="true" />
-            <element signature="e#4530#4612#0" expanded="true" />
-            <element signature="e#4661#4744#0" expanded="true" />
-            <element signature="e#4793#4876#0" expanded="true" />
-            <element signature="e#5149#5237#0" expanded="true" />
-            <element signature="e#5289#5361#0" expanded="true" />
-            <element signature="e#5623#5681#0" expanded="true" />
-            <element signature="e#5726#5784#0" expanded="true" />
-            <element signature="e#6055#6120#0" expanded="true" />
-            <element signature="e#6397#6487#0" expanded="true" />
-            <element signature="e#6637#6686#0" expanded="true" />
-            <element signature="e#7421#7490#0" expanded="true" />
-            <element signature="e#7761#7823#0" expanded="true" />
-            <element signature="e#8102#8166#0" expanded="true" />
-            <element signature="e#8225#8290#0" expanded="true" />
-            <element signature="e#8348#8417#0" expanded="true" />
-            <element signature="e#8474#8541#0" expanded="true" />
-            <element signature="e#8821#8890#0" expanded="true" />
-            <element signature="e#8950#9017#0" expanded="true" />
-            <element signature="e#9287#9352#0" expanded="true" />
-            <element signature="e#9408#9473#0" expanded="true" />
-            <element signature="e#9526#9585#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/app/build/intermediates/exploded-aar/com.flybits.fbcore/library/2.4.1/jars/classes.jar!/com/flybits/core/api/context/plugins/location/LocationData.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.24590164">
@@ -3000,26 +2816,196 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="114" column="90" selection-start-line="114" selection-start-column="90" selection-end-line="114" selection-end-column="90" />
+          <folding>
+            <element signature="e#4658#4960#0" expanded="true" />
+            <element signature="e#4959#4960#0" expanded="true" />
+            <element signature="e#5005#5296#0" expanded="true" />
+            <element signature="e#5295#5296#0" expanded="true" />
+            <element signature="e#7197#7226#0" expanded="true" />
+            <element signature="e#7228#7259#0" expanded="true" />
+            <element signature="e#7261#7286#0" expanded="true" />
+            <element signature="e#8423#8458#0" expanded="true" />
+            <element signature="e#8476#8512#0" expanded="true" />
+            <element signature="e#10942#11149#0" expanded="true" />
+            <element signature="e#11148#11149#0" expanded="true" />
+            <element signature="e#11629#11836#0" expanded="true" />
+            <element signature="e#11835#11836#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0292398">
-          <caret line="47" column="49" selection-start-line="47" selection-start-column="49" selection-end-line="47" selection-end-column="49" />
+        <state vertical-scroll-proportion="0.20381232">
+          <caret line="20" column="30" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/SplashActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/flybits/samples/context/adapters/ContextAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.010914">
-          <caret line="237" column="96" selection-start-line="237" selection-start-column="96" selection-end-line="237" selection-end-column="96" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding>
-            <element signature="e#5625#5654#0" expanded="true" />
-            <element signature="e#5656#5687#0" expanded="true" />
-            <element signature="e#5689#5714#0" expanded="true" />
-            <element signature="e#6652#6687#0" expanded="true" />
-            <element signature="e#6705#6741#0" expanded="true" />
+            <element signature="e#4181#4270#0" expanded="true" />
+            <element signature="e#4319#4402#0" expanded="true" />
+            <element signature="e#4451#4534#0" expanded="true" />
+            <element signature="e#4586#4668#0" expanded="true" />
+            <element signature="e#4717#4800#0" expanded="true" />
+            <element signature="e#4849#4932#0" expanded="true" />
+            <element signature="e#4983#5074#0" expanded="true" />
+            <element signature="e#5348#5436#0" expanded="true" />
+            <element signature="e#5488#5560#0" expanded="true" />
+            <element signature="e#5611#5702#0" expanded="true" />
+            <element signature="e#5965#6023#0" expanded="true" />
+            <element signature="e#6068#6126#0" expanded="true" />
+            <element signature="e#6177#6268#0" expanded="true" />
+            <element signature="e#6540#6605#0" expanded="true" />
+            <element signature="e#6656#6747#0" expanded="true" />
+            <element signature="e#7025#7115#0" expanded="true" />
+            <element signature="e#7265#7314#0" expanded="true" />
+            <element signature="e#8049#8118#0" expanded="true" />
+            <element signature="e#8169#8260#0" expanded="true" />
+            <element signature="e#8532#8594#0" expanded="true" />
+            <element signature="e#8645#8736#0" expanded="true" />
+            <element signature="e#9016#9080#0" expanded="true" />
+            <element signature="e#9139#9204#0" expanded="true" />
+            <element signature="e#9262#9331#0" expanded="true" />
+            <element signature="e#9388#9455#0" expanded="true" />
+            <element signature="e#9506#9597#0" expanded="true" />
+            <element signature="e#9878#9947#0" expanded="true" />
+            <element signature="e#10007#10074#0" expanded="true" />
+            <element signature="e#10125#10216#0" expanded="true" />
+            <element signature="e#10486#10551#0" expanded="true" />
+            <element signature="e#10607#10672#0" expanded="true" />
+            <element signature="e#10725#10784#0" expanded="true" />
+            <element signature="e#10835#10926#0" expanded="true" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.64912283">
+          <caret line="23" column="28" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_network.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.367647">
+          <caret line="34" column="44" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_location.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7941176">
+          <caret line="37" column="44" selection-start-line="37" selection-start-column="44" selection-end-line="37" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_language.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.60294116">
+          <caret line="28" column="44" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_fitness.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.64117646">
+          <caret line="28" column="44" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_carrier.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7117647">
+          <caret line="31" column="44" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_beacon_ibeacon.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7852941">
+          <caret line="34" column="44" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_beacon_eddystone.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.84411764">
+          <caret line="31" column="44" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_battery.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.60294116">
+          <caret line="31" column="44" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_activity.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2647059">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="43" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_context.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.029411765">
+          <caret line="17" column="51" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="51" />
+          <folding>
+            <element signature="e#401#434#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
   </component>

@@ -15,24 +15,33 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/activityStationary"
-                style="@style/activity" />
-            <TextView
-                android:id="@+id/activityWalking"
-                style="@style/activity" />
-            <TextView
-                android:id="@+id/activityRunning"
-                style="@style/activity" />
-            <TextView
-                android:id="@+id/activityRidingBike"
-                style="@style/activity" />
-            <TextView
-                android:id="@+id/activityDriving"
-                style="@style/activity" />
-            <TextView
-                android:id="@+id/activityUnknown"
-                style="@style/activity" />
+                <TextView
+                    android:id="@+id/activityStationary"
+                    style="@style/activity" />
+                <TextView
+                    android:id="@+id/activityWalking"
+                    style="@style/activity" />
+                <TextView
+                    android:id="@+id/activityRunning"
+                    style="@style/activity" />
+                <TextView
+                    android:id="@+id/activityRidingBike"
+                    style="@style/activity" />
+                <TextView
+                    android:id="@+id/activityDriving"
+                    style="@style/activity" />
+                <TextView
+                    android:id="@+id/activityUnknown"
+                    style="@style/activity" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/black"/>
+
+                <TextView
+                    android:id="@+id/timeTaken"
+                    style="@style/contextTime"/>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>

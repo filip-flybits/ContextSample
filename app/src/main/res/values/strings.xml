@@ -18,6 +18,7 @@
 
     <!-- -->
     <string name="txtLastUpdated">Last Updated: %s</string>
+    <string name="txtUpdatedAt">Updated At: %s</string>
 
     <!-- Activity Context -->
     <string name="txtActivityStationary">Stationary: %s</string>

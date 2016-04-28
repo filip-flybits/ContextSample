@@ -18,6 +18,7 @@ import com.flybits.core.api.context.plugins.language.LanguageData;
 import com.flybits.core.api.context.plugins.location.LocationData;
 import com.flybits.core.api.context.plugins.network.NetworkData;
 import com.flybits.samples.context.R;
+import com.flybits.samples.context.utilities.TimeUtils;
 
 import java.util.ArrayList;
 
@@ -91,6 +92,8 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             holderActivity.txtRidingBike.setText(mContext.getString(R.string.txtActivityOnBike, String.valueOf(data.value.cycling)));
             holderActivity.txtDriving.setText(mContext.getString(R.string.txtActivityDriving, String.valueOf(data.value.driving)));
             holderActivity.txtUnknown.setText(mContext.getString(R.string.txtActivityUnknown, String.valueOf(data.value.unknown)));
+            holderActivity.txtTimeTaken.setText(mContext.getString(R.string.txtUpdatedAt, TimeUtils.getTimeAsString(data.timestamp * 1000)));
+
         }else if (holder instanceof ViewContextBattery) {
 
             BasicData<BatteryLifeData> data    = mListOfContextData.get(position);
@@ -98,6 +101,8 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ViewContextBattery holderActivity  = (ViewContextBattery) holder;
             holderActivity.txtIsCharging.setText(mContext.getString(R.string.txtBatteryIsCharging, String.valueOf(data.value.isCharging)));
             holderActivity.txtPercentage.setText(mContext.getString(R.string.txtBatteryPercentage, data.value.percentage));
+            holderActivity.txtTimeTaken.setText(mContext.getString(R.string.txtUpdatedAt, TimeUtils.getTimeAsString(data.timestamp * 1000)));
+
         }else if (holder instanceof ViewContextCarrier) {
 
             BasicData<CarrierData> data    = mListOfContextData.get(position);
@@ -105,12 +110,16 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ViewContextCarrier holderActivity  = (ViewContextCarrier) holder;
             holderActivity.txtMCC.setText(mContext.getString(R.string.txtCarrierMCC, data.value.mcc));
             holderActivity.txtMNC.setText(mContext.getString(R.string.txtCarrierMNC, data.value.mnc));
+            holderActivity.txtTimeTaken.setText(mContext.getString(R.string.txtUpdatedAt, TimeUtils.getTimeAsString(data.timestamp * 1000)));
+
         }else if (holder instanceof ViewContextLanguage) {
 
             BasicData<LanguageData> data    = mListOfContextData.get(position);
 
             ViewContextLanguage holderActivity  = (ViewContextLanguage) holder;
             holderActivity.txtLanguage.setText(mContext.getString(R.string.txtLanguageCode, data.value.language));
+            holderActivity.txtTimeTaken.setText(mContext.getString(R.string.txtUpdatedAt, TimeUtils.getTimeAsString(data.timestamp * 1000)));
+
         }else if (holder instanceof ViewContextNetwork) {
 
             BasicData<NetworkData> data    = mListOfContextData.get(position);
@@ -142,12 +151,16 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     connectionType = "Unknown";
             }
             holderActivity.txtNetworkConnectionType.setText(mContext.getString(R.string.txtNetworkConnectionType, connectionType));
+            holderActivity.txtTimeTaken.setText(mContext.getString(R.string.txtUpdatedAt, TimeUtils.getTimeAsString(data.timestamp * 1000)));
+
         }else if (holder instanceof ViewContextFitness) {
 
             BasicData<FitnessData> data    = mListOfContextData.get(position);
 
             ViewContextFitness holderActivity  = (ViewContextFitness) holder;
             holderActivity.txtFitnessSteps.setText(mContext.getString(R.string.txtFitnessSteps, data.value.steps));
+            holderActivity.txtTimeTaken.setText(mContext.getString(R.string.txtUpdatedAt, TimeUtils.getTimeAsString(data.timestamp * 1000)));
+
         }else if (holder instanceof ViewContextLocation) {
 
             BasicData<LocationData> data    = mListOfContextData.get(position);
@@ -157,6 +170,8 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             holderActivity.txtLocationLongitude.setText(mContext.getString(R.string.txtLocationLongitude, data.value.lng));
             holderActivity.txtLocationAltitude.setText(mContext.getString(R.string.txtLocationAltitude, data.value.altitude));
             holderActivity.txtLocationBearing.setText(mContext.getString(R.string.txtLocationBearing, data.value.bearing));
+            holderActivity.txtTimeTaken.setText(mContext.getString(R.string.txtUpdatedAt, TimeUtils.getTimeAsString(data.timestamp * 1000)));
+
         }else if (holder instanceof ViewContextEddystone) {
 
             BasicData<EddyStone> data    = mListOfContextData.get(position);
@@ -164,6 +179,7 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ViewContextEddystone holderActivity  = (ViewContextEddystone) holder;
             holderActivity.txtEddystoneInstance.setText(mContext.getString(R.string.txtBeaconNamespace, data.value.namespace));
             holderActivity.txtEddystoneNamespace.setText(mContext.getString(R.string.txtBeaconInstance, data.value.instance));
+            holderActivity.txtTimeTaken.setText(mContext.getString(R.string.txtUpdatedAt, TimeUtils.getTimeAsString(data.timestamp * 1000)));
 
         }else if (holder instanceof ViewContextiBeacon) {
 
@@ -173,6 +189,7 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             holderActivity.txtiBeaconMajorID.setText(mContext.getString(R.string.txtBeaconMajorID, data.value.majorID));
             holderActivity.txtiBeaconMinorID.setText(mContext.getString(R.string.txtBeaconMinorID, data.value.minorID));
             holderActivity.txtiBeaconUUID.setText(mContext.getString(R.string.txtBeaconUUID, data.value.uuid));
+            holderActivity.txtTimeTaken.setText(mContext.getString(R.string.txtUpdatedAt, TimeUtils.getTimeAsString(data.timestamp * 1000)));
         }
     }
 
@@ -214,6 +231,7 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         public TextView txtRidingBike;
         public TextView txtDriving;
         public TextView txtUnknown;
+        public TextView txtTimeTaken;
 
         public ViewContextActivity(View v) {
             super(v);
@@ -224,6 +242,7 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             txtRidingBike       = (TextView) v.findViewById(R.id.activityRidingBike);
             txtDriving          = (TextView) v.findViewById(R.id.activityDriving);
             txtUnknown          = (TextView) v.findViewById(R.id.activityUnknown);
+            txtTimeTaken        = (TextView) v.findViewById(R.id.timeTaken);
         }
     }
 
@@ -231,12 +250,14 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         public TextView txtIsCharging;
         public TextView txtPercentage;
+        public TextView txtTimeTaken;
 
         public ViewContextBattery(View v) {
             super(v);
 
             txtIsCharging       = (TextView) v.findViewById(R.id.batteryIsCharging);
             txtPercentage       = (TextView) v.findViewById(R.id.batteryPercentage);
+            txtTimeTaken        = (TextView) v.findViewById(R.id.timeTaken);
         }
     }
 
@@ -244,23 +265,27 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         public TextView txtMNC;
         public TextView txtMCC;
+        public TextView txtTimeTaken;
 
         public ViewContextCarrier(View v) {
             super(v);
 
             txtMNC       = (TextView) v.findViewById(R.id.carrierMNC);
             txtMCC       = (TextView) v.findViewById(R.id.carrierMCC);
+            txtTimeTaken        = (TextView) v.findViewById(R.id.timeTaken);
         }
     }
 
     public static class ViewContextLanguage extends RecyclerView.ViewHolder {
 
         public TextView txtLanguage;
+        public TextView txtTimeTaken;
 
         public ViewContextLanguage(View v) {
             super(v);
 
             txtLanguage       = (TextView) v.findViewById(R.id.languageCode);
+            txtTimeTaken        = (TextView) v.findViewById(R.id.timeTaken);
         }
     }
 
@@ -269,6 +294,7 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         public TextView txtNetworkIsConnected;
         public TextView txtNetworkSSID;
         public TextView txtNetworkConnectionType;
+        public TextView txtTimeTaken;
 
         public ViewContextNetwork(View v) {
             super(v);
@@ -276,17 +302,20 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             txtNetworkIsConnected       = (TextView) v.findViewById(R.id.networkIsConnected);
             txtNetworkSSID              = (TextView) v.findViewById(R.id.networkSSID);
             txtNetworkConnectionType    = (TextView) v.findViewById(R.id.networkConnectionType);
+            txtTimeTaken        = (TextView) v.findViewById(R.id.timeTaken);
         }
     }
 
     public static class ViewContextFitness extends RecyclerView.ViewHolder {
 
         public TextView txtFitnessSteps;
+        public TextView txtTimeTaken;
 
         public ViewContextFitness(View v) {
             super(v);
 
             txtFitnessSteps       = (TextView) v.findViewById(R.id.fitnessSteps);
+            txtTimeTaken        = (TextView) v.findViewById(R.id.timeTaken);
         }
     }
 
@@ -296,6 +325,7 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         public TextView txtLocationLongitude;
         public TextView txtLocationAltitude;
         public TextView txtLocationBearing;
+        public TextView txtTimeTaken;
 
         public ViewContextLocation(View v) {
             super(v);
@@ -304,6 +334,7 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             txtLocationLongitude      = (TextView) v.findViewById(R.id.locationLng);
             txtLocationAltitude       = (TextView) v.findViewById(R.id.locationAltitude);
             txtLocationBearing        = (TextView) v.findViewById(R.id.locationBearing);
+            txtTimeTaken        = (TextView) v.findViewById(R.id.timeTaken);
         }
     }
 
@@ -312,6 +343,7 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         public TextView txtiBeaconMajorID;
         public TextView txtiBeaconMinorID;
         public TextView txtiBeaconUUID;
+        public TextView txtTimeTaken;
 
         public ViewContextiBeacon(View v) {
             super(v);
@@ -319,6 +351,7 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             txtiBeaconMajorID       = (TextView) v.findViewById(R.id.beaconMajorID);
             txtiBeaconMinorID       = (TextView) v.findViewById(R.id.beaconMinorID);
             txtiBeaconUUID          = (TextView) v.findViewById(R.id.beaconUUID);
+            txtTimeTaken        = (TextView) v.findViewById(R.id.timeTaken);
         }
     }
 
@@ -326,12 +359,14 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         public TextView txtEddystoneNamespace;
         public TextView txtEddystoneInstance;
+        public TextView txtTimeTaken;
 
         public ViewContextEddystone(View v) {
             super(v);
 
             txtEddystoneNamespace       = (TextView) v.findViewById(R.id.beaconNamespace);
             txtEddystoneInstance        = (TextView) v.findViewById(R.id.beaconInstance);
+            txtTimeTaken        = (TextView) v.findViewById(R.id.timeTaken);
         }
     }
 }
