@@ -41,12 +41,21 @@ public class SplashActivity extends AppCompatActivity {
     //Need For Fitness Context Plugin
     private GoogleApiClient mGoogleApiClient;
 
+    private boolean isLoggedIn = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        //Initialize GoogleApiClient and Connect to it. This is only needed for the Fitness Context Plugin.
+        /*
+            Initialize GoogleApiClient and Connect to it. This is only needed for the Fitness Context Plugin.
+
+            IMPORTANT NOTE: Make sure you register your application (even this sample) with
+            https://developers.google.com/fit/android/get-api-key . Without it your application and
+            this sample will not be able to be used. You do not need to add the Client ID anywhere but
+            the application will need to be registered through Google's API Console.
+         */
         initGooglePlayServices();
         mGoogleApiClient.connect();
 
@@ -96,6 +105,14 @@ public class SplashActivity extends AppCompatActivity {
                     @Override
                     public void onConnected(@Nullable Bundle bundle) {
                         Log.d("Testing", "You Are Connected!");
+
+                        if (!isLoggedIn) {
+                            isLoggedIn = true;
+                            try {
+                                FitnessProvider provider8 = new FitnessProvider(SplashActivity.this, 60000);
+                                Flybits.include(SplashActivity.this).activateContext(mGoogleApiClient, provider8);
+                            }catch (FeatureNotSupportedException exception){}
+                        }
                     }
 
                     @Override
@@ -113,6 +130,7 @@ public class SplashActivity extends AppCompatActivity {
                     @Override
                     public void onConnectionFailed(ConnectionResult result) {
                         Log.d("Testing", "onConnectionFailed: " + result.getErrorMessage());
+
                     }
                 })
                 .build();
@@ -230,7 +248,8 @@ public class SplashActivity extends AppCompatActivity {
             }
 
             //Only Allow Fitness Providers if the user has successfully connected to GoogleApiClient
-            if (mGoogleApiClient != null && mGoogleApiClient.isConnected()){
+            if (mGoogleApiClient != null && mGoogleApiClient.isConnected() && !isLoggedIn){
+                isLoggedIn = true;
                 FitnessProvider provider8 = new FitnessProvider(SplashActivity.this, 60000);
                 Flybits.include(SplashActivity.this).activateContext(mGoogleApiClient, provider8);
             }

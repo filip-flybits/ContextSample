@@ -1,48 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/darker_gray"
-    android:padding="10dp"
-    android:orientation="vertical">
-
-    <TextView
+    android:background="@android:color/darker_gray">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:layout_marginBottom="10dp"
-        android:text="@string/txtHomeDescription"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:textSize="16sp"
-        android:text="@string/txtAvailableContext"/>
-    <TextView
-        style="@style/contextHeaderInDescription"
-        android:text="@string/context1"/>
-    <TextView
-        style="@style/contextHeaderInDescription"
-        android:text="@string/context2"/>
-    <TextView
-        style="@style/contextHeaderInDescription"
-        android:text="@string/context3"/>
-    <TextView
-        style="@style/contextHeaderInDescription"
-        android:text="@string/context4"/>
-    <TextView
-        style="@style/contextHeaderInDescription"
-        android:text="@string/context5"/>
-    <TextView
-        style="@style/contextHeaderInDescription"
-        android:text="@string/context6"/>
-    <TextView
-        style="@style/contextHeaderInDescription"
-        android:text="@string/context7"/>
-    <TextView
-        style="@style/contextHeaderInDescription"
-        android:text="@string/context8"/>
+        android:padding="10dp"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/txtHomeDescription"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:text="@string/txtAvailableContext"/>
+        <TextView
+            style="@style/contextHeaderInDescription"
+            android:text="@string/context1"/>
+        <TextView
+            style="@style/contextHeaderInDescription"
+            android:text="@string/context2"/>
+        <TextView
+            style="@style/contextHeaderInDescription"
+            android:text="@string/context3"/>
+        <TextView
+            style="@style/contextHeaderInDescription"
+            android:text="@string/context4"/>
+        <TextView
+            style="@style/contextHeaderInDescription"
+            android:text="@string/context5"/>
+        <TextView
+            style="@style/contextHeaderInDescription"
+            android:text="@string/context6"/>
+        <TextView
+            style="@style/contextHeaderInDescription"
+            android:text="@string/context7"/>
+        <TextView
+            style="@style/contextHeaderInDescription"
+            android:text="@string/context8"/>
+
+    </LinearLayout>
+</ScrollView>
