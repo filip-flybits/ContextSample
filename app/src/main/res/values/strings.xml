@@ -42,10 +42,10 @@
     <string name="txtFitnessSteps">Steps: %d</string>
 
     <!-- Latitude Context -->
-    <string name="txtLocationLatitude">Latitude: %d</string>
-    <string name="txtLocationLongitude">Longitude: %d</string>
-    <string name="txtLocationAltitude">Altitude: %d</string>
-    <string name="txtLocationBearing">Bearing: %d</string>
+    <string name="txtLocationLatitude">Latitude: %f</string>
+    <string name="txtLocationLongitude">Longitude: %f</string>
+    <string name="txtLocationAltitude">Altitude: %f</string>
+    <string name="txtLocationBearing">Bearing: %f</string>
 
     <!-- Network Context -->
     <string name="txtNetworkIsConnected">Internet Connected: %s</string>
