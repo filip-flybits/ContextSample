@@ -15,14 +15,24 @@ import android.widget.TextView;
 
 import com.flybits.core.api.Flybits;
 import com.flybits.core.api.context.BasicData;
+import com.flybits.core.api.context.ContextPlugin;
 import com.flybits.core.api.context.plugins.AvailablePlugins;
 import com.flybits.core.api.context.plugins.activity.ActivityData;
+import com.flybits.core.api.context.plugins.activity.ActivityProvider;
 import com.flybits.core.api.context.plugins.battery.BatteryLifeData;
+import com.flybits.core.api.context.plugins.battery.BatteryLifeProvider;
+import com.flybits.core.api.context.plugins.beacon.BeaconData;
+import com.flybits.core.api.context.plugins.beacon.BeaconProvider;
 import com.flybits.core.api.context.plugins.carrier.CarrierData;
+import com.flybits.core.api.context.plugins.carrier.CarrierProvider;
 import com.flybits.core.api.context.plugins.fitness.FitnessData;
+import com.flybits.core.api.context.plugins.fitness.FitnessProvider;
 import com.flybits.core.api.context.plugins.language.LanguageData;
+import com.flybits.core.api.context.plugins.language.LanguageProvider;
 import com.flybits.core.api.context.plugins.location.LocationData;
+import com.flybits.core.api.context.plugins.location.LocationProvider;
 import com.flybits.core.api.context.plugins.network.NetworkData;
+import com.flybits.core.api.context.plugins.network.NetworkProvider;
 import com.flybits.core.api.events.context.EventContextSensorValuesUpdated;
 import com.flybits.samples.context.R;
 import com.flybits.samples.context.adapters.ContextAdapter;
@@ -35,6 +45,7 @@ public class ContextFragment  extends Fragment {
     private TextView mTxtLastUpdated;
     private SwipeRefreshLayout mSwipeContainer;
     private String mCtxData;
+    private AvailablePlugins mCurrentPlugin;
     private ContextAdapter mAdapter;
 
     private ArrayList<BasicData> mListOfDataData;
@@ -84,7 +95,7 @@ public class ContextFragment  extends Fragment {
                 // Your code to refresh the list here.
                 // Make sure you call swipeContainer.setRefreshing(false)
                 // once the network request has completed successfully.
-                fetchItems();
+                refreshContext();
             }
         });
         mSwipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
@@ -96,10 +107,46 @@ public class ContextFragment  extends Fragment {
         if ((bundle = getArguments()) != null){
             mSwipeContainer.setRefreshing(true);
             mCtxData = bundle.getString("context");
+            mCurrentPlugin = AvailablePlugins.fromKey(mCtxData);
             fetchItems();
         }
 
         return view;
+    }
+
+    private void refreshContext() {
+        ContextPlugin plugin = null;
+
+        if (mCtxData.equals(AvailablePlugins.ACTIVITY.getKey())){
+            plugin =  new ActivityProvider(getActivity(), 60000);
+
+        }else if (mCtxData.equals(AvailablePlugins.BATTERY.getKey())){
+            plugin =  new BatteryLifeProvider(getActivity(), 60000);
+
+        }else if (mCtxData.equals(AvailablePlugins.BEACON.getKey())){
+            plugin =  new BeaconProvider(getActivity(), 60000);
+
+        }else if (mCtxData.equals(AvailablePlugins.CARRIER.getKey())){
+            plugin =  new CarrierProvider(getActivity(), 60000);
+
+        }else if (mCtxData.equals(AvailablePlugins.FITNESS.getKey())){
+            plugin =  new FitnessProvider(getActivity(), 60000);
+
+        }else if (mCtxData.equals(AvailablePlugins.LANGUAGE.getKey())){
+            plugin =  new LanguageProvider(getActivity(), 60000);
+
+        }else if (mCtxData.equals(AvailablePlugins.LOCATION.getKey())){
+            plugin =  new LocationProvider(getActivity(), 60000);
+
+        }else if (mCtxData.equals(AvailablePlugins.NETWORK_CONNECTIVITY.getKey())){
+            plugin =  new NetworkProvider(getActivity(), 60000);
+        }
+
+        if (plugin != null) {
+            Flybits.include(getActivity()).refreshContext(plugin);
+        }
+        mSwipeContainer.setRefreshing(false);
+        mTxtLastUpdated.setText(getString(R.string.txtLastUpdated, TimeUtils.getTimeAsString(System.currentTimeMillis())));
     }
 
     @Override
@@ -115,7 +162,7 @@ public class ContextFragment  extends Fragment {
         switch (item.getItemId()) {
             case R.id.action_refresh:
 
-
+                refreshContext();
 
                 return true;
             default:
@@ -124,31 +171,8 @@ public class ContextFragment  extends Fragment {
     }
 
     private void fetchItems() {
-        if (mCtxData.equals(AvailablePlugins.ACTIVITY.getKey())){
-            BasicData<ActivityData> data = Flybits.include(getActivity()).getContextData(AvailablePlugins.ACTIVITY);
-            setView(data);
-        }else if (mCtxData.equals(AvailablePlugins.BATTERY.getKey())){
-            BasicData<BatteryLifeData> data = Flybits.include(getActivity()).getContextData(AvailablePlugins.BATTERY);
-            setView(data);
-        }else if (mCtxData.equals(AvailablePlugins.BATTERY.getKey())){
-
-        }else if (mCtxData.equals(AvailablePlugins.CARRIER.getKey())){
-            BasicData<CarrierData> data = Flybits.include(getActivity()).getContextData(AvailablePlugins.CARRIER);
-            setView(data);
-        }else if (mCtxData.equals(AvailablePlugins.FITNESS.getKey())){
-            BasicData<FitnessData> data = Flybits.include(getActivity()).getContextData(AvailablePlugins.FITNESS);
-            setView(data);
-        }else if (mCtxData.equals(AvailablePlugins.LANGUAGE.getKey())){
-            BasicData<LanguageData> data = Flybits.include(getActivity()).getContextData(AvailablePlugins.LANGUAGE);
-            setView(data);
-        }else if (mCtxData.equals(AvailablePlugins.LOCATION.getKey())){
-            BasicData<LocationData> data = Flybits.include(getActivity()).getContextData(AvailablePlugins.LOCATION);
-            setView(data);
-        }else if (mCtxData.equals(AvailablePlugins.NETWORK_CONNECTIVITY.getKey())){
-            BasicData<NetworkData> data = Flybits.include(getActivity()).getContextData(AvailablePlugins.NETWORK_CONNECTIVITY);
-            setView(data);
-        }
-
+        BasicData<ActivityData> data = Flybits.include(getActivity()).getContextData(mCurrentPlugin);
+        setView(data);
         mSwipeContainer.setRefreshing(false);
     }
 
@@ -181,7 +205,8 @@ public class ContextFragment  extends Fragment {
             BasicData<BatteryLifeData> data = event.contextSensor;
             setView(data);
         }else if (mCtxData.equals(AvailablePlugins.BEACON.getKey()) && event.plugin == AvailablePlugins.BEACON){
-
+            BasicData<BeaconData> data = event.contextSensor;
+            setView(data);
         }else if (mCtxData.equals(AvailablePlugins.CARRIER.getKey()) && event.plugin == AvailablePlugins.CARRIER){
             BasicData<CarrierData> data = event.contextSensor;
             setView(data);
