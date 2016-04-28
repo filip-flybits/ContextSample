@@ -64,14 +64,14 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_activity, parent, false);
             return new ViewContextActivity(v);
         }else if (code == TYPE_LANGUAGE) {
-            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_activity, parent, false);
-            return new ViewContextActivity(v);
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_language, parent, false);
+            return new ViewContextLanguage(v);
         }else if (code == TYPE_LOCATION) {
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_activity, parent, false);
             return new ViewContextActivity(v);
         }else if (code == TYPE_NETWORK) {
-            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_activity, parent, false);
-            return new ViewContextActivity(v);
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_network, parent, false);
+            return new ViewContextNetwork(v);
         }
 
         return new ViewContextActivity(v);
@@ -97,14 +97,51 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             ViewContextBattery holderActivity  = (ViewContextBattery) holder;
             holderActivity.txtIsCharging.setText(mContext.getString(R.string.txtBatteryIsCharging, String.valueOf(data.value.isCharging)));
-            holderActivity.txtPercentage.setText(mContext.getString(R.string.txtBatteryPercentage, String.valueOf(data.value.percentage)));
+            holderActivity.txtPercentage.setText(mContext.getString(R.string.txtBatteryPercentage, data.value.percentage));
         }else if (holder instanceof ViewContextCarrier) {
 
             BasicData<CarrierData> data    = mListOfContextData.get(position);
 
             ViewContextCarrier holderActivity  = (ViewContextCarrier) holder;
-            holderActivity.txtMCC.setText(mContext.getString(R.string.txtCarrierMCC, String.valueOf(data.value.mcc)));
-            holderActivity.txtMNC.setText(mContext.getString(R.string.txtCarrierMNC, String.valueOf(data.value.mnc)));
+            holderActivity.txtMCC.setText(mContext.getString(R.string.txtCarrierMCC, data.value.mcc));
+            holderActivity.txtMNC.setText(mContext.getString(R.string.txtCarrierMNC, data.value.mnc));
+        }else if (holder instanceof ViewContextLanguage) {
+
+            BasicData<LanguageData> data    = mListOfContextData.get(position);
+
+            ViewContextLanguage holderActivity  = (ViewContextLanguage) holder;
+            holderActivity.txtLanguage.setText(mContext.getString(R.string.txtLanguageCode, data.value.language));
+        }else if (holder instanceof ViewContextNetwork) {
+
+            BasicData<NetworkData> data    = mListOfContextData.get(position);
+
+            ViewContextNetwork holderActivity  = (ViewContextNetwork) holder;
+            holderActivity.txtNetworkIsConnected.setText(mContext.getString(R.string.txtNetworkIsConnected, String.valueOf(data.value.isConnected)));
+
+            String ssid = (data.value.ssid == null)? "Not Connected To WiFi" : data.value.ssid;
+            holderActivity.txtNetworkSSID.setText(mContext.getString(R.string.txtNetworkSSID, ssid));
+
+            String connectionType;
+            switch ((int)data.value.connectionType){
+                case 1:
+                    connectionType = "WiFi";
+                    break;
+                case 2:
+                    connectionType = "2G";
+                    break;
+                case 3:
+                    connectionType = "3G";
+                    break;
+                case 4:
+                    connectionType = "4G";
+                    break;
+                case -1:
+                    connectionType = "Not Connected To Internet";
+                    break;
+                default:
+                    connectionType = "Unknown";
+            }
+            holderActivity.txtNetworkConnectionType.setText(mContext.getString(R.string.txtNetworkConnectionType, connectionType));
         }
     }
 
@@ -182,6 +219,32 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             txtMNC       = (TextView) v.findViewById(R.id.carrierMNC);
             txtMCC       = (TextView) v.findViewById(R.id.carrierMCC);
+        }
+    }
+
+    public static class ViewContextLanguage extends RecyclerView.ViewHolder {
+
+        public TextView txtLanguage;
+
+        public ViewContextLanguage(View v) {
+            super(v);
+
+            txtLanguage       = (TextView) v.findViewById(R.id.languageCode);
+        }
+    }
+
+    public static class ViewContextNetwork extends RecyclerView.ViewHolder {
+
+        public TextView txtNetworkIsConnected;
+        public TextView txtNetworkSSID;
+        public TextView txtNetworkConnectionType;
+
+        public ViewContextNetwork(View v) {
+            super(v);
+
+            txtNetworkIsConnected       = (TextView) v.findViewById(R.id.networkIsConnected);
+            txtNetworkSSID              = (TextView) v.findViewById(R.id.networkSSID);
+            txtNetworkConnectionType    = (TextView) v.findViewById(R.id.networkConnectionType);
         }
     }
 }

@@ -10,6 +10,8 @@ import com.flybits.core.api.Flybits;
 import com.flybits.core.api.context.plugins.activity.ActivityProvider;
 import com.flybits.core.api.context.plugins.battery.BatteryLifeProvider;
 import com.flybits.core.api.context.plugins.carrier.CarrierProvider;
+import com.flybits.core.api.context.plugins.language.LanguageProvider;
+import com.flybits.core.api.context.plugins.network.NetworkProvider;
 import com.flybits.core.api.exceptions.FeatureNotSupportedException;
 import com.flybits.core.api.interfaces.IRequestCallback;
 import com.flybits.core.api.interfaces.IRequestLoggedIn;
@@ -127,6 +129,12 @@ public class SplashActivity extends AppCompatActivity {
 
             CarrierProvider provider3 = new CarrierProvider(SplashActivity.this, 60000);
             Flybits.include(SplashActivity.this).activateContext(null, provider3);
+
+            LanguageProvider provider4 = new LanguageProvider(SplashActivity.this, 60000);
+            Flybits.include(SplashActivity.this).activateContext(null, provider4);
+
+            NetworkProvider provider5 = new NetworkProvider(SplashActivity.this, 60000);
+            Flybits.include(SplashActivity.this).activateContext(null, provider5);
         }catch (FeatureNotSupportedException exception){
 
         }

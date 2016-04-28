@@ -29,9 +29,17 @@
 
     <!-- Battery Context -->
     <string name="txtBatteryIsCharging">Is Charging: %s</string>
-    <string name="txtBatteryPercentage">Percentage: %s</string>
+    <string name="txtBatteryPercentage">Percentage: %d</string>
 
     <!-- Carrier Context -->
     <string name="txtCarrierMNC">Carrier MNC: %s</string>
     <string name="txtCarrierMCC">Carrier MCC: %s</string>
+
+    <!-- Language Context -->
+    <string name="txtLanguageCode">Language Code: %s</string>
+
+    <!-- Network Context -->
+    <string name="txtNetworkIsConnected">Internet Connected: %s</string>
+    <string name="txtNetworkSSID">SSID: %s</string>
+    <string name="txtNetworkConnectionType">Connection Type: %s</string>
 </resources>
