@@ -1,4 +1,4 @@
-# ContextSample
+# Context Sample
 This is a sample application that is designed to demonstrate the context plugins featured inside the Flybits SDK. Through this sample developer will gain an understanding on how the context plugins of the Flybits SDK are managed.
 
 # Features
@@ -74,7 +74,7 @@ Flybits.include(SplashActivity.this).login(filterLogin, new IRequestCallback<Use
 
 ### 4. Context Registration
 The purpose of this sample application is to demonstrate how context plugins can be activated within the Flybits SDK. The process of activating context plugins is done through 2 steps.
-The first step includes the registration of the context plugin within the application's [AndroidManifest](../app/src/main/java/AndroidManifest.xml). 
+The first step includes the registration of the context plugin within the application's [AndroidManifest](../app/src/main/AndroidManifest.xml). 
 All plugins must be registered here, one example of how to activate a plugin can be seen below with the **Network Connectivity** plugin.
 
 ```xml
@@ -97,7 +97,7 @@ All plugins must be registered here, one example of how to activate a plugin can
 </manifest>
 ```
 
-Please check out the [AndroidManifest](../app/src/main/java/AndroidManifest.xml) file to see how the rest of the Context Plugins are registered.
+Please check out the [AndroidManifest](../app/src/main/AndroidManifest.xml) file to see how the rest of the Context Plugins are registered.
 
 The second phase of context activation is activating the context plugin with in the application itself. This must occur when the application has successfully registered as
 demonstrated in the [SplashActivity](../app/src/main/java/com/flybits/samples/context/SplashActivity.java) class. The corresponding **Network Connectivity** plugin can be
