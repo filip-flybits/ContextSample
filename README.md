@@ -30,7 +30,7 @@ dependencies {
 ```
 
 ###2. Initialization of SDK
-The Flybits SDK is initialized within the `Application` class of the application. In this application case the `Application` class can be in the [SampleApplication](../app/src/main/java/com/flybits/samples/context/utilities/SampleApplication.java) class. The code snippet can be seen below:
+The Flybits SDK is initialized within the `Application` class of the application. In this application case the `Application` class can be in the [SampleApplication](../master/app/src/main/java/com/flybits/samples/context/utilities/SampleApplication.java) class. The code snippet can be seen below:
 ```java
 FlybitsOptions options = new FlybitsOptions.Builder(this)
   //Indicate whether or not exceptions/network traffic should be displayed in the logcat
@@ -44,7 +44,7 @@ Flybits.include(this).initialize(options);
 Additional options may be added to the `FlybitsOptions` builder object, however, for this sample it is not necessary.
 
 ### 3. Login
-Once the SDK is set up and initialized, applications will need to log the device into the Flybits server. This is required because all contextual information is linked to a specific user within the Flybits ecosystem. In most cases, application should login **anonymously** as the identity of the user is not needed. This sample application logs the user into the Flybits system inside the [SplashActivity](../app/src/main/java/com/flybits/samples/context/SplashActivity.java) class. A small code snippet of this process can be seen below. 
+Once the SDK is set up and initialized, applications will need to log the device into the Flybits server. This is required because all contextual information is linked to a specific user within the Flybits ecosystem. In most cases, application should login **anonymously** as the identity of the user is not needed. This sample application logs the user into the Flybits system inside the [SplashActivity](../master/app/src/main/java/com/flybits/samples/context/SplashActivity.java) class. A small code snippet of this process can be seen below. 
 ```java
 //Log the application into Flybits anonymously
 LoginOptions filterLogin = new LoginOptions.Builder(SplashActivity.this)
@@ -70,7 +70,7 @@ Flybits.include(SplashActivity.this).login(filterLogin, new IRequestCallback<Use
 ```
 
 ### 4. Context Registration
-The purpose of this sample application is to demonstrate how context plugins can be activated within the Flybits SDK. The process of activating context plugins is done in 2 steps. The first step includes the registration of the context plugin within the application's [AndroidManifest](../app/src/main/AndroidManifest.xml). 
+The purpose of this sample application is to demonstrate how context plugins can be activated within the Flybits SDK. The process of activating context plugins is done in 2 steps. The first step includes the registration of the context plugin within the application's [AndroidManifest](../master/app/src/main/AndroidManifest.xml). 
 All plugins must be registered here. An example of how to activate a plugin can be seen below with the **Network Connectivity** plugin.
 
 ```xml
@@ -93,9 +93,9 @@ All plugins must be registered here. An example of how to activate a plugin can 
 </manifest>
 ```
 
-For more information on how the remaining Context Plugins are registered, please visit the [AndroidManifest](../app/src/main/AndroidManifest.xml) file.
+For more information on how the remaining Context Plugins are registered, please visit the [AndroidManifest](../master/app/src/main/AndroidManifest.xml) file.
 
-The second phase of context activation is activating the context plugin within the application itself. This must occur when the application has successfully registered as demonstrated in the [SplashActivity](../app/src/main/java/com/flybits/samples/context/SplashActivity.java) class. The corresponding **Network Connectivity** plugin can be
+The second phase of context activation is activating the context plugin within the application itself. This must occur when the application has successfully registered as demonstrated in the [SplashActivity](../master/app/src/main/java/com/flybits/samples/context/SplashActivity.java) class. The corresponding **Network Connectivity** plugin can be
 seen below.
 ```java
 NetworkProvider provider5 = new NetworkProvider(SplashActivity.this, 60000);
@@ -103,7 +103,7 @@ Flybits.include(SplashActivity.this).activateContext(null, provider5);
 ```
 
 ### 5. Context Retrieval
-Once you have registered your contextual plugins within the `AndroidManifest` file, as well as activated them after your application successfully logs in, the Flybits SDK will then periodically update the information needed for each plugin. The application can then use this information to remove/add content based on the needs of the application. New contextual information is obtained through the event bus as seen in the [MainActivity](../app/src/main/java/com/flybits/samples/context/MainActivity.java) class. The [MainActivity](../app/src/main/java/com/flybits/samples/context/MainActivity.java) class
+Once you have registered your contextual plugins within the `AndroidManifest` file, as well as activated them after your application successfully logs in, the Flybits SDK will then periodically update the information needed for each plugin. The application can then use this information to remove/add content based on the needs of the application. New contextual information is obtained through the event bus as seen in the [MainActivity](../master/app/src/main/java/com/flybits/samples/context/MainActivity.java) class. The [MainActivity](../master/app/src/main/java/com/flybits/samples/context/MainActivity.java) class
 contains the following method which is triggered whenever any new contextual information is triggered;
 ```java
 public void onEventMainThread(EventContextSensorValuesUpdated event){
@@ -116,7 +116,7 @@ public void onEventMainThread(EventContextSensorValuesUpdated event){
 }
 ```
 
-In conjunction with this method the [ContextFragment](../app/src/main/java/com/flybits/samples/context/fragments/ContextFragment.java) class contains a `onNewData(event)` method which processes the event information.
+In conjunction with this method the [ContextFragment](../master/app/src/main/java/com/flybits/samples/context/fragments/ContextFragment.java) class contains a `onNewData(event)` method which processes the event information.
 An example of how the **Network Connectivity** plugin information can be parsed is included below.
 ```java
 public void onNewData(EventContextSensorValuesUpdated event) {
