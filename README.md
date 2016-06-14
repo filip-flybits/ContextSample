@@ -112,7 +112,7 @@ public void onEventMainThread(EventContextSensorValuesUpdated event){
     ContextFragment fragment = (ContextFragment) manager.findFragmentByTag(CONTEXT_FRAGMENT_TAG);
     if (fragment != null) {
         fragment.onNewData(event);
-    }
+    }   
 }
 ```
 
