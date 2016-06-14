@@ -14,14 +14,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.flybits.core.api.Flybits;
-import com.flybits.core.api.context.plugins.activity.ActivityProvider;
-import com.flybits.core.api.context.plugins.battery.BatteryLifeProvider;
-import com.flybits.core.api.context.plugins.beacon.BeaconProvider;
-import com.flybits.core.api.context.plugins.carrier.CarrierProvider;
+import com.flybits.core.api.context.plugins.AvailablePlugins;
 import com.flybits.core.api.context.plugins.fitness.FitnessProvider;
-import com.flybits.core.api.context.plugins.language.LanguageProvider;
-import com.flybits.core.api.context.plugins.location.LocationProvider;
-import com.flybits.core.api.context.plugins.network.NetworkProvider;
+import com.flybits.core.api.context.v2.ContextManager;
+import com.flybits.core.api.context.v2.FlybitsContextPlugin;
 import com.flybits.core.api.exceptions.FeatureNotSupportedException;
 import com.flybits.core.api.interfaces.IRequestCallback;
 import com.flybits.core.api.interfaces.IRequestLoggedIn;
@@ -189,7 +185,6 @@ public class SplashActivity extends AppCompatActivity {
         //Log the application into Flybits anonymously
         LoginOptions filterLogin = new LoginOptions.Builder(SplashActivity.this)
                 .loginAnonymously()
-                .setRememberMeToken()
                 .setDeviceOSVersion()
                 .build();
 
@@ -197,10 +192,10 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onSuccess(User me) {
-                  /*
-                    User is already logged in therefore, the application should activate context.
-                    This must be done after the application has logged in.
-                      */
+                /*
+                User is already logged in therefore, the application should activate context.
+                This must be done after the application has logged in.
+                 */
                 activateContextPlugins(isLocationActivated);
 
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
@@ -222,39 +217,65 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void activateContextPlugins(final boolean isLocationActivated){
-        try {
-            ActivityProvider provider = new ActivityProvider(SplashActivity.this, 60000);
-            Flybits.include(SplashActivity.this).activateContext(null, provider);
 
-            BatteryLifeProvider provider2 = new BatteryLifeProvider(SplashActivity.this, 60000);
-            Flybits.include(SplashActivity.this).activateContext(null, provider2);
+        FlybitsContextPlugin pluginActivity = new FlybitsContextPlugin.Builder()
+                .setPlugin(AvailablePlugins.ACTIVITY)
+                .setRefreshTime(60)
+                .setRefreshTimeFlex(60)
+                .build();
 
-            CarrierProvider provider3 = new CarrierProvider(SplashActivity.this, 60000);
-            Flybits.include(SplashActivity.this).activateContext(null, provider3);
+        FlybitsContextPlugin pluginBattery = new FlybitsContextPlugin.Builder()
+                .setPlugin(AvailablePlugins.BATTERY)
+                .setRefreshTime(60)
+                .setRefreshTimeFlex(60)
+                .build();
 
-            LanguageProvider provider4 = new LanguageProvider(SplashActivity.this, 60000);
-            Flybits.include(SplashActivity.this).activateContext(null, provider4);
+        FlybitsContextPlugin pluginCarrier = new FlybitsContextPlugin.Builder()
+                .setPlugin(AvailablePlugins.CARRIER)
+                .setRefreshTime(60)
+                .setRefreshTimeFlex(60)
+                .build();
 
-            NetworkProvider provider5 = new NetworkProvider(SplashActivity.this, 60000);
-            Flybits.include(SplashActivity.this).activateContext(null, provider5);
+        FlybitsContextPlugin pluginLanguage = new FlybitsContextPlugin.Builder()
+                .setPlugin(AvailablePlugins.LANGUAGE)
+                .setRefreshTime(60)
+                .setRefreshTimeFlex(60)
+                .build();
 
-            //Only Allow Location/Beacon Providers to be activated if the user has allowed the application to use their location
-            if (isLocationActivated){
-                LocationProvider provider6 = new LocationProvider(SplashActivity.this, 60000);
-                Flybits.include(SplashActivity.this).activateContext(null, provider6);
+        FlybitsContextPlugin pluginNetwork = new FlybitsContextPlugin.Builder()
+                .setPlugin(AvailablePlugins.NETWORK_CONNECTIVITY)
+                .setRefreshTime(60)
+                .setRefreshTimeFlex(60)
+                .build();
 
-                BeaconProvider provider7 = new BeaconProvider(SplashActivity.this, 60000);
-                Flybits.include(SplashActivity.this).activateContext(null, provider7);
-            }
 
-            //Only Allow Fitness Providers if the user has successfully connected to GoogleApiClient
-            if (mGoogleApiClient != null && mGoogleApiClient.isConnected() && !isLoggedIn){
-                isLoggedIn = true;
-                FitnessProvider provider8 = new FitnessProvider(SplashActivity.this, 60000);
-                Flybits.include(SplashActivity.this).activateContext(mGoogleApiClient, provider8);
-            }
-        }catch (FeatureNotSupportedException exception){
+        FlybitsContextPlugin pluginLocation = new FlybitsContextPlugin.Builder()
+                .setPlugin(AvailablePlugins.LOCATION)
+                .setRefreshTime(60)
+                .setRefreshTimeFlex(60)
+                .build();
 
+        FlybitsContextPlugin pluginFitness = new FlybitsContextPlugin.Builder()
+                .setPlugin(AvailablePlugins.FITNESS)
+                .setRefreshTime(60)
+                .setRefreshTimeFlex(60)
+                .build();
+
+
+        ContextManager.include(SplashActivity.this).register(pluginActivity);
+        ContextManager.include(SplashActivity.this).register(pluginBattery);
+        ContextManager.include(SplashActivity.this).register(pluginCarrier);
+        ContextManager.include(SplashActivity.this).register(pluginLanguage);
+        ContextManager.include(SplashActivity.this).register(pluginNetwork);
+
+        if (isLocationActivated){
+            ContextManager.include(SplashActivity.this).register(pluginLocation);
+        }
+
+        //Only Allow Fitness Providers if the user has successfully connected to GoogleApiClient
+        if (mGoogleApiClient != null && mGoogleApiClient.isConnected() && !isLoggedIn){
+            isLoggedIn = true;
+            ContextManager.include(SplashActivity.this).register(pluginFitness);
         }
     }
 

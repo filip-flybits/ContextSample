@@ -11,10 +11,6 @@
     <!-- Carrier Permissions -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
-    <!-- Beacon Permissions -->
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-
     <!-- Location / Beacon Permissions -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -62,38 +58,77 @@
             android:name="com.flybits.development.apikey"
             android:value="DCE738E1-2DFD-48B7-B3F0-3AB6D90F68F8" />
 
-        <!-- Services and Receivers for Activity Recognition -->
-        <receiver android:name="com.flybits.core.api.context.receivers.ActivityCollectionAlarmManager"/>
-        <service android:name="com.flybits.core.api.context.services.ActivityCollectionService"/>
-        <service android:name="com.flybits.core.api.context.plugins.activity.DeviceRecognitionServiceIntent"/>
+        <!-- Services for Activity Recognition -->
+        <service android:name="com.flybits.core.api.context.v2.plugins.activity.ActivityBackgroundService"
+            android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY"/>
+            </intent-filter>
+        </service>
+        <service android:name="com.flybits.core.api.context.v2.plugins.activity.DeviceRecognitionServiceIntent" />
+        <service android:name="com.flybits.core.api.context.v2.plugins.activity.ActivityForegroundService" />
 
-        <!-- Services and Receivers for Battery -->
-        <receiver android:name="com.flybits.core.api.context.receivers.BatteryLifeCollectionAlarmManager"/>
-        <service android:name="com.flybits.core.api.context.services.BatteryLifeCollectionService"/>
+        <!-- Services for Battery -->
+        <service android:name="com.flybits.core.api.context.v2.plugins.battery.BatteryBackgroundService"
+            android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY"/>
+            </intent-filter>
+        </service>
+        <service android:name="com.flybits.core.api.context.v2.plugins.battery.BatteryForegroundService" />
 
-        <!-- Services and Receivers for Beacons -->
-        <receiver android:name="com.flybits.core.api.context.receivers.BeaconCollectionAlarmManager"/>
-        <service android:name="com.flybits.core.api.context.services.BeaconCollectionService"/>
+        <!-- Services for Carrier -->
+        <service android:name="com.flybits.core.api.context.v2.plugins.carrier.CarrierBackgroundService"
+            android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY"/>
+            </intent-filter>
+        </service>
+        <service android:name="com.flybits.core.api.context.v2.plugins.carrier.CarrierForegroundService" />
 
-        <!-- Services and Receivers for Carrier -->
-        <receiver android:name="com.flybits.core.api.context.receivers.CarrierCollectionAlarmManager"/>
-        <service android:name="com.flybits.core.api.context.services.CarrierCollectionService"/>
+        <!-- Services for Fitness -->
+        <service android:name="com.flybits.core.api.context.v2.plugins.fitness.FitnessBackgroundService"
+            android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY"/>
+            </intent-filter>
+        </service>
+        <service android:name="com.flybits.core.api.context.v2.plugins.fitness.FitnessForegroundService" />
 
-        <!-- Services and Receivers for Fitness -->
-        <service android:name="com.flybits.core.api.context.services.FitnessCollectionService"/>
-        <receiver android:name="com.flybits.core.api.context.receivers.FitnessCollectionAlarmManager"/>
 
-        <!-- Services and Receivers for Language -->
-        <receiver android:name="com.flybits.core.api.context.receivers.LanguageCollectionAlarmManager"/>
-        <service android:name="com.flybits.core.api.context.services.LanguageCollectionService"/>
+        <!-- Services for Language -->
+        <service android:name="com.flybits.core.api.context.v2.plugins.language.LanguageBackgroundService"
+            android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY"/>
+            </intent-filter>
+        </service>
+        <service android:name="com.flybits.core.api.context.v2.plugins.language.LanguageForegroundService" />
 
-        <!-- Services and Receivers for Location -->
-        <receiver android:name="com.flybits.core.api.context.receivers.LocationCollectionAlarmManager"/>
-        <service android:name="com.flybits.core.api.context.services.LocationCollectionService"/>
+        <!-- Services for Location -->
+        <service android:name="com.flybits.core.api.context.v2.plugins.location.LocationBackgroundService"
+            android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY"/>
+            </intent-filter>
+        </service>
+        <service android:name="com.flybits.core.api.context.v2.plugins.location.LocationForegroundService" />
 
-        <!-- Services and Receivers for Network -->
-        <receiver android:name="com.flybits.core.api.context.receivers.NetworkCollectionAlarmManager"/>
-        <service android:name="com.flybits.core.api.context.services.NetworkCollectionService"/>
+        <!-- Services for Network -->
+        <service android:name="com.flybits.core.api.context.v2.plugins.network.NetworkBackgroundService"
+            android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY"/>
+            </intent-filter>
+        </service>
+        <service android:name="com.flybits.core.api.context.v2.plugins.network.NetworkForegroundService" />
     </application>
 
 </manifest>
