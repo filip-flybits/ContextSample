@@ -3,7 +3,6 @@
     <string-array name="contextAvailable">
         <item>@string/context1</item>
         <item>@string/context2</item>
-        <item>@string/context3</item>
         <item>@string/context4</item>
         <item>@string/context5</item>
         <item>@string/context6</item>

@@ -31,9 +31,6 @@
             android:text="@string/context2"/>
         <TextView
             style="@style/contextHeaderInDescription"
-            android:text="@string/context3"/>
-        <TextView
-            style="@style/contextHeaderInDescription"
             android:text="@string/context4"/>
         <TextView
             style="@style/contextHeaderInDescription"

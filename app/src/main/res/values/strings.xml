@@ -29,7 +29,6 @@
     <!-- Context List -->
     <string name="context1">Activity Recognition</string>
     <string name="context2">Battery</string>
-    <string name="context3">Beacon (iBeacon / EddyStone)</string>
     <string name="context4">Carrier (SIM)</string>
     <string name="context5">Fitness (Steps)</string>
     <string name="context6">Language</string>
