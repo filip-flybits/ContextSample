@@ -7,16 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.flybits.core.api.context.BasicData;
-import com.flybits.core.api.context.plugins.activity.ActivityData;
-import com.flybits.core.api.context.plugins.battery.BatteryLifeData;
-import com.flybits.core.api.context.plugins.beacon.EddyStone;
-import com.flybits.core.api.context.plugins.beacon.IBeacon;
-import com.flybits.core.api.context.plugins.carrier.CarrierData;
-import com.flybits.core.api.context.plugins.fitness.FitnessData;
-import com.flybits.core.api.context.plugins.language.LanguageData;
-import com.flybits.core.api.context.plugins.location.LocationData;
-import com.flybits.core.api.context.plugins.network.NetworkData;
+import com.flybits.core.api.context.v2.BasicData;
+import com.flybits.core.api.context.v2.plugins.activity.ActivityData;
+import com.flybits.core.api.context.v2.plugins.battery.BatteryData;
+import com.flybits.core.api.context.v2.plugins.carrier.CarrierData;
+import com.flybits.core.api.context.v2.plugins.fitness.FitnessContextData;
+import com.flybits.core.api.context.v2.plugins.language.LanguageContextData;
+import com.flybits.core.api.context.v2.plugins.location.LocationData;
+import com.flybits.core.api.context.v2.plugins.network.NetworkData;
 import com.flybits.samples.context.R;
 import com.flybits.samples.context.utilities.TimeUtils;
 
@@ -100,7 +98,7 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         }else if (holder instanceof ViewContextBattery) {
 
-            BasicData<BatteryLifeData> data    = mListOfContextData.get(position);
+            BasicData<BatteryData> data    = mListOfContextData.get(position);
 
             ViewContextBattery holderActivity  = (ViewContextBattery) holder;
             holderActivity.txtIsCharging.setText(mContext.getString(R.string.txtBatteryIsCharging, String.valueOf(data.value.isCharging)));
@@ -118,7 +116,7 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         }else if (holder instanceof ViewContextLanguage) {
 
-            BasicData<LanguageData> data    = mListOfContextData.get(position);
+            BasicData<LanguageContextData> data    = mListOfContextData.get(position);
 
             ViewContextLanguage holderActivity  = (ViewContextLanguage) holder;
             holderActivity.txtLanguage.setText(mContext.getString(R.string.txtLanguageCode, data.value.language));
@@ -159,7 +157,7 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         }else if (holder instanceof ViewContextFitness) {
 
-            BasicData<FitnessData> data    = mListOfContextData.get(position);
+            BasicData<FitnessContextData> data    = mListOfContextData.get(position);
 
             ViewContextFitness holderActivity  = (ViewContextFitness) holder;
             holderActivity.txtFitnessSteps.setText(mContext.getString(R.string.txtFitnessSteps, data.value.steps));
@@ -176,24 +174,6 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             holderActivity.txtLocationBearing.setText(mContext.getString(R.string.txtLocationBearing, data.value.bearing));
             holderActivity.txtTimeTaken.setText(mContext.getString(R.string.txtUpdatedAt, TimeUtils.getTimeAsString(data.timestamp * 1000)));
 
-        }else if (holder instanceof ViewContextEddystone) {
-
-            BasicData<EddyStone> data    = mListOfContextData.get(position);
-
-            ViewContextEddystone holderActivity  = (ViewContextEddystone) holder;
-            holderActivity.txtEddystoneInstance.setText(mContext.getString(R.string.txtBeaconNamespace, data.value.namespace));
-            holderActivity.txtEddystoneNamespace.setText(mContext.getString(R.string.txtBeaconInstance, data.value.instance));
-            holderActivity.txtTimeTaken.setText(mContext.getString(R.string.txtUpdatedAt, TimeUtils.getTimeAsString(data.timestamp * 1000)));
-
-        }else if (holder instanceof ViewContextiBeacon) {
-
-            BasicData<IBeacon> data    = mListOfContextData.get(position);
-
-            ViewContextiBeacon holderActivity  = (ViewContextiBeacon) holder;
-            holderActivity.txtiBeaconMajorID.setText(mContext.getString(R.string.txtBeaconMajorID, data.value.majorID));
-            holderActivity.txtiBeaconMinorID.setText(mContext.getString(R.string.txtBeaconMinorID, data.value.minorID));
-            holderActivity.txtiBeaconUUID.setText(mContext.getString(R.string.txtBeaconUUID, data.value.uuid));
-            holderActivity.txtTimeTaken.setText(mContext.getString(R.string.txtUpdatedAt, TimeUtils.getTimeAsString(data.timestamp * 1000)));
         }
     }
 
@@ -206,15 +186,11 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public int getItemViewType(int position) {
         if (mListOfContextData.get(position).value instanceof ActivityData){
             return TYPE_ACTIVITY;
-        }else if (mListOfContextData.get(position).value instanceof BatteryLifeData){
+        }else if (mListOfContextData.get(position).value instanceof BatteryData){
             return TYPE_BATTERY;
-        }else if (mListOfContextData.get(position).value instanceof IBeacon){
-            return TYPE_BEACON_IBEACON;
-        }else if (mListOfContextData.get(position).value instanceof EddyStone){
-            return TYPE_BEACON_EDDYSTONE;
-        }else if (mListOfContextData.get(position).value instanceof FitnessData){
+        }else if (mListOfContextData.get(position).value instanceof FitnessContextData){
             return TYPE_FITNESS;
-        }else if (mListOfContextData.get(position).value instanceof LanguageData){
+        }else if (mListOfContextData.get(position).value instanceof LanguageContextData){
             return TYPE_LANGUAGE;
         }else if (mListOfContextData.get(position).value instanceof LocationData){
             return TYPE_LOCATION;

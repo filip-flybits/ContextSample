@@ -17,23 +17,14 @@ import com.flybits.core.api.Flybits;
 import com.flybits.core.api.context.BasicData;
 import com.flybits.core.api.context.ContextPlugin;
 import com.flybits.core.api.context.plugins.AvailablePlugins;
-import com.flybits.core.api.context.plugins.activity.ActivityData;
 import com.flybits.core.api.context.plugins.activity.ActivityProvider;
-import com.flybits.core.api.context.plugins.battery.BatteryLifeData;
 import com.flybits.core.api.context.plugins.battery.BatteryLifeProvider;
-import com.flybits.core.api.context.plugins.beacon.BeaconData;
 import com.flybits.core.api.context.plugins.beacon.BeaconProvider;
-import com.flybits.core.api.context.plugins.carrier.CarrierData;
 import com.flybits.core.api.context.plugins.carrier.CarrierProvider;
-import com.flybits.core.api.context.plugins.fitness.FitnessData;
 import com.flybits.core.api.context.plugins.fitness.FitnessProvider;
-import com.flybits.core.api.context.plugins.language.LanguageData;
 import com.flybits.core.api.context.plugins.language.LanguageProvider;
-import com.flybits.core.api.context.plugins.location.LocationData;
 import com.flybits.core.api.context.plugins.location.LocationProvider;
-import com.flybits.core.api.context.plugins.network.NetworkData;
 import com.flybits.core.api.context.plugins.network.NetworkProvider;
-import com.flybits.core.api.events.context.EventContextSensorValuesUpdated;
 import com.flybits.samples.context.R;
 import com.flybits.samples.context.adapters.ContextAdapter;
 import com.flybits.samples.context.utilities.TimeUtils;
@@ -48,7 +39,7 @@ public class ContextFragment  extends Fragment {
     private AvailablePlugins mCurrentPlugin;
     private ContextAdapter mAdapter;
 
-    private ArrayList<BasicData> mListOfDataData;
+    private ArrayList<com.flybits.core.api.context.v2.BasicData> mListOfDataData;
 
     public static Fragment newInstance(AvailablePlugins plugin) {
         ContextFragment newFragment = new ContextFragment();
@@ -164,7 +155,7 @@ public class ContextFragment  extends Fragment {
         Fetch the last known context value for the registered context plugin.
      */
     private void fetchItems() {
-        BasicData data = Flybits.include(getActivity()).getContextData(mCurrentPlugin);
+        com.flybits.core.api.context.v2.BasicData data = Flybits.include(getActivity()).getContextData(mCurrentPlugin);
         setView(data);
         mSwipeContainer.setRefreshing(false);
     }
@@ -172,7 +163,7 @@ public class ContextFragment  extends Fragment {
     /*
         Set the Views of the UI including the items in the RecyclerView and the Last Updated time.
      */
-    private void setView(BasicData data){
+    private void setView(com.flybits.core.api.context.v2.BasicData data){
         String refreshTime = (data != null && data.timestamp > 0)
                 ? TimeUtils.getTimeAsString(data.timestamp * 1000) : TimeUtils.getTimeAsString(System.currentTimeMillis());
 
@@ -196,31 +187,32 @@ public class ContextFragment  extends Fragment {
         method which is triggered by the SDK whenever a Context Plugin's information is updated either
         programmatically or manually.
      */
-    public void onNewData(EventContextSensorValuesUpdated event) {
-        if (mCtxData.equals(AvailablePlugins.ACTIVITY.getKey()) && event.plugin == AvailablePlugins.ACTIVITY){
-            BasicData<ActivityData> data = event.contextSensor;
-            setView(data);
-        }else if (mCtxData.equals(AvailablePlugins.BATTERY.getKey()) && event.plugin == AvailablePlugins.BATTERY){
+    public void onNewData(com.flybits.core.api.context.v2.BasicData event) {
+        setView(event);
+
+        /*
+        if (mCtxData.equals(AvailablePlugins.ACTIVITY.getKey()) && event.dataTypeID.equals(AvailablePlugins.ACTIVITY.getKey())){
+            com.flybits.core.api.context.v2.BasicData<ActivityData> data = event;
+
+        }else if (mCtxData.equals(AvailablePlugins.BATTERY.getKey()) && event.dataTypeID.equals(AvailablePlugins.BATTERY.getKey())){
             BasicData<BatteryLifeData> data = event.contextSensor;
             setView(data);
-        }else if (mCtxData.equals(AvailablePlugins.BEACON.getKey()) && event.plugin == AvailablePlugins.BEACON){
-            BasicData<BeaconData> data = event.contextSensor;
-            setView(data);
-        }else if (mCtxData.equals(AvailablePlugins.CARRIER.getKey()) && event.plugin == AvailablePlugins.CARRIER){
+        }else if (mCtxData.equals(AvailablePlugins.CARRIER.getKey()) && event.dataTypeID.equals(AvailablePlugins.CARRIER.getKey())){
             BasicData<CarrierData> data = event.contextSensor;
             setView(data);
-        }else if (mCtxData.equals(AvailablePlugins.FITNESS.getKey()) && event.plugin == AvailablePlugins.FITNESS){
+        }else if (mCtxData.equals(AvailablePlugins.FITNESS.getKey()) && event.dataTypeID.equals(AvailablePlugins.FITNESS.getKey())){
             BasicData<FitnessData> data = event.contextSensor;
             setView(data);
-        }else if (mCtxData.equals(AvailablePlugins.LANGUAGE.getKey()) && event.plugin == AvailablePlugins.LANGUAGE){
-            BasicData<LanguageData> data = event.contextSensor;
+        }else if (mCtxData.equals(AvailablePlugins.LANGUAGE.getKey()) && event.dataTypeID.equals(AvailablePlugins.LANGUAGE.getKey())){
+            BasicData<LanguageData> data = event;
             setView(data);
-        }else if (mCtxData.equals(AvailablePlugins.LOCATION.getKey()) && event.plugin == AvailablePlugins.LOCATION){
+        }else if (mCtxData.equals(AvailablePlugins.LOCATION.getKey()) && event.dataTypeID.equals(AvailablePlugins.LOCATION.getKey())){
             BasicData<LocationData> data = event.contextSensor;
             setView(data);
-        }else if (mCtxData.equals(AvailablePlugins.NETWORK_CONNECTIVITY.getKey()) && event.plugin == AvailablePlugins.NETWORK_CONNECTIVITY){
+        }else if (mCtxData.equals(AvailablePlugins.NETWORK_CONNECTIVITY.getKey()) && event.dataTypeID.equals(AvailablePlugins.NETWORK_CONNECTIVITY.getKey())){
             BasicData<NetworkData> data = event.contextSensor;
             setView(data);
         }
+        */
     }
 }
