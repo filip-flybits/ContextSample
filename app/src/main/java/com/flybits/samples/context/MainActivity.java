@@ -3,6 +3,10 @@ package com.flybits.samples.context;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -10,20 +14,33 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.flybits.core.api.context.plugins.AvailablePlugins;
-import com.flybits.core.api.events.context.EventContextSensorValuesUpdated;
+import com.flybits.core.api.context.v2.ContextManager;
+import com.flybits.core.api.context.v2.FlybitsContextPlugin;
+import com.flybits.core.api.context.v2.plugins.activity.ActivityData;
+import com.flybits.core.api.context.v2.plugins.battery.BatteryData;
+import com.flybits.core.api.context.v2.plugins.carrier.CarrierData;
+import com.flybits.core.api.context.v2.plugins.fitness.FitnessContextData;
+import com.flybits.core.api.context.v2.plugins.language.LanguageContextData;
+import com.flybits.core.api.context.v2.plugins.location.LocationData;
+import com.flybits.core.api.context.v2.plugins.network.NetworkData;
 import com.flybits.samples.context.fragments.ContextFragment;
 import com.flybits.samples.context.fragments.HomeFragment;
-
-import de.greenrobot.event.EventBus;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private final String CONTEXT_FRAGMENT_TAG   = "tagContext";
     private final String HOME_FRAGMENT_TAG      = "tagHome";
+
+    private FlybitsContextPlugin.Builder plugin     = new FlybitsContextPlugin.Builder()
+            .setPlugin(AvailablePlugins.BATTERY)
+            .setInForegroundMode(MainActivity.this)
+            .setRefreshTime(10)
+            .setRefreshTimeFlex(10);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +64,20 @@ public class MainActivity extends AppCompatActivity
         fragmentTransaction.replace(R.id.content_frame, fragment, HOME_FRAGMENT_TAG);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+
+        /**
+         * REGISTER FOR CONTEXT CHANGES
+         */
+        IntentFilter filter = new IntentFilter("CONTEXT_UPDATED");
+        registerReceiver(receiver, filter);
+
+        /**
+         * Sample Foreground for Context Plugin
+         */
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("shouldUpdateServer", true);
+
+        plugin.setExtras(bundle);
     }
 
     @Override
@@ -94,31 +125,93 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    /*
-        This is how you would register to events triggered by the Flybits SDK
+    /**
+     * ReceIving Notifications about Context Changes in the background
      */
-    @Override
-    public void onStart() {
-        super.onStart();
-        EventBus.getDefault().register(this);
-    }
+    BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
 
-    @Override
-    public void onStop() {
-        EventBus.getDefault().unregister(this);
-        super.onStop();
-    }
+            Bundle bundle = intent.getExtras();
+            FragmentManager manager = getFragmentManager();
+            ContextFragment fragment = (ContextFragment) manager.findFragmentByTag(CONTEXT_FRAGMENT_TAG);
 
-    /*
-        Subscription to the EventContextSensorValuesUpdated event which listens to changes in
-          Context plugin values regardless of which Context plugin it is for. Therefore, it is
-           important to check to make sure that the context plugin is the one you are interested in.
-    */
-    public void onEventMainThread(EventContextSensorValuesUpdated event){
-        FragmentManager manager = getFragmentManager();
-        ContextFragment fragment = (ContextFragment) manager.findFragmentByTag(CONTEXT_FRAGMENT_TAG);
-        if (fragment != null) {
-            fragment.onNewData(event);
+            if (fragment != null) {
+                if (bundle.containsKey("CONTEXT_TYPE")) {
+
+                    if (bundle.getString("CONTEXT_TYPE").equals(AvailablePlugins.BATTERY.getKey())) {
+                        BatteryData data = bundle.getParcelable("CONTEXT_OBJ");
+                        if (data != null) {
+                            Log.d("Testing", data.toString());
+                            fragment.onNewData(data);
+                        }
+                    }
+                    else if (bundle.getString("CONTEXT_TYPE").equals(AvailablePlugins.CARRIER.getKey())) {
+                        CarrierData data = bundle.getParcelable("CONTEXT_OBJ");
+                        if (data != null) {
+                            Log.d("Testing", data.toString());
+                            fragment.onNewData(data);
+                        }
+                    }
+                    else if (bundle.getString("CONTEXT_TYPE").equals(AvailablePlugins.LOCATION.getKey())) {
+                        LocationData data = bundle.getParcelable("CONTEXT_OBJ");
+                        if (data != null) {
+                            Log.d("Testing", data.toString());
+                            fragment.onNewData(data);
+                        }
+                    }
+                    else if (bundle.getString("CONTEXT_TYPE").equals(AvailablePlugins.LANGUAGE.getKey())) {
+                        LanguageContextData data = bundle.getParcelable("CONTEXT_OBJ");
+                        if (data != null) {
+                            Log.d("Testing", data.toString());
+                            fragment.onNewData(data);
+                        }
+                    }
+                    else if (bundle.getString("CONTEXT_TYPE").equals(AvailablePlugins.FITNESS.getKey())) {
+                        FitnessContextData data = bundle.getParcelable("CONTEXT_OBJ");
+                        if (data != null) {
+                            Log.d("Testing", data.toString());
+                            fragment.onNewData(data);
+                        }
+                    }
+                    else if (bundle.getString("CONTEXT_TYPE").equals(AvailablePlugins.ACTIVITY.getKey())) {
+                        ActivityData data = bundle.getParcelable("CONTEXT_OBJ");
+                        if (data != null) {
+                            Log.d("Testing", data.toString());
+                            fragment.onNewData(data);
+                        }
+                    }
+                    else if (bundle.getString("CONTEXT_TYPE").equals(AvailablePlugins.NETWORK_CONNECTIVITY.getKey())) {
+                        NetworkData data = bundle.getParcelable("CONTEXT_OBJ");
+                        if (data != null) {
+                            Log.d("Testing", data.toString());
+                            fragment.onNewData(data);
+                        }
+                    }
+                }
+            }
         }
+    };
+
+    @Override
+    protected void onPause() {
+        ContextManager.include(MainActivity.this).unregister(plugin.build());
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ContextManager.include(MainActivity.this).register(plugin.build());
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        /**
+         * UNREGISTER FOR CONTEXT CHANGES
+         */
+        unregisterReceiver(receiver);
+
     }
 }

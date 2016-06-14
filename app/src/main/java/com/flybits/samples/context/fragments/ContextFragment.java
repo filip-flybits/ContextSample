@@ -14,17 +14,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.flybits.core.api.Flybits;
-import com.flybits.core.api.context.BasicData;
-import com.flybits.core.api.context.ContextPlugin;
 import com.flybits.core.api.context.plugins.AvailablePlugins;
-import com.flybits.core.api.context.plugins.activity.ActivityProvider;
-import com.flybits.core.api.context.plugins.battery.BatteryLifeProvider;
-import com.flybits.core.api.context.plugins.beacon.BeaconProvider;
-import com.flybits.core.api.context.plugins.carrier.CarrierProvider;
-import com.flybits.core.api.context.plugins.fitness.FitnessProvider;
-import com.flybits.core.api.context.plugins.language.LanguageProvider;
-import com.flybits.core.api.context.plugins.location.LocationProvider;
-import com.flybits.core.api.context.plugins.network.NetworkProvider;
+import com.flybits.core.api.context.v2.ContextData;
+import com.flybits.core.api.context.v2.ContextManager;
+import com.flybits.core.api.context.v2.FlybitsContextPlugin;
 import com.flybits.samples.context.R;
 import com.flybits.samples.context.adapters.ContextAdapter;
 import com.flybits.samples.context.utilities.TimeUtils;
@@ -39,7 +32,7 @@ public class ContextFragment  extends Fragment {
     private AvailablePlugins mCurrentPlugin;
     private ContextAdapter mAdapter;
 
-    private ArrayList<com.flybits.core.api.context.v2.BasicData> mListOfDataData;
+    private ArrayList<ContextData> mListOfDataData;
 
     public static Fragment newInstance(AvailablePlugins plugin) {
         ContextFragment newFragment = new ContextFragment();
@@ -117,28 +110,30 @@ public class ContextFragment  extends Fragment {
         Refresh the context value for the Context Plugin registered for this Fragment.
      */
     private void refreshContext() {
-        ContextPlugin plugin = null;
+
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("", true);
+        FlybitsContextPlugin.Builder plugin = new FlybitsContextPlugin.Builder()
+                .setExtras(bundle);
 
         if (mCtxData.equals(AvailablePlugins.ACTIVITY.getKey())){
-            plugin =  new ActivityProvider(getActivity(), 60000);
+            plugin.setPlugin(AvailablePlugins.ACTIVITY);
         }else if (mCtxData.equals(AvailablePlugins.BATTERY.getKey())){
-            plugin =  new BatteryLifeProvider(getActivity(), 60000);
-        }else if (mCtxData.equals(AvailablePlugins.BEACON.getKey())){
-            plugin =  new BeaconProvider(getActivity(), 60000);
+            plugin.setPlugin(AvailablePlugins.BATTERY);
         }else if (mCtxData.equals(AvailablePlugins.CARRIER.getKey())){
-            plugin =  new CarrierProvider(getActivity(), 60000);
+            plugin.setPlugin(AvailablePlugins.CARRIER);
         }else if (mCtxData.equals(AvailablePlugins.FITNESS.getKey())){
-            plugin =  new FitnessProvider(getActivity(), 60000);
+            plugin.setPlugin(AvailablePlugins.FITNESS);
         }else if (mCtxData.equals(AvailablePlugins.LANGUAGE.getKey())){
-            plugin =  new LanguageProvider(getActivity(), 60000);
+            plugin.setPlugin(AvailablePlugins.LANGUAGE);
         }else if (mCtxData.equals(AvailablePlugins.LOCATION.getKey())){
-            plugin =  new LocationProvider(getActivity(), 60000);
+            plugin.setPlugin(AvailablePlugins.LOCATION);
         }else if (mCtxData.equals(AvailablePlugins.NETWORK_CONNECTIVITY.getKey())){
-            plugin =  new NetworkProvider(getActivity(), 60000);
+            plugin.setPlugin(AvailablePlugins.NETWORK_CONNECTIVITY);
         }
 
         if (plugin != null) {
-            Flybits.include(getActivity()).refreshContext(plugin);
+            ContextManager.include(getActivity()).register(plugin.build());
         }
         mSwipeContainer.setRefreshing(false);
 
@@ -155,22 +150,21 @@ public class ContextFragment  extends Fragment {
         Fetch the last known context value for the registered context plugin.
      */
     private void fetchItems() {
-        com.flybits.core.api.context.v2.BasicData data = Flybits.include(getActivity()).getContextData(mCurrentPlugin);
-        setView(data);
+        com.flybits.core.api.context.v2.BasicData data = Flybits.include(getActivity()).getDataForContext(mCurrentPlugin);
+        setView(data.value);
         mSwipeContainer.setRefreshing(false);
     }
 
     /*
         Set the Views of the UI including the items in the RecyclerView and the Last Updated time.
      */
-    private void setView(com.flybits.core.api.context.v2.BasicData data){
-        String refreshTime = (data != null && data.timestamp > 0)
-                ? TimeUtils.getTimeAsString(data.timestamp * 1000) : TimeUtils.getTimeAsString(System.currentTimeMillis());
+    private void setView(ContextData data){
+        String refreshTime = TimeUtils.getTimeAsString(System.currentTimeMillis());
 
         if (data != null){
 
             if (mListOfDataData.size() > 0){
-                if (!mListOfDataData.get(0).value.equals(data.value)){
+                if (!mListOfDataData.get(0).equals(data)){
                     mListOfDataData.add(0, data);
                 }
             }else{
@@ -187,7 +181,7 @@ public class ContextFragment  extends Fragment {
         method which is triggered by the SDK whenever a Context Plugin's information is updated either
         programmatically or manually.
      */
-    public void onNewData(com.flybits.core.api.context.v2.BasicData event) {
+    public void onNewData(ContextData event) {
         setView(event);
 
         /*

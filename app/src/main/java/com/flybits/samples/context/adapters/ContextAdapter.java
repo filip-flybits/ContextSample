@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.flybits.core.api.context.v2.BasicData;
+import com.flybits.core.api.context.v2.ContextData;
 import com.flybits.core.api.context.v2.plugins.activity.ActivityData;
 import com.flybits.core.api.context.v2.plugins.battery.BatteryData;
 import com.flybits.core.api.context.v2.plugins.carrier.CarrierData;
@@ -28,8 +28,6 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     private static final int TYPE_ACTIVITY          = 0;
     private static final int TYPE_BATTERY           = 1;
-    private static final int TYPE_BEACON_IBEACON    = 2;
-    private static final int TYPE_BEACON_EDDYSTONE  = 3;
     private static final int TYPE_CARRIER           = 4;
     private static final int TYPE_FITNESS           = 5;
     private static final int TYPE_LANGUAGE          = 6;
@@ -37,9 +35,9 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private static final int TYPE_NETWORK           = 8;
 
     private Context mContext;
-    private ArrayList<BasicData> mListOfContextData;
+    private ArrayList<ContextData> mListOfContextData;
 
-    public ContextAdapter(Context context, ArrayList<BasicData> listOfContextData) {
+    public ContextAdapter(Context context, ArrayList<ContextData> listOfContextData) {
         mListOfContextData  = listOfContextData;
         mContext            = context;
     }
@@ -54,12 +52,6 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }else if (code == TYPE_BATTERY) {
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_battery, parent, false);
             return new ViewContextBattery(v);
-        }else if (code == TYPE_BEACON_EDDYSTONE) {
-            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_beacon_eddystone, parent, false);
-            return new ViewContextEddystone(v);
-        }else if (code == TYPE_BEACON_IBEACON) {
-            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_beacon_ibeacon, parent, false);
-            return new ViewContextiBeacon(v);
         }else if (code == TYPE_CARRIER) {
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_carrier, parent, false);
             return new ViewContextCarrier(v);
@@ -85,55 +77,55 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         if (holder instanceof ViewContextActivity) {
 
-            BasicData<ActivityData> data    = mListOfContextData.get(position);
+            ActivityData data    = (ActivityData) mListOfContextData.get(position);
 
             ViewContextActivity holderActivity  = (ViewContextActivity) holder;
-            holderActivity.txtStationary.setText(mContext.getString(R.string.txtActivityStationary, String.valueOf(data.value.stationary)));
-            holderActivity.txtWalking.setText(mContext.getString(R.string.txtActivityWalking, String.valueOf(data.value.walking)));
-            holderActivity.txtRunning.setText(mContext.getString(R.string.txtActivityRunning, String.valueOf(data.value.running)));
-            holderActivity.txtRidingBike.setText(mContext.getString(R.string.txtActivityOnBike, String.valueOf(data.value.cycling)));
-            holderActivity.txtDriving.setText(mContext.getString(R.string.txtActivityDriving, String.valueOf(data.value.driving)));
-            holderActivity.txtUnknown.setText(mContext.getString(R.string.txtActivityUnknown, String.valueOf(data.value.unknown)));
-            holderActivity.txtTimeTaken.setText(mContext.getString(R.string.txtUpdatedAt, TimeUtils.getTimeAsString(data.timestamp * 1000)));
+            holderActivity.txtStationary.setText(mContext.getString(R.string.txtActivityStationary, String.valueOf(data.stationary)));
+            holderActivity.txtWalking.setText(mContext.getString(R.string.txtActivityWalking, String.valueOf(data.walking)));
+            holderActivity.txtRunning.setText(mContext.getString(R.string.txtActivityRunning, String.valueOf(data.running)));
+            holderActivity.txtRidingBike.setText(mContext.getString(R.string.txtActivityOnBike, String.valueOf(data.cycling)));
+            holderActivity.txtDriving.setText(mContext.getString(R.string.txtActivityDriving, String.valueOf(data.driving)));
+            holderActivity.txtUnknown.setText(mContext.getString(R.string.txtActivityUnknown, String.valueOf(data.unknown)));
+            holderActivity.txtTimeTaken.setText(mContext.getString(R.string.txtUpdatedAt, TimeUtils.getTimeAsString(System.currentTimeMillis())));
 
         }else if (holder instanceof ViewContextBattery) {
 
-            BasicData<BatteryData> data    = mListOfContextData.get(position);
+            BatteryData data    = (BatteryData) mListOfContextData.get(position);
 
             ViewContextBattery holderActivity  = (ViewContextBattery) holder;
-            holderActivity.txtIsCharging.setText(mContext.getString(R.string.txtBatteryIsCharging, String.valueOf(data.value.isCharging)));
-            holderActivity.txtPercentage.setText(mContext.getString(R.string.txtBatteryPercentage, data.value.percentage));
-            holderActivity.txtTimeTaken.setText(mContext.getString(R.string.txtUpdatedAt, TimeUtils.getTimeAsString(data.timestamp * 1000)));
+            holderActivity.txtIsCharging.setText(mContext.getString(R.string.txtBatteryIsCharging, String.valueOf(data.isCharging)));
+            holderActivity.txtPercentage.setText(mContext.getString(R.string.txtBatteryPercentage, data.percentage));
+            holderActivity.txtTimeTaken.setText(mContext.getString(R.string.txtUpdatedAt,TimeUtils.getTimeAsString(System.currentTimeMillis())));
 
         }else if (holder instanceof ViewContextCarrier) {
 
-            BasicData<CarrierData> data    = mListOfContextData.get(position);
+            CarrierData data    = (CarrierData) mListOfContextData.get(position);
 
             ViewContextCarrier holderActivity  = (ViewContextCarrier) holder;
-            holderActivity.txtMCC.setText(mContext.getString(R.string.txtCarrierMCC, data.value.mcc));
-            holderActivity.txtMNC.setText(mContext.getString(R.string.txtCarrierMNC, data.value.mnc));
-            holderActivity.txtTimeTaken.setText(mContext.getString(R.string.txtUpdatedAt, TimeUtils.getTimeAsString(data.timestamp * 1000)));
+            holderActivity.txtMCC.setText(mContext.getString(R.string.txtCarrierMCC, data.mcc));
+            holderActivity.txtMNC.setText(mContext.getString(R.string.txtCarrierMNC, data.mnc));
+            holderActivity.txtTimeTaken.setText(mContext.getString(R.string.txtUpdatedAt,TimeUtils.getTimeAsString(System.currentTimeMillis())));
 
         }else if (holder instanceof ViewContextLanguage) {
 
-            BasicData<LanguageContextData> data    = mListOfContextData.get(position);
+            LanguageContextData data    = (LanguageContextData) mListOfContextData.get(position);
 
             ViewContextLanguage holderActivity  = (ViewContextLanguage) holder;
-            holderActivity.txtLanguage.setText(mContext.getString(R.string.txtLanguageCode, data.value.language));
-            holderActivity.txtTimeTaken.setText(mContext.getString(R.string.txtUpdatedAt, TimeUtils.getTimeAsString(data.timestamp * 1000)));
+            holderActivity.txtLanguage.setText(mContext.getString(R.string.txtLanguageCode, data.language));
+            holderActivity.txtTimeTaken.setText(mContext.getString(R.string.txtUpdatedAt, TimeUtils.getTimeAsString(System.currentTimeMillis())));
 
         }else if (holder instanceof ViewContextNetwork) {
 
-            BasicData<NetworkData> data    = mListOfContextData.get(position);
+            NetworkData data    = (NetworkData) mListOfContextData.get(position);
 
             ViewContextNetwork holderActivity  = (ViewContextNetwork) holder;
-            holderActivity.txtNetworkIsConnected.setText(mContext.getString(R.string.txtNetworkIsConnected, String.valueOf(data.value.isConnected)));
+            holderActivity.txtNetworkIsConnected.setText(mContext.getString(R.string.txtNetworkIsConnected, String.valueOf(data.isConnected)));
 
-            String ssid = (data.value.ssid == null)? "Not Connected To WiFi" : data.value.ssid;
+            String ssid = (data.ssid == null)? "Not Connected To WiFi" : data.ssid;
             holderActivity.txtNetworkSSID.setText(mContext.getString(R.string.txtNetworkSSID, ssid));
 
             String connectionType;
-            switch ((int)data.value.connectionType){
+            switch ((int)data.connectionType){
                 case 1:
                     connectionType = "WiFi";
                     break;
@@ -153,26 +145,26 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     connectionType = "Unknown";
             }
             holderActivity.txtNetworkConnectionType.setText(mContext.getString(R.string.txtNetworkConnectionType, connectionType));
-            holderActivity.txtTimeTaken.setText(mContext.getString(R.string.txtUpdatedAt, TimeUtils.getTimeAsString(data.timestamp * 1000)));
+            holderActivity.txtTimeTaken.setText(mContext.getString(R.string.txtUpdatedAt, TimeUtils.getTimeAsString(System.currentTimeMillis())));
 
         }else if (holder instanceof ViewContextFitness) {
 
-            BasicData<FitnessContextData> data    = mListOfContextData.get(position);
+            FitnessContextData data    = (FitnessContextData) mListOfContextData.get(position);
 
             ViewContextFitness holderActivity  = (ViewContextFitness) holder;
-            holderActivity.txtFitnessSteps.setText(mContext.getString(R.string.txtFitnessSteps, data.value.steps));
-            holderActivity.txtTimeTaken.setText(mContext.getString(R.string.txtUpdatedAt, TimeUtils.getTimeAsString(data.timestamp * 1000)));
+            holderActivity.txtFitnessSteps.setText(mContext.getString(R.string.txtFitnessSteps, data.steps));
+            holderActivity.txtTimeTaken.setText(mContext.getString(R.string.txtUpdatedAt, TimeUtils.getTimeAsString(System.currentTimeMillis())));
 
         }else if (holder instanceof ViewContextLocation) {
 
-            BasicData<LocationData> data    = mListOfContextData.get(position);
+            LocationData data    = (LocationData) mListOfContextData.get(position);
 
             ViewContextLocation holderActivity  = (ViewContextLocation) holder;
-            holderActivity.txtLocationLatitude.setText(mContext.getString(R.string.txtLocationLatitude, data.value.lat));
-            holderActivity.txtLocationLongitude.setText(mContext.getString(R.string.txtLocationLongitude, data.value.lng));
-            holderActivity.txtLocationAltitude.setText(mContext.getString(R.string.txtLocationAltitude, data.value.altitude));
-            holderActivity.txtLocationBearing.setText(mContext.getString(R.string.txtLocationBearing, data.value.bearing));
-            holderActivity.txtTimeTaken.setText(mContext.getString(R.string.txtUpdatedAt, TimeUtils.getTimeAsString(data.timestamp * 1000)));
+            holderActivity.txtLocationLatitude.setText(mContext.getString(R.string.txtLocationLatitude, data.lat));
+            holderActivity.txtLocationLongitude.setText(mContext.getString(R.string.txtLocationLongitude, data.lng));
+            holderActivity.txtLocationAltitude.setText(mContext.getString(R.string.txtLocationAltitude, data.altitude));
+            holderActivity.txtLocationBearing.setText(mContext.getString(R.string.txtLocationBearing, data.bearing));
+            holderActivity.txtTimeTaken.setText(mContext.getString(R.string.txtUpdatedAt, TimeUtils.getTimeAsString(System.currentTimeMillis())));
 
         }
     }
@@ -184,19 +176,19 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemViewType(int position) {
-        if (mListOfContextData.get(position).value instanceof ActivityData){
+        if (mListOfContextData.get(position) instanceof ActivityData){
             return TYPE_ACTIVITY;
-        }else if (mListOfContextData.get(position).value instanceof BatteryData){
+        }else if (mListOfContextData.get(position) instanceof BatteryData){
             return TYPE_BATTERY;
-        }else if (mListOfContextData.get(position).value instanceof FitnessContextData){
+        }else if (mListOfContextData.get(position) instanceof FitnessContextData){
             return TYPE_FITNESS;
-        }else if (mListOfContextData.get(position).value instanceof LanguageContextData){
+        }else if (mListOfContextData.get(position) instanceof LanguageContextData){
             return TYPE_LANGUAGE;
-        }else if (mListOfContextData.get(position).value instanceof LocationData){
+        }else if (mListOfContextData.get(position) instanceof LocationData){
             return TYPE_LOCATION;
-        }else if (mListOfContextData.get(position).value instanceof NetworkData){
+        }else if (mListOfContextData.get(position) instanceof NetworkData){
             return TYPE_NETWORK;
-        }else if (mListOfContextData.get(position).value instanceof CarrierData){
+        }else if (mListOfContextData.get(position) instanceof CarrierData){
             return TYPE_CARRIER;
         }
         return TYPE_ACTIVITY;
