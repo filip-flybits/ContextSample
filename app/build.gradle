@@ -27,5 +27,5 @@ dependencies {
     compile 'com.android.support:cardview-v7:23.3.0'
     compile 'com.android.support:recyclerview-v7:23.3.0'
 
-    compile 'com.flybits.fbcore:library:2.4.2'
+    compile 'com.flybits.fbcore:library:2.5.0'
 }
