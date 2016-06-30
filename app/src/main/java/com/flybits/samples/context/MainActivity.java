@@ -126,6 +126,8 @@ public class MainActivity extends AppCompatActivity
             fragment = ContextFragment.newInstance(AvailablePlugins.LOCATION);
         }else if (id == R.id.item_network) {
             fragment = ContextFragment.newInstance(AvailablePlugins.NETWORK_CONNECTIVITY);
+        }else if (id == R.id.item_audio) {
+            fragment = ContextFragment.newInstance("ctx.sdk.device");
         }
 
         fragmentTransaction.replace(R.id.content_frame, fragment, CONTEXT_FRAGMENT_TAG);

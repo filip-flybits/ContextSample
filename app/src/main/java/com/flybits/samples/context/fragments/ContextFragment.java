@@ -34,6 +34,14 @@ public class ContextFragment  extends Fragment {
 
     private ArrayList<ContextData> mListOfDataData;
 
+    public static Fragment newInstance(String pluginName) {
+        ContextFragment newFragment = new ContextFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("context", pluginName);
+        newFragment.setArguments(bundle);
+        return newFragment;
+    }
+
     public static Fragment newInstance(AvailablePlugins plugin) {
         ContextFragment newFragment = new ContextFragment();
         Bundle bundle = new Bundle();

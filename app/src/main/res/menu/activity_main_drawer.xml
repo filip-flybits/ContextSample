@@ -34,6 +34,10 @@
             android:id="@+id/item_network"
             android:icon="@drawable/ic_menu_manage"
             android:title="Network" />
+        <item
+            android:id="@+id/item_audio"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Audio" />
     </group>
 
 </menu>
