@@ -17,9 +17,13 @@ import com.flybits.core.api.Flybits;
 import com.flybits.core.api.context.plugins.AvailablePlugins;
 import com.flybits.core.api.context.v2.ContextData;
 import com.flybits.core.api.context.v2.ContextManager;
+import com.flybits.core.api.context.v2.CustomContextPlugin;
 import com.flybits.core.api.context.v2.FlybitsContextPlugin;
+import com.flybits.samples.context.MainActivity;
 import com.flybits.samples.context.R;
 import com.flybits.samples.context.adapters.ContextAdapter;
+import com.flybits.samples.context.customcontext.AudioContext.AudioContextBackgroundService;
+import com.flybits.samples.context.customcontext.AudioContext.AudioContextForegroundService;
 import com.flybits.samples.context.utilities.TimeUtils;
 
 import java.util.ArrayList;
@@ -119,30 +123,48 @@ public class ContextFragment  extends Fragment {
      */
     private void refreshContext() {
 
-        Bundle bundle = new Bundle();
-        bundle.putBoolean("", true);
-        FlybitsContextPlugin.Builder plugin = new FlybitsContextPlugin.Builder()
-                .setExtras(bundle);
+        if (mCtxData.equals("ctx.sdk.device.audio"))
+        {
+            CustomContextPlugin customPluginAudio = new CustomContextPlugin.Builder()
+                    .setBackgroundService(AudioContextBackgroundService.class)
+                    .setForgroundService(AudioContextForegroundService.class)
+                    .setInForegroundMode(getActivity())
+                    .setPlugin("ctx.sdk.device.audio")
+                    .setRefreshTime(60)
+                    .setRefreshTimeFlex(60)
+                    .build();
 
-        if (mCtxData.equals(AvailablePlugins.ACTIVITY.getKey())){
-            plugin.setPlugin(AvailablePlugins.ACTIVITY);
-        }else if (mCtxData.equals(AvailablePlugins.BATTERY.getKey())){
-            plugin.setPlugin(AvailablePlugins.BATTERY);
-        }else if (mCtxData.equals(AvailablePlugins.CARRIER.getKey())){
-            plugin.setPlugin(AvailablePlugins.CARRIER);
-        }else if (mCtxData.equals(AvailablePlugins.FITNESS.getKey())){
-            plugin.setPlugin(AvailablePlugins.FITNESS);
-        }else if (mCtxData.equals(AvailablePlugins.LANGUAGE.getKey())){
-            plugin.setPlugin(AvailablePlugins.LANGUAGE);
-        }else if (mCtxData.equals(AvailablePlugins.LOCATION.getKey())){
-            plugin.setPlugin(AvailablePlugins.LOCATION);
-        }else if (mCtxData.equals(AvailablePlugins.NETWORK_CONNECTIVITY.getKey())){
-            plugin.setPlugin(AvailablePlugins.NETWORK_CONNECTIVITY);
+            if (customPluginAudio != null) {
+                ContextManager.include(getActivity()).register(customPluginAudio);
+            }
+        }
+        else {
+            Bundle bundle = new Bundle();
+            bundle.putBoolean("", true);
+            FlybitsContextPlugin.Builder plugin = new FlybitsContextPlugin.Builder()
+                    .setExtras(bundle);
+
+            if (mCtxData.equals(AvailablePlugins.ACTIVITY.getKey())) {
+                plugin.setPlugin(AvailablePlugins.ACTIVITY);
+            } else if (mCtxData.equals(AvailablePlugins.BATTERY.getKey())) {
+                plugin.setPlugin(AvailablePlugins.BATTERY);
+            } else if (mCtxData.equals(AvailablePlugins.CARRIER.getKey())) {
+                plugin.setPlugin(AvailablePlugins.CARRIER);
+            } else if (mCtxData.equals(AvailablePlugins.FITNESS.getKey())) {
+                plugin.setPlugin(AvailablePlugins.FITNESS);
+            } else if (mCtxData.equals(AvailablePlugins.LANGUAGE.getKey())) {
+                plugin.setPlugin(AvailablePlugins.LANGUAGE);
+            } else if (mCtxData.equals(AvailablePlugins.LOCATION.getKey())) {
+                plugin.setPlugin(AvailablePlugins.LOCATION);
+            } else if (mCtxData.equals(AvailablePlugins.NETWORK_CONNECTIVITY.getKey())) {
+                plugin.setPlugin(AvailablePlugins.NETWORK_CONNECTIVITY);
+            }
+
+            if (plugin != null) {
+                ContextManager.include(getActivity()).register(plugin.build());
+            }
         }
 
-        if (plugin != null) {
-            ContextManager.include(getActivity()).register(plugin.build());
-        }
         mSwipeContainer.setRefreshing(false);
 
         /*
