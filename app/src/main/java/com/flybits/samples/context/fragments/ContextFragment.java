@@ -90,7 +90,7 @@ public class ContextFragment  extends Fragment {
             mSwipeContainer.setRefreshing(true);
             mCtxData            = bundle.getString("context");
             mCurrentPlugin      = AvailablePlugins.fromKey(mCtxData);
-            fetchItems();
+           // fetchItems();
         }
 
         return view;
