@@ -19,6 +19,7 @@ import android.view.MenuItem;
 
 import com.flybits.core.api.context.plugins.AvailablePlugins;
 import com.flybits.core.api.context.v2.ContextManager;
+import com.flybits.core.api.context.v2.CustomContextPlugin;
 import com.flybits.core.api.context.v2.FlybitsContextPlugin;
 import com.flybits.core.api.context.v2.plugins.activity.ActivityData;
 import com.flybits.core.api.context.v2.plugins.battery.BatteryData;
@@ -27,6 +28,9 @@ import com.flybits.core.api.context.v2.plugins.fitness.FitnessContextData;
 import com.flybits.core.api.context.v2.plugins.language.LanguageContextData;
 import com.flybits.core.api.context.v2.plugins.location.LocationData;
 import com.flybits.core.api.context.v2.plugins.network.NetworkData;
+import com.flybits.samples.context.customcontext.AudioContext.AudioContextBackgroundService;
+import com.flybits.samples.context.customcontext.AudioContext.AudioContextForegroundService;
+import com.flybits.samples.context.customcontext.AudioContext.AudioData;
 import com.flybits.samples.context.fragments.ContextFragment;
 import com.flybits.samples.context.fragments.HomeFragment;
 
@@ -41,6 +45,14 @@ public class MainActivity extends AppCompatActivity
             .setInForegroundMode(MainActivity.this)
             .setRefreshTime(10)
             .setRefreshTimeFlex(10);
+
+    CustomContextPlugin customPluginAudio = new CustomContextPlugin.Builder()
+            .setForgroundService(AudioContextForegroundService.class)
+            .setInForegroundMode(MainActivity.this)
+            .setPlugin("ctx.sdk.device")
+            .setRefreshTime(60)
+            .setRefreshTimeFlex(60)
+            .build();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -188,6 +200,13 @@ public class MainActivity extends AppCompatActivity
                             fragment.onNewData(data);
                         }
                     }
+                    else if (bundle.getString("CONTEXT_TYPE").equals("ctx.sdk.device")) {
+                        AudioData data = bundle.getParcelable("CONTEXT_OBJ");
+                        if (data != null) {
+                            Log.d("Testing", data.toString());
+                            fragment.onNewData(data);
+                        }
+                    }
                 }
             }
         }
@@ -196,6 +215,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onPause() {
         ContextManager.include(MainActivity.this).unregister(plugin.build());
+        ContextManager.include(MainActivity.this).unregister(customPluginAudio);
         super.onPause();
     }
 
@@ -203,6 +223,7 @@ public class MainActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         ContextManager.include(MainActivity.this).register(plugin.build());
+        ContextManager.include(MainActivity.this).register(customPluginAudio);
     }
 
     @Override

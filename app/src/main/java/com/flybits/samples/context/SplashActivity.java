@@ -17,12 +17,15 @@ import com.flybits.core.api.Flybits;
 import com.flybits.core.api.context.plugins.AvailablePlugins;
 import com.flybits.core.api.context.plugins.fitness.FitnessProvider;
 import com.flybits.core.api.context.v2.ContextManager;
+import com.flybits.core.api.context.v2.CustomContextPlugin;
 import com.flybits.core.api.context.v2.FlybitsContextPlugin;
 import com.flybits.core.api.exceptions.FeatureNotSupportedException;
 import com.flybits.core.api.interfaces.IRequestCallback;
 import com.flybits.core.api.interfaces.IRequestLoggedIn;
 import com.flybits.core.api.models.User;
 import com.flybits.core.api.utils.filters.LoginOptions;
+import com.flybits.samples.context.customcontext.AudioContext.AudioContextBackgroundService;
+import com.flybits.samples.context.customcontext.AudioContext.AudioContextForegroundService;
 import com.flybits.samples.context.utilities.ConnectivityUtils;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.Scopes;
@@ -261,12 +264,20 @@ public class SplashActivity extends AppCompatActivity {
                 .setRefreshTimeFlex(60)
                 .build();
 
+        CustomContextPlugin customPluginAudio = new CustomContextPlugin.Builder()
+                .setBackgroundService(AudioContextBackgroundService.class)
+                .setPlugin("ctx.sdk.device")
+                .setRefreshTime(60)
+                .setRefreshTimeFlex(60)
+                .build();
 
         ContextManager.include(SplashActivity.this).register(pluginActivity);
         ContextManager.include(SplashActivity.this).register(pluginBattery);
         ContextManager.include(SplashActivity.this).register(pluginCarrier);
         ContextManager.include(SplashActivity.this).register(pluginLanguage);
         ContextManager.include(SplashActivity.this).register(pluginNetwork);
+
+        ContextManager.include(SplashActivity.this).register(customPluginAudio);
 
         if (isLocationActivated){
             ContextManager.include(SplashActivity.this).register(pluginLocation);

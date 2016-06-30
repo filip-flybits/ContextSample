@@ -16,6 +16,7 @@ import com.flybits.core.api.context.v2.plugins.language.LanguageContextData;
 import com.flybits.core.api.context.v2.plugins.location.LocationData;
 import com.flybits.core.api.context.v2.plugins.network.NetworkData;
 import com.flybits.samples.context.R;
+import com.flybits.samples.context.customcontext.AudioContext.AudioData;
 import com.flybits.samples.context.utilities.TimeUtils;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private static final int TYPE_LANGUAGE          = 6;
     private static final int TYPE_LOCATION          = 7;
     private static final int TYPE_NETWORK           = 8;
+    private static final int TYPE_AUDIO             = 8;
 
     private Context mContext;
     private ArrayList<ContextData> mListOfContextData;
@@ -67,6 +69,9 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }else if (code == TYPE_NETWORK) {
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_network, parent, false);
             return new ViewContextNetwork(v);
+        }else if (code == TYPE_AUDIO) {
+            v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_audio, parent, false);
+            return new ViewContextAudio(v);
         }
 
         return new ViewContextActivity(v);
@@ -165,6 +170,18 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             holderActivity.txtLocationAltitude.setText(mContext.getString(R.string.txtLocationAltitude, data.altitude));
             holderActivity.txtLocationBearing.setText(mContext.getString(R.string.txtLocationBearing, data.bearing));
             holderActivity.txtTimeTaken.setText(mContext.getString(R.string.txtUpdatedAt, TimeUtils.getTimeAsString(System.currentTimeMillis())));
+
+        }else if (holder instanceof ViewContextAudio) {
+
+            AudioData data    = (AudioData) mListOfContextData.get(position);
+
+            ViewContextAudio holderActivity  = (ViewContextAudio) holder;
+            holderActivity.txtHeadset.setText(mContext.getString(R.string.txtHeadset, data.isHeadsetPluggedIn));
+            holderActivity.txtBluetoothCall.setText(mContext.getString(R.string.txtBluetoothCall, data.isBluetoothA2dpOn));
+            holderActivity.txtBluetoothMedia.setText(mContext.getString(R.string.txtBluetoothMedia, data.isBluetoothScoOn));
+            holderActivity.txtRingerVolume.setText(mContext.getString(R.string.txtRingerVolume, data.ringerVolume));
+            holderActivity.txtMediaVolume.setText(mContext.getString(R.string.txtMediaVolume, data.mediaVolume));
+            holderActivity.txtAlarmVolume.setText(mContext.getString(R.string.txtAlarmVolume, data.alarmVolume));
 
         }
     }
@@ -340,4 +357,21 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             txtTimeTaken        = (TextView) v.findViewById(R.id.timeTaken);
         }
     }
+
+    public static class ViewContextAudio extends RecyclerView.ViewHolder {
+
+        public TextView txtHeadset, txtBluetoothCall, txtBluetoothMedia, txtRingerVolume, txtMediaVolume, txtAlarmVolume;
+
+        public ViewContextAudio(View v) {
+            super(v);
+
+            txtHeadset       = (TextView) v.findViewById(R.id.headset);
+            txtBluetoothCall        = (TextView) v.findViewById(R.id.bluetoothCall);
+            txtBluetoothMedia        = (TextView) v.findViewById(R.id.bluetoothMedia);
+            txtRingerVolume        = (TextView) v.findViewById(R.id.volumeRinger);
+            txtMediaVolume        = (TextView) v.findViewById(R.id.volumeMedia);
+            txtAlarmVolume        = (TextView) v.findViewById(R.id.volumeAlarm);
+        }
+    }
+
 }

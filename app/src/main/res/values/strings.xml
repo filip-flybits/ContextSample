@@ -76,4 +76,13 @@
     <string name="txtBeaconMajorID">Major ID: %s</string>
     <string name="txtBeaconMinorID">Minor ID: %s</string>
     <string name="txtBeaconUUID">UUID: %s</string>
+
+    <!-- Audio Context -->
+    <string name="txtHeadset">Headset Plugged: %s</string>
+    <string name="txtBluetoothMedia">Bluetooth Media On: %s</string>
+    <string name="txtBluetoothCall">Bluetooth Call On: %s</string>
+    <string name="txtRingerVolume">Ringer Volume: %s</string>
+    <string name="txtMediaVolume">Media Volume: %s</string>
+    <string name="txtAlarmVolume">Alarm Volume: %s</string>
+
 </resources>
