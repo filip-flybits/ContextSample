@@ -47,9 +47,10 @@ public class MainActivity extends AppCompatActivity
             .setRefreshTimeFlex(10);
 
     CustomContextPlugin customPluginAudio = new CustomContextPlugin.Builder()
+            .setBackgroundService(AudioContextBackgroundService.class)
             .setForgroundService(AudioContextForegroundService.class)
             .setInForegroundMode(MainActivity.this)
-            .setPlugin("ctx.sdk.device")
+            .setPlugin("ctx.sdk.device.audio")
             .setRefreshTime(60)
             .setRefreshTimeFlex(60)
             .build();
@@ -127,7 +128,7 @@ public class MainActivity extends AppCompatActivity
         }else if (id == R.id.item_network) {
             fragment = ContextFragment.newInstance(AvailablePlugins.NETWORK_CONNECTIVITY);
         }else if (id == R.id.item_audio) {
-            fragment = ContextFragment.newInstance("ctx.sdk.device");
+            fragment = ContextFragment.newInstance("ctx.sdk.device.audio");
         }
 
         fragmentTransaction.replace(R.id.content_frame, fragment, CONTEXT_FRAGMENT_TAG);
@@ -202,7 +203,7 @@ public class MainActivity extends AppCompatActivity
                             fragment.onNewData(data);
                         }
                     }
-                    else if (bundle.getString("CONTEXT_TYPE").equals("ctx.sdk.device")) {
+                    else if (bundle.getString("CONTEXT_TYPE").equals("ctx.sdk.device.audio")) {
                         AudioData data = bundle.getParcelable("CONTEXT_OBJ");
                         if (data != null) {
                             Log.d("Testing", data.toString());

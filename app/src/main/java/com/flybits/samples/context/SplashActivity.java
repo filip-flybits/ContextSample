@@ -266,7 +266,7 @@ public class SplashActivity extends AppCompatActivity {
 
         CustomContextPlugin customPluginAudio = new CustomContextPlugin.Builder()
                 .setBackgroundService(AudioContextBackgroundService.class)
-                .setPlugin("ctx.sdk.device")
+                .setPlugin("ctx.sdk.device.audio")
                 .setRefreshTime(60)
                 .setRefreshTimeFlex(60)
                 .build();

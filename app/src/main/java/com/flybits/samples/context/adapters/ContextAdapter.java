@@ -34,7 +34,7 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private static final int TYPE_LANGUAGE          = 6;
     private static final int TYPE_LOCATION          = 7;
     private static final int TYPE_NETWORK           = 8;
-    private static final int TYPE_AUDIO             = 8;
+    private static final int TYPE_AUDIO             = 9;
 
     private Context mContext;
     private ArrayList<ContextData> mListOfContextData;
@@ -207,7 +207,10 @@ public class ContextAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             return TYPE_NETWORK;
         }else if (mListOfContextData.get(position) instanceof CarrierData){
             return TYPE_CARRIER;
+        }else if (mListOfContextData.get(position) instanceof AudioData){
+            return TYPE_AUDIO;
         }
+
         return TYPE_ACTIVITY;
     }
 
