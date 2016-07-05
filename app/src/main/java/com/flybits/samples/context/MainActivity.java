@@ -139,49 +139,49 @@ public class MainActivity extends AppCompatActivity
             if (fragment != null) {
                 if (bundle.containsKey("CONTEXT_TYPE")) {
 
-                    if (bundle.getString("CONTEXT_TYPE").equals(AvailablePlugins.BATTERY.getKey())) {
+                    if (bundle.getString("CONTEXT_TYPE", "").equals(AvailablePlugins.BATTERY.getKey())) {
                         BatteryData data = bundle.getParcelable("CONTEXT_OBJ");
                         if (data != null) {
                             Log.d("Testing", data.toString());
                             fragment.onNewData(data);
                         }
                     }
-                    else if (bundle.getString("CONTEXT_TYPE").equals(AvailablePlugins.CARRIER.getKey())) {
+                    else if (bundle.getString("CONTEXT_TYPE", "").equals(AvailablePlugins.CARRIER.getKey())) {
                         CarrierData data = bundle.getParcelable("CONTEXT_OBJ");
                         if (data != null) {
                             Log.d("Testing", data.toString());
                             fragment.onNewData(data);
                         }
                     }
-                    else if (bundle.getString("CONTEXT_TYPE").equals(AvailablePlugins.LOCATION.getKey())) {
+                    else if (bundle.getString("CONTEXT_TYPE", "").equals(AvailablePlugins.LOCATION.getKey())) {
                         LocationData data = bundle.getParcelable("CONTEXT_OBJ");
                         if (data != null) {
                             Log.d("Testing", data.toString());
                             fragment.onNewData(data);
                         }
                     }
-                    else if (bundle.getString("CONTEXT_TYPE").equals(AvailablePlugins.LANGUAGE.getKey())) {
+                    else if (bundle.getString("CONTEXT_TYPE", "").equals(AvailablePlugins.LANGUAGE.getKey())) {
                         LanguageContextData data = bundle.getParcelable("CONTEXT_OBJ");
                         if (data != null) {
                             Log.d("Testing", data.toString());
                             fragment.onNewData(data);
                         }
                     }
-                    else if (bundle.getString("CONTEXT_TYPE").equals(AvailablePlugins.FITNESS.getKey())) {
+                    else if (bundle.getString("CONTEXT_TYPE", "").equals(AvailablePlugins.FITNESS.getKey())) {
                         FitnessContextData data = bundle.getParcelable("CONTEXT_OBJ");
                         if (data != null) {
                             Log.d("Testing", data.toString());
                             fragment.onNewData(data);
                         }
                     }
-                    else if (bundle.getString("CONTEXT_TYPE").equals(AvailablePlugins.ACTIVITY.getKey())) {
+                    else if (bundle.getString("CONTEXT_TYPE", "").equals(AvailablePlugins.ACTIVITY.getKey())) {
                         ActivityData data = bundle.getParcelable("CONTEXT_OBJ");
                         if (data != null) {
                             Log.d("Testing", data.toString());
                             fragment.onNewData(data);
                         }
                     }
-                    else if (bundle.getString("CONTEXT_TYPE").equals(AvailablePlugins.NETWORK_CONNECTIVITY.getKey())) {
+                    else if (bundle.getString("CONTEXT_TYPE", "").equals(AvailablePlugins.NETWORK_CONNECTIVITY.getKey())) {
                         NetworkData data = bundle.getParcelable("CONTEXT_OBJ");
                         if (data != null) {
                             Log.d("Testing", data.toString());
