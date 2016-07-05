@@ -107,10 +107,14 @@ public class SplashActivity extends AppCompatActivity {
 
                         if (!isLoggedIn) {
                             isLoggedIn = true;
-                            try {
-                                FitnessProvider provider8 = new FitnessProvider(SplashActivity.this, 60000);
-                                Flybits.include(SplashActivity.this).activateContext(mGoogleApiClient, provider8);
-                            }catch (FeatureNotSupportedException exception){}
+
+                                FlybitsContextPlugin pluginFitness = new FlybitsContextPlugin.Builder()
+                                        .setPlugin(AvailablePlugins.FITNESS)
+                                        .setRefreshTime(60)
+                                        .setRefreshTimeFlex(60)
+                                        .build();
+                                ContextManager.include(SplashActivity.this).register(pluginFitness);
+
                         }
                     }
 
