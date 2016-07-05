@@ -19,11 +19,19 @@ import com.flybits.core.api.context.v2.ContextData;
 import com.flybits.core.api.context.v2.ContextManager;
 import com.flybits.core.api.context.v2.CustomContextPlugin;
 import com.flybits.core.api.context.v2.FlybitsContextPlugin;
+import com.flybits.core.api.context.v2.plugins.activity.ActivityData;
+import com.flybits.core.api.context.v2.plugins.battery.BatteryData;
+import com.flybits.core.api.context.v2.plugins.carrier.CarrierData;
+import com.flybits.core.api.context.v2.plugins.fitness.FitnessContextData;
+import com.flybits.core.api.context.v2.plugins.language.LanguageContextData;
+import com.flybits.core.api.context.v2.plugins.location.LocationData;
+import com.flybits.core.api.context.v2.plugins.network.NetworkData;
 import com.flybits.samples.context.MainActivity;
 import com.flybits.samples.context.R;
 import com.flybits.samples.context.adapters.ContextAdapter;
 import com.flybits.samples.context.customcontext.AudioContext.AudioContextBackgroundService;
 import com.flybits.samples.context.customcontext.AudioContext.AudioContextForegroundService;
+import com.flybits.samples.context.customcontext.AudioContext.AudioData;
 import com.flybits.samples.context.utilities.TimeUtils;
 
 import java.util.ArrayList;
@@ -160,6 +168,8 @@ public class ContextFragment  extends Fragment {
                 plugin.setPlugin(AvailablePlugins.NETWORK_CONNECTIVITY);
             }
 
+            plugin.setInForegroundMode(getActivity());
+
             if (plugin != null) {
                 ContextManager.include(getActivity()).register(plugin.build());
             }
@@ -192,6 +202,29 @@ public class ContextFragment  extends Fragment {
         String refreshTime = TimeUtils.getTimeAsString(System.currentTimeMillis());
 
         if (data != null){
+
+            if (data instanceof AudioData && !mCtxData.equals("ctx.sdk.device.audio"))
+                return;
+
+            if (!(data instanceof AudioData) && !mCtxData.equals("ctx.sdk.device.audio")) {
+                if (data instanceof ActivityData && !mCurrentPlugin.getKey().equals(AvailablePlugins.ACTIVITY.getKey())) {
+                    return;
+                } else if (data instanceof BatteryData && !mCurrentPlugin.getKey().equals(AvailablePlugins.BATTERY.getKey())) {
+                    return;
+                } else if (data instanceof FitnessContextData && !mCurrentPlugin.getKey().equals(AvailablePlugins.FITNESS.getKey())) {
+                    return;
+                } else if (data instanceof LanguageContextData && !mCurrentPlugin.getKey().equals(AvailablePlugins.LANGUAGE.getKey())) {
+                    return;
+                } else if (data instanceof LocationData && !mCurrentPlugin.getKey().equals(AvailablePlugins.LOCATION.getKey())) {
+                    return;
+                } else if (data instanceof NetworkData && !mCurrentPlugin.getKey().equals(AvailablePlugins.NETWORK_CONNECTIVITY.getKey())) {
+                    return;
+                } else if (data instanceof CarrierData && !mCurrentPlugin.getKey().equals(AvailablePlugins.CARRIER.getKey())) {
+                    return;
+                }
+            }
+
+            mListOfDataData.clear();
 
             if (mListOfDataData.size() > 0){
                 if (!mListOfDataData.get(0).equals(data)){
