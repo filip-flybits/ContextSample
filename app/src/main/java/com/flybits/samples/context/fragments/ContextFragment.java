@@ -206,9 +206,6 @@ public class ContextFragment  extends Fragment {
             if (data instanceof AudioData && !mCtxData.equals("ctx.sdk.device.audio"))
                 return;
 
-            if (!(data instanceof AudioData) && mCtxData.equals("ctx.sdk.device.audio"))
-                return;
-
             if (!(data instanceof AudioData) && !mCtxData.equals("ctx.sdk.device.audio")) {
                 if (data instanceof ActivityData && !mCurrentPlugin.getKey().equals(AvailablePlugins.ACTIVITY.getKey())) {
                     return;
