@@ -115,9 +115,9 @@ public class MainActivity extends AppCompatActivity
             fragment = ContextFragment.newInstance(AvailablePlugins.ACTIVITY);
         } else if (id == R.id.item_battery) {
             fragment = ContextFragment.newInstance(AvailablePlugins.BATTERY);
-        }/* else if (id == R.id.item_beacon) {
+        } else if (id == R.id.item_beacon) {
             fragment = ContextFragment.newInstance(AvailablePlugins.BEACON);
-        }*/ else if (id == R.id.item_carrier) {
+        } else if (id == R.id.item_carrier) {
             fragment = ContextFragment.newInstance(AvailablePlugins.CARRIER);
         } else if (id == R.id.item_fitness) {
             fragment = ContextFragment.newInstance(AvailablePlugins.FITNESS);
