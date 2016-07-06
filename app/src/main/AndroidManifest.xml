@@ -129,6 +129,17 @@
             </intent-filter>
         </service>
         <service android:name="com.flybits.core.api.context.v2.plugins.network.NetworkForegroundService" />
+
+        <!-- Services for Audio -->
+        <service android:name=".customcontext.AudioContext.AudioContextBackgroundService"
+            android:permission="com.google.android.gms.permission.BIND_NETWORK_TASK_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.gcm.ACTION_TASK_READY"/>
+            </intent-filter>
+        </service>
+        <service android:name=".customcontext.AudioContext.AudioContextForegroundService" />
+
     </application>
 
 </manifest>

@@ -17,9 +17,21 @@ import com.flybits.core.api.Flybits;
 import com.flybits.core.api.context.plugins.AvailablePlugins;
 import com.flybits.core.api.context.v2.ContextData;
 import com.flybits.core.api.context.v2.ContextManager;
+import com.flybits.core.api.context.v2.CustomContextPlugin;
 import com.flybits.core.api.context.v2.FlybitsContextPlugin;
+import com.flybits.core.api.context.v2.plugins.activity.ActivityData;
+import com.flybits.core.api.context.v2.plugins.battery.BatteryData;
+import com.flybits.core.api.context.v2.plugins.carrier.CarrierData;
+import com.flybits.core.api.context.v2.plugins.fitness.FitnessContextData;
+import com.flybits.core.api.context.v2.plugins.language.LanguageContextData;
+import com.flybits.core.api.context.v2.plugins.location.LocationData;
+import com.flybits.core.api.context.v2.plugins.network.NetworkData;
+import com.flybits.samples.context.MainActivity;
 import com.flybits.samples.context.R;
 import com.flybits.samples.context.adapters.ContextAdapter;
+import com.flybits.samples.context.customcontext.AudioContext.AudioContextBackgroundService;
+import com.flybits.samples.context.customcontext.AudioContext.AudioContextForegroundService;
+import com.flybits.samples.context.customcontext.AudioContext.AudioData;
 import com.flybits.samples.context.utilities.TimeUtils;
 
 import java.util.ArrayList;
@@ -33,6 +45,14 @@ public class ContextFragment  extends Fragment {
     private ContextAdapter mAdapter;
 
     private ArrayList<ContextData> mListOfDataData;
+
+    public static Fragment newInstance(String pluginName) {
+        ContextFragment newFragment = new ContextFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("context", pluginName);
+        newFragment.setArguments(bundle);
+        return newFragment;
+    }
 
     public static Fragment newInstance(AvailablePlugins plugin) {
         ContextFragment newFragment = new ContextFragment();
@@ -82,7 +102,7 @@ public class ContextFragment  extends Fragment {
             mSwipeContainer.setRefreshing(true);
             mCtxData            = bundle.getString("context");
             mCurrentPlugin      = AvailablePlugins.fromKey(mCtxData);
-            fetchItems();
+           // fetchItems();
         }
 
         return view;
@@ -111,30 +131,50 @@ public class ContextFragment  extends Fragment {
      */
     private void refreshContext() {
 
-        Bundle bundle = new Bundle();
-        bundle.putBoolean("", true);
-        FlybitsContextPlugin.Builder plugin = new FlybitsContextPlugin.Builder()
-                .setExtras(bundle);
+        if (mCtxData.equals("ctx.sdk.device.audio"))
+        {
+            CustomContextPlugin customPluginAudio = new CustomContextPlugin.Builder()
+                    .setBackgroundService(AudioContextBackgroundService.class)
+                    .setForgroundService(AudioContextForegroundService.class)
+                    .setInForegroundMode(getActivity())
+                    .setPlugin("ctx.sdk.device.audio")
+                    .setRefreshTime(60)
+                    .setRefreshTimeFlex(60)
+                    .build();
 
-        if (mCtxData.equals(AvailablePlugins.ACTIVITY.getKey())){
-            plugin.setPlugin(AvailablePlugins.ACTIVITY);
-        }else if (mCtxData.equals(AvailablePlugins.BATTERY.getKey())){
-            plugin.setPlugin(AvailablePlugins.BATTERY);
-        }else if (mCtxData.equals(AvailablePlugins.CARRIER.getKey())){
-            plugin.setPlugin(AvailablePlugins.CARRIER);
-        }else if (mCtxData.equals(AvailablePlugins.FITNESS.getKey())){
-            plugin.setPlugin(AvailablePlugins.FITNESS);
-        }else if (mCtxData.equals(AvailablePlugins.LANGUAGE.getKey())){
-            plugin.setPlugin(AvailablePlugins.LANGUAGE);
-        }else if (mCtxData.equals(AvailablePlugins.LOCATION.getKey())){
-            plugin.setPlugin(AvailablePlugins.LOCATION);
-        }else if (mCtxData.equals(AvailablePlugins.NETWORK_CONNECTIVITY.getKey())){
-            plugin.setPlugin(AvailablePlugins.NETWORK_CONNECTIVITY);
+            if (customPluginAudio != null) {
+                ContextManager.include(getActivity()).register(customPluginAudio);
+            }
+        }
+        else {
+            Bundle bundle = new Bundle();
+            bundle.putBoolean("", true);
+            FlybitsContextPlugin.Builder plugin = new FlybitsContextPlugin.Builder()
+                    .setExtras(bundle);
+
+            if (mCtxData.equals(AvailablePlugins.ACTIVITY.getKey())) {
+                plugin.setPlugin(AvailablePlugins.ACTIVITY);
+            } else if (mCtxData.equals(AvailablePlugins.BATTERY.getKey())) {
+                plugin.setPlugin(AvailablePlugins.BATTERY);
+            } else if (mCtxData.equals(AvailablePlugins.CARRIER.getKey())) {
+                plugin.setPlugin(AvailablePlugins.CARRIER);
+            } else if (mCtxData.equals(AvailablePlugins.FITNESS.getKey())) {
+                plugin.setPlugin(AvailablePlugins.FITNESS);
+            } else if (mCtxData.equals(AvailablePlugins.LANGUAGE.getKey())) {
+                plugin.setPlugin(AvailablePlugins.LANGUAGE);
+            } else if (mCtxData.equals(AvailablePlugins.LOCATION.getKey())) {
+                plugin.setPlugin(AvailablePlugins.LOCATION);
+            } else if (mCtxData.equals(AvailablePlugins.NETWORK_CONNECTIVITY.getKey())) {
+                plugin.setPlugin(AvailablePlugins.NETWORK_CONNECTIVITY);
+            }
+
+            plugin.setInForegroundMode(getActivity());
+
+            if (plugin != null) {
+                ContextManager.include(getActivity()).register(plugin.build());
+            }
         }
 
-        if (plugin != null) {
-            ContextManager.include(getActivity()).register(plugin.build());
-        }
         mSwipeContainer.setRefreshing(false);
 
         /*
@@ -162,6 +202,32 @@ public class ContextFragment  extends Fragment {
         String refreshTime = TimeUtils.getTimeAsString(System.currentTimeMillis());
 
         if (data != null){
+
+            if (data instanceof AudioData && !mCtxData.equals("ctx.sdk.device.audio"))
+                return;
+
+            if (!(data instanceof AudioData) && mCtxData.equals("ctx.sdk.device.audio"))
+                return;
+
+            if (!(data instanceof AudioData) && !mCtxData.equals("ctx.sdk.device.audio")) {
+                if (data instanceof ActivityData && !mCurrentPlugin.getKey().equals(AvailablePlugins.ACTIVITY.getKey())) {
+                    return;
+                } else if (data instanceof BatteryData && !mCurrentPlugin.getKey().equals(AvailablePlugins.BATTERY.getKey())) {
+                    return;
+                } else if (data instanceof FitnessContextData && !mCurrentPlugin.getKey().equals(AvailablePlugins.FITNESS.getKey())) {
+                    return;
+                } else if (data instanceof LanguageContextData && !mCurrentPlugin.getKey().equals(AvailablePlugins.LANGUAGE.getKey())) {
+                    return;
+                } else if (data instanceof LocationData && !mCurrentPlugin.getKey().equals(AvailablePlugins.LOCATION.getKey())) {
+                    return;
+                } else if (data instanceof NetworkData && !mCurrentPlugin.getKey().equals(AvailablePlugins.NETWORK_CONNECTIVITY.getKey())) {
+                    return;
+                } else if (data instanceof CarrierData && !mCurrentPlugin.getKey().equals(AvailablePlugins.CARRIER.getKey())) {
+                    return;
+                }
+            }
+
+            mListOfDataData.clear();
 
             if (mListOfDataData.size() > 0){
                 if (!mListOfDataData.get(0).equals(data)){
