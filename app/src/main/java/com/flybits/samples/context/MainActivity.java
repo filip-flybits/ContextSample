@@ -31,6 +31,9 @@ import com.flybits.core.api.context.v2.plugins.network.NetworkData;
 import com.flybits.samples.context.customcontext.AudioContext.AudioContextBackgroundService;
 import com.flybits.samples.context.customcontext.AudioContext.AudioContextForegroundService;
 import com.flybits.samples.context.customcontext.AudioContext.AudioData;
+import com.flybits.samples.context.customcontext.BeaconContext.BeaconContextBackgroundService;
+import com.flybits.samples.context.customcontext.BeaconContext.BeaconContextForegroundService;
+import com.flybits.samples.context.customcontext.BeaconContext.BeaconData;
 import com.flybits.samples.context.fragments.ContextFragment;
 import com.flybits.samples.context.fragments.HomeFragment;
 
@@ -51,6 +54,15 @@ public class MainActivity extends AppCompatActivity
             .setForgroundService(AudioContextForegroundService.class)
             .setInForegroundMode(MainActivity.this)
             .setPlugin("ctx.sdk.device.audio")
+            .setRefreshTime(60)
+            .setRefreshTimeFlex(60)
+            .build();
+
+    CustomContextPlugin customPluginBeacon = new CustomContextPlugin.Builder()
+            .setBackgroundService(BeaconContextBackgroundService.class)
+            .setForgroundService(BeaconContextForegroundService.class)
+            .setInForegroundMode(MainActivity.this)
+            .setPlugin("ctx.sdk.beacon")
             .setRefreshTime(60)
             .setRefreshTimeFlex(60)
             .build();
@@ -208,6 +220,13 @@ public class MainActivity extends AppCompatActivity
                             fragment.onNewData(data);
                         }
                     }
+                    else if (bundle.getString("CONTEXT_TYPE").equals("ctx.sdk.beacon")) {
+                        BeaconData data = bundle.getParcelable("CONTEXT_OBJ");
+                        if (data != null) {
+                            Log.d("Testing", data.toString());
+                            fragment.onNewData(data);
+                        }
+                    }
                 }
             }
         }
@@ -217,6 +236,7 @@ public class MainActivity extends AppCompatActivity
     protected void onPause() {
         ContextManager.include(MainActivity.this).unregister(plugin.build());
         ContextManager.include(MainActivity.this).unregister(customPluginAudio);
+        ContextManager.include(MainActivity.this).unregister(customPluginBeacon);
         super.onPause();
     }
 
@@ -225,6 +245,7 @@ public class MainActivity extends AppCompatActivity
         super.onResume();
         ContextManager.include(MainActivity.this).register(plugin.build());
         ContextManager.include(MainActivity.this).register(customPluginAudio);
+        ContextManager.include(MainActivity.this).register(customPluginBeacon);
     }
 
     @Override

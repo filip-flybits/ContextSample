@@ -32,6 +32,9 @@ import com.flybits.samples.context.adapters.ContextAdapter;
 import com.flybits.samples.context.customcontext.AudioContext.AudioContextBackgroundService;
 import com.flybits.samples.context.customcontext.AudioContext.AudioContextForegroundService;
 import com.flybits.samples.context.customcontext.AudioContext.AudioData;
+import com.flybits.samples.context.customcontext.BeaconContext.BeaconContextBackgroundService;
+import com.flybits.samples.context.customcontext.BeaconContext.BeaconContextForegroundService;
+import com.flybits.samples.context.customcontext.BeaconContext.BeaconData;
 import com.flybits.samples.context.utilities.TimeUtils;
 
 import java.util.ArrayList;
@@ -146,6 +149,21 @@ public class ContextFragment  extends Fragment {
                 ContextManager.include(getActivity()).register(customPluginAudio);
             }
         }
+        else if (mCtxData.equals("ctx.sdk.beacon"))
+        {
+            CustomContextPlugin customPluginBeacon = new CustomContextPlugin.Builder()
+                    .setBackgroundService(BeaconContextBackgroundService.class)
+                    .setForgroundService(BeaconContextForegroundService.class)
+                    .setInForegroundMode(getActivity())
+                    .setPlugin("ctx.sdk.beacon")
+                    .setRefreshTime(60)
+                    .setRefreshTimeFlex(60)
+                    .build();
+
+            if (customPluginBeacon != null) {
+                ContextManager.include(getActivity()).register(customPluginBeacon);
+            }
+        }
         else {
             Bundle bundle = new Bundle();
             bundle.putBoolean("", true);
@@ -209,7 +227,13 @@ public class ContextFragment  extends Fragment {
             if (!(data instanceof AudioData) && mCtxData.equals("ctx.sdk.device.audio"))
                 return;
 
-            if (!(data instanceof AudioData) && !mCtxData.equals("ctx.sdk.device.audio")) {
+            if (data instanceof BeaconData && !mCtxData.equals("ctx.sdk.beacon"))
+                return;
+
+            if (!(data instanceof BeaconData) && mCtxData.equals("ctx.sdk.beacon"))
+                return;
+
+            if (!(data instanceof AudioData) && !(data instanceof BeaconData)) {
                 if (data instanceof ActivityData && !mCurrentPlugin.getKey().equals(AvailablePlugins.ACTIVITY.getKey())) {
                     return;
                 } else if (data instanceof BatteryData && !mCurrentPlugin.getKey().equals(AvailablePlugins.BATTERY.getKey())) {
