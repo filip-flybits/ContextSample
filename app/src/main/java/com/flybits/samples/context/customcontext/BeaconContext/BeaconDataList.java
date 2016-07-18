@@ -7,10 +7,13 @@ import com.flybits.core.api.context.v2.ContextData;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.altbeacon.beacon.Beacon;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Filip on 6/20/2016.
@@ -19,7 +22,7 @@ public class BeaconDataList extends ContextData implements Parcelable {
 
     public BeaconData[] data;
 
-    public BeaconDataList(ArrayList<BeaconData> list)
+    public BeaconDataList(Set<BeaconData> list)
     {
         data = new BeaconData[list.size()];
         this.data = list.toArray(data);

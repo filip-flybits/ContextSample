@@ -89,6 +89,19 @@ public class BeaconData extends ContextData implements Parcelable {
     }
 
     @Override
+    public int hashCode() {
+        switch (type)
+        {
+            case TYPE_IBEACON:
+                return uuid.hashCode();
+            case TYPE_EDDYSTONE:
+                return instance.hashCode();
+        }
+
+        return super.hashCode();
+    }
+
+    @Override
     public boolean equals(Object o) {
 
         if (o instanceof BeaconData) {

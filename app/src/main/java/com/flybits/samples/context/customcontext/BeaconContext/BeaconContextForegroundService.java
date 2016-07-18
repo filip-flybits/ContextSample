@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.RemoteException;
+import android.os.SystemClock;
 import android.util.Log;
 
 import com.flybits.core.api.context.v2.ContextUtils;
@@ -20,6 +21,8 @@ import org.altbeacon.beacon.powersave.BackgroundPowerSaver;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Filip on 6/20/2016.
@@ -38,6 +41,9 @@ public class BeaconContextForegroundService extends FlybitsForegroundService imp
     private String pluginName;
     private boolean shouldUpdateServer;
     private long mTimeInSecondsToRefresh;
+    private long mLastRefresh = 0;
+
+    private HashMap<BeaconData, Long> mActiveBeacons = new HashMap();
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -106,7 +112,16 @@ public class BeaconContextForegroundService extends FlybitsForegroundService imp
     @Override
     public void didRangeBeaconsInRegion(Collection<Beacon> beacons, Region region) {
 
-        ArrayList<BeaconData> foundBeacons = new ArrayList();
+        ArrayList<BeaconData> beaconsToRemove = new ArrayList();
+
+        for (Map.Entry<BeaconData, Long> b : mActiveBeacons.entrySet())
+        {
+            if (SystemClock.elapsedRealtime() - b.getValue() > 30000)
+                beaconsToRemove.add(b.getKey());
+        }
+
+        for (BeaconData b : beaconsToRemove)
+            mActiveBeacons.remove(b);
 
         for (Beacon b : beacons) {
             BeaconData data = null;
@@ -114,20 +129,21 @@ public class BeaconContextForegroundService extends FlybitsForegroundService imp
             switch (b.getServiceUuid()) {
                 case SERVICE_ID_EDDYSTONE:
                     data = handleEddystoneBeacon(b);
-                    if (data != null) {
-                        foundBeacons.add(data);
-                    }
                     break;
                 case SERVICE_ID_IBEACON:
                     data = handleIBeacon(b);
-                    if (data != null) {
-                        foundBeacons.add(data);
-                    }
                     break;
             }
+
+            if (data != null && !mActiveBeacons.containsKey(data))
+                mActiveBeacons.put(data, SystemClock.elapsedRealtime());
         }
 
-        ContextUtils.refreshData(getBaseContext(), pluginName, shouldUpdateServer, new BeaconDataList(foundBeacons));
+        if (SystemClock.elapsedRealtime() - mLastRefresh > mTimeInSecondsToRefresh * 1000)
+        {
+            ContextUtils.refreshData(getBaseContext(), pluginName, shouldUpdateServer, new BeaconDataList(mActiveBeacons.keySet()));
+            mLastRefresh = SystemClock.elapsedRealtime();
+        }
 
     }
 
@@ -139,11 +155,12 @@ public class BeaconContextForegroundService extends FlybitsForegroundService imp
                 Identifier namespaceId = beacon.getId1();
                 Identifier instanceId = beacon.getId2();
 
-                BeaconData eddystoneUIDData = new BeaconData(namespaceId.toString(), namespaceId.toString());
+                BeaconData eddystoneUIDData = new BeaconData(namespaceId.toString(), instanceId.toString());
 
+                /*
                 Log.d(_TAG, "I see a eddystone beacon transmitting namespace id: "+namespaceId+
                         " and instance id: "+instanceId+
-                        " approximately "+beacon.getDistance()+" meters away.");
+                        " approximately "+beacon.getDistance()+" meters away.");*/
 
                 return eddystoneUIDData;
             case 0x10:
@@ -154,10 +171,10 @@ public class BeaconContextForegroundService extends FlybitsForegroundService imp
                     long pduCount = beacon.getExtraDataFields().get(3);
                     long uptime = beacon.getExtraDataFields().get(4);
 
-                    Log.d(_TAG, "The above beacon is sending telemetry version " + telemetryVersion +
+                    /*Log.d(_TAG, "The above beacon is sending telemetry version " + telemetryVersion +
                             ", has been up for : " + uptime + " seconds" +
                             ", has a battery level of " + batteryMilliVolts + " mV" +
-                            ", and has transmitted " + pduCount + " advertisements.");
+                            ", and has transmitted " + pduCount + " advertisements.");*/
                 }
 
                 break;
@@ -170,14 +187,14 @@ public class BeaconContextForegroundService extends FlybitsForegroundService imp
 
     private BeaconData handleIBeacon(Beacon beacon)
     {
-        Identifier namespaceId = beacon.getId1();
-        Identifier instanceId = beacon.getId2();
+        Identifier uuid = beacon.getId1();
+        Identifier majorID = beacon.getId2();
+        Identifier minorID = beacon.getId3();
 
-        BeaconData iBeaconData = new BeaconData(namespaceId.toString(), namespaceId.toString());
+        BeaconData iBeaconData = new BeaconData(uuid.toString(), majorID.toString(), minorID.toString());
 
-        Log.d(_TAG, "I see a iBeacon transmitting namespace id: "+namespaceId+
-                " and instance id: "+instanceId+
-                " approximately "+beacon.getDistance()+" meters away.");
+        //Log.d(_TAG, "I see a iBeacon transmitting uuid id: "+uuid+
+        //        " approximately "+beacon.getDistance()+"m away.");
 
         return iBeaconData;
     }
