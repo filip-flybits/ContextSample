@@ -34,6 +34,7 @@ import com.flybits.samples.context.customcontext.AudioContext.AudioData;
 import com.flybits.samples.context.customcontext.BeaconContext.BeaconContextBackgroundService;
 import com.flybits.samples.context.customcontext.BeaconContext.BeaconContextForegroundService;
 import com.flybits.samples.context.customcontext.BeaconContext.BeaconData;
+import com.flybits.samples.context.customcontext.BeaconContext.BeaconDataList;
 import com.flybits.samples.context.fragments.ContextFragment;
 import com.flybits.samples.context.fragments.HomeFragment;
 
@@ -221,7 +222,7 @@ public class MainActivity extends AppCompatActivity
                         }
                     }
                     else if (bundle.getString("CONTEXT_TYPE").equals("ctx.sdk.beacon")) {
-                        BeaconData data = bundle.getParcelable("CONTEXT_OBJ");
+                        BeaconDataList data = bundle.getParcelable("CONTEXT_OBJ");
                         if (data != null) {
                             Log.d("Testing", data.toString());
                             fragment.onNewData(data);

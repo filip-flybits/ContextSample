@@ -56,7 +56,7 @@
 
         <meta-data
             android:name="com.flybits.apikey"
-            android:value="7CA85BA9-8747-446A-8436-B3C9F75C3DF2" />
+            android:value="014D4176-0AE2-403A-8F6D-F68658F00A9E" />
 
         <!-- Services for Activity Recognition -->
         <service android:name="com.flybits.core.api.context.v2.plugins.activity.ActivityBackgroundService"

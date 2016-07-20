@@ -55,6 +55,8 @@ public class BeaconContextBackgroundService extends FlybitsBackgroundService imp
 
         Log.i(_TAG, "onRunTask");
 
+        //Download Namespaces
+
         Bundle bundle = taskParams.getExtras();
         mShouldUpdateServer = bundle.getBoolean("shouldUpdateServer", false);
         mPluginName = bundle.getString("pluginName", "");

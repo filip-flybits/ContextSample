@@ -2,6 +2,7 @@ package com.flybits.samples.context.customcontext.BeaconContext;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.RemoteException;
 import android.os.SystemClock;
@@ -19,9 +20,11 @@ import org.altbeacon.beacon.RangeNotifier;
 import org.altbeacon.beacon.Region;
 import org.altbeacon.beacon.powersave.BackgroundPowerSaver;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -45,6 +48,8 @@ public class BeaconContextForegroundService extends FlybitsForegroundService imp
 
     private HashMap<BeaconData, Long> mActiveBeacons = new HashMap();
 
+    private HashMap<String, MonitoredBeacon> mBeaconsToMonitor;
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
@@ -61,21 +66,7 @@ public class BeaconContextForegroundService extends FlybitsForegroundService imp
             getData(pluginName, shouldUpdateServer, true);
         }
 
-        mBeaconManager = BeaconManager.getInstanceForApplication(this);
-
-        //Setup Frames
-        mBeaconManager.getBeaconParsers().add(new BeaconParser().
-                setBeaconLayout(BeaconParser.EDDYSTONE_UID_LAYOUT));
-        mBeaconManager.getBeaconParsers().add(new BeaconParser().
-                setBeaconLayout(BeaconParser.EDDYSTONE_TLM_LAYOUT));
-        mBeaconManager.getBeaconParsers().add(new BeaconParser().
-                setBeaconLayout(BeaconParser.EDDYSTONE_URL_LAYOUT));
-        mBeaconManager.getBeaconParsers().add(new BeaconParser().
-                setBeaconLayout(FRAME_IBEACON));
-        mBeaconManager.getBeaconParsers().add(new BeaconParser().
-                setBeaconLayout(BeaconParser.ALTBEACON_LAYOUT));
-
-        mBeaconManager.bind(this);
+        new GetRegisteredNamespacesTask().execute();
 
         return Service.START_REDELIVER_INTENT;
     }
@@ -100,7 +91,8 @@ public class BeaconContextForegroundService extends FlybitsForegroundService imp
 
     @Override
     public void onBeaconServiceConnect() {
-        Region region = new Region("all-beacons-region", null, null, null);
+        Region region = new Region("my", null, null, null);
+
         try {
             mBeaconManager.startRangingBeaconsInRegion(region);
         } catch (RemoteException e) {
@@ -129,9 +121,17 @@ public class BeaconContextForegroundService extends FlybitsForegroundService imp
             switch (b.getServiceUuid()) {
                 case SERVICE_ID_EDDYSTONE:
                     data = handleEddystoneBeacon(b);
+
+                    if (!mBeaconsToMonitor.containsKey(data.namespace))
+                        continue;
+
                     break;
                 case SERVICE_ID_IBEACON:
                     data = handleIBeacon(b);
+
+                    if (!mBeaconsToMonitor.containsKey(data.uuid))
+                        continue;
+
                     break;
             }
 
@@ -197,6 +197,39 @@ public class BeaconContextForegroundService extends FlybitsForegroundService imp
         //        " approximately "+beacon.getDistance()+"m away.");
 
         return iBeaconData;
+    }
+
+    class GetRegisteredNamespacesTask extends AsyncTask<Void, Void, Void>
+    {
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                List<MonitoredBeacon> beaconsToMonitor = FlybitsBeaconApi.getBeaconsToMonitor(getBaseContext());
+
+                for (MonitoredBeacon mb : beaconsToMonitor)
+                    mBeaconsToMonitor.put(mb.monitor, mb);
+
+                mBeaconManager = BeaconManager.getInstanceForApplication(BeaconContextForegroundService.this);
+
+                //Setup Frames
+                mBeaconManager.getBeaconParsers().add(new BeaconParser().
+                        setBeaconLayout(BeaconParser.EDDYSTONE_UID_LAYOUT));
+                mBeaconManager.getBeaconParsers().add(new BeaconParser().
+                        setBeaconLayout(BeaconParser.EDDYSTONE_TLM_LAYOUT));
+                mBeaconManager.getBeaconParsers().add(new BeaconParser().
+                        setBeaconLayout(BeaconParser.EDDYSTONE_URL_LAYOUT));
+                mBeaconManager.getBeaconParsers().add(new BeaconParser().
+                        setBeaconLayout(FRAME_IBEACON));
+                mBeaconManager.getBeaconParsers().add(new BeaconParser().
+                        setBeaconLayout(BeaconParser.ALTBEACON_LAYOUT));
+
+                mBeaconManager.bind(BeaconContextForegroundService.this);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
     }
 
 }
